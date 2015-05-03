@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Communities Guide</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <header class="container header">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Iasi Communities Guide</h1>
+          <h2>Simple Bootstrap/ Isotope</h2>
+        </div>
+      </div>
+    </header>
+
+    <div class="container controls">
+      <div class="row filters">
+        <div class="col-xs-12">
+          <label>Filters:</label>
+          <button class="btn btn-primary" data-filter="*">show all</button>
+          <button class="btn btn-success" data-filter=".pinnacle">pinnacle</button>
+          <button class="btn btn-success" data-filter=".selfish">selfish</button>
+          <button class="btn btn-success" data-filter=".prejudice">prejudice</button>
+          <button class="btn btn-info" data-filter=".pinnacle, .selfish">pinnacle &amp; prejudice</button>
+          <button class="btn btn-danger" data-filter=":not(.selfish)">not selfish</button>
+          <button class="btn btn-warning" data-filter=".pinnacle:not(.prejudice)">pinnacle but not prejudice</button>
+        </div>
+      </div>
+      <div class="row sorts">
+        <div class="col-xs-12">
+          <label>Sorting:</label>
+          <button class="btn btn-primary" data-sort="original-order">original order</button>
+          <button class="btn btn-success" data-sort="interest">interest</button>
+          <button class="btn btn-danger" data-sort="alpha">alpha</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container isotope">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle" data-interest="technology">
+          <h3>Victorious dead contradict christianity</h3>
+          <p>Self sea morality derive christian aversion against justice gains ubermensch revaluation ideal spirit. Will abstract moral self dead virtues philosophy faith society depths grandeur value christianity transvaluation.</p>
+          <p>Morality pinnacle decrepit snare inexpedient passion fearful sea pinnacle. Abstract law insofar marvelous passion sea.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle">
+          <h3>Ocean salvation prejudice</h3>
+          <p>Morality pinnacle decrepit snare inexpedient passion fearful sea pinnacle. Abstract law insofar marvelous passion sea.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item selfish" data-interest="technology,other">
+          <h3>Self enlightenment revaluation intentions</h3>
+          <p>Evil noble zarathustra prejudice truth. Disgust play selfish ubermensch pious passion. Free deceptions zarathustra burying decieve gains overcome deceptions inexpedient.</p>
+          <p>Morality pinnacle decrepit snare inexpedient passion fearful sea pinnacle. Abstract law insofar marvelous passion sea.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item prejudice" data-interest="technology,creative">
+          <h3>Chaos sea</h3>
+          <p>Prejudice virtues disgust ideal faithful ultimate hope eternal-return passion faithful aversion enlightenment hope zarathustra. Endless prejudice insofar ocean against right holiest truth against convictions ultimate.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle selfish" data-interest="creative">
+          <h3>Disgust play selfish</h3>
+          <p>Morality pinnacle decrepit snare inexpedient passion fearful sea pinnacle. Abstract law insofar marvelous passion sea.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle prejudice" data-interest="technology">
+          <h3>Ocean salvation</h3>
+          <p>Prejudice virtues disgust ideal faithful ultimate hope eternal-return passion faithful aversion enlightenment hope zarathustra. Endless prejudice insofar ocean against right holiest truth against convictions ultimate.</p>
+          <p>Morality pinnacle decrepit snare inexpedient passion fearful sea pinnacle. Abstract law insofar marvelous passion sea.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle" data-interest="other">
+          <h3>Of abstract overcome</h3>
+          <p>Morality pinnacle decrepit snare inexpedient passion fearful sea pinnacle. Abstract law insofar marvelous passion sea.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item prejudice selfish" data-interest="creative">
+          <h3>Endless mountains holiest evil prejudice war</h3>
+          <p>Evil noble zarathustra prejudice truth. Disgust play selfish ubermensch pious passion. Free deceptions zarathustra burying decieve gains overcome deceptions inexpedient.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item prejudice" data-interest="technology">
+          <h3>Eternal-return ultimate</h3>
+          <p>Endless mountains holiest evil prejudice war. Decrepit morality deceptions value insofar god play faith good chaos chaos mountains suicide merciful.</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle" data-interest="other">
+          <h3>Revaluation god ultimate hope</h3>
+          <p>Gains victorious free love chaos of of justice faith christian insofar. Hatred suicide passion contradict hope horror free sexuality moral aversion war right pinnacle.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container footer">
+      <div class="row">
+        <div class="col-xs-12">
+          <p>Sunday night work in progress.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
