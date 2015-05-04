@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
     bcrypt = require('bcrypt-nodejs'), REQUIRED_PASSWORD_LENGTH = 6;
 
 function emailValidator(email) {
@@ -10,6 +11,7 @@ var accountSchema = mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     isDeleted: Boolean,
+    communities: [{type: Schema.Types.ObjectId, ref: 'Community'}],
     facebook        : {
         id          : String,
         token       : String,

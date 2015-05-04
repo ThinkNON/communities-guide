@@ -61,7 +61,7 @@ Application.prototype.boot = function (cb) {
         app.set('view engine', 'ejs'); // set up ejs for templating
 //        app.set('jwtTokenSecret', config.auth.secretString);
         app.use(passport.initialize());
-        //require('./controllers/account/accounts.js')(app, passport);
+        require('./controllers/account/accounts.js')(app, passport);
     }
 
     // connect to mongodb

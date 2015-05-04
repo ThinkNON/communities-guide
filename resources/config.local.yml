@@ -30,3 +30,10 @@ log:
     morgan:
         format: ':remote-addr - - [:date] ":method :url" :status :res[content-length] - ":user-agent" - :response-time ms'
 
+
+facebookAuth:
+    callbackURL: 'http://localhost:8085/auth/facebook'
+
+
+twitterAuth:
+    callbackURL: 'http://localhost:8085/auth/twitter'
