@@ -7,13 +7,15 @@
 .isotope {
   margin: 20px auto;
 }
-.item {
-  padding-top: 10px;
-  padding-bottom: 20px;
-}
 .item img {
   width: 100%;
   height: auto;
+}
+.visual {
+  padding: 15px 0;
+}
+.actions {
+  padding: 15px 0;
 }
 .footer {
   margin: 40px auto 20px;
