@@ -32,8 +32,11 @@ log:
 
 
 facebookAuth:
-    callbackURL: 'http://localhost:8085/auth/facebook'
+    callbackURL: 'http://localhost:8085/auth/facebook/callback'
 
 
 twitterAuth:
-    callbackURL: 'http://localhost:8085/auth/twitter'
+    callbackURL: 'http://localhost:8085/auth/twitter/callback'
+
+session:
+    secret: 'super secret session token'

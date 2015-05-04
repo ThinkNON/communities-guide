@@ -10,59 +10,6 @@ var Account = require('../../../app/models/account'),
     error = debug('accounts:error');
 
 module.exports = function (app, passport) {
-    app.post('/accounts/register', function (req, res, next) {
-        passport.authenticate('local-signup', function (err, account) {
-            if (err) {
-                return next(err);
-            }
-            log("account",account);
-            req.logIn(account, function (err) {
-                var expires = moment().add('days', 7).valueOf();
-                var token = jwt.encode({
-                    iss: account.id,
-                    exp: expires
-                }, app.get('jwtTokenSecret'));
-                if (err) {
-                    return next(err);
-                }
-                account.password = null;
-                return res.json(
-                    {   success: true,
-                        token: token,
-                        account: account.toJSON()
-                    });
-            });
-        })(req, res, next);
-    });
-
-
-    app.post('/accounts/login', function (req, res, next) {
-        passport.authorize('local-login', function (err, account) {
-            if (err) {
-                return next(err);
-            }
-            if (!account) {
-                return req.clientErrorHandler.handle(404, {global: "RESOURCE_NOT_FOUND"});
-            }
-            req.logIn(account, function (err) {
-                var expires = moment().add('days', 7).valueOf();
-                var token = jwt.encode({
-                    iss: account.id,
-                    exp: expires
-                }, app.get('jwtTokenSecret'));
-                if (err) {
-                    return next(err);
-                }
-                account.password = null;
-                log("recently logged user", account);
-                return res.json(
-                    {   success: true,
-                        token: token,
-                        account: account
-                    });
-            });
-        })(req, res, next);
-    });
 
     app.get('/', function (req, res) {
         res.render('index.ejs');
@@ -80,6 +27,19 @@ module.exports = function (app, passport) {
         res.render('profile.ejs', {
             user : req.user
         });
+    });
+
+    app.get('/auth/facebook', passport.authenticate('facebook'));
+
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/profile',
+            failureRedirect: '/'
+        }));
+
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
     });
 };
 

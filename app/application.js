@@ -1,12 +1,14 @@
-var mongoose = require('mongoose'),
-    express = require('express'),
-    events = require('events'),
-    util = require('util'),
+var mongoose = require('mongoose');
+var express = require('express');
+var events = require('events');
+var util = require('util'),
     bytes = require('bytes'),
     path = require('path'),
     multipart = require('connect-multiparty'),
     config = require('../resources/config'),
     bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
     passport = require('passport'),
     debug = require('debug'),
     log = debug('application:log'),
@@ -39,17 +41,14 @@ Application.prototype.boot = function (cb) {
 
         // init general middleware
 
-        // clientErrorHandler() appends the class ClientErrorHandler to the req.
-        // it exposes the following api
-        //  req.clientErrorHandler.add() which adds a error like {email: 'invalid'}
-        //  req.clientErrorHandler.handle({code})  which returns the errors added using res.json
-        //  req.clientErrorHandler.handle({code}, {errors}) retrns the passed errors
       //  app.use(clientErrorHandler());
 
         // body parsers
         app.use(bodyParser.json({limit: bytes(config.application.uploadLimit)}));
         app.use(bodyParser.urlencoded({extended: true, limit: bytes(config.application.uploadLimit)}));
         app.use(multipart({limit: bytes(config.application.uploadLimit)}));
+        app.use(cookieParser());
+        app.use(session({secret: config.session.secret}));
 
         // auth middleware
 
@@ -59,8 +58,8 @@ Application.prototype.boot = function (cb) {
        // app.use(validator());
         app.use(express.static(path.join(__dirname, 'public')));
         app.set('view engine', 'ejs'); // set up ejs for templating
-//        app.set('jwtTokenSecret', config.auth.secretString);
         app.use(passport.initialize());
+        app.use(passport.session());
         require('./controllers/account/accounts.js')(app, passport);
     }
 

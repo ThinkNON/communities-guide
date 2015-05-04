@@ -8,8 +8,6 @@ function emailValidator(email) {
 }
 
 var accountSchema = mongoose.Schema({
-    username: {type: String, required: true},
-    password: {type: String, required: true},
     isDeleted: Boolean,
     communities: [{type: Schema.Types.ObjectId, ref: 'Community'}],
     facebook        : {
