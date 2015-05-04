@@ -63,5 +63,31 @@ module.exports = function (app, passport) {
             });
         })(req, res, next);
     });
+
+    app.get('/', function (req, res) {
+        res.render('index.ejs');
+    });
+
+    app.get('/signup', function (req, res) {
+        res.render('signup.ejs');
+    });
+
+    app.get('/login', function (req, res) {
+        res.render('login.ejs');
+    });
+
+    app.get('/profile', isLoggedIn, function (req, res) {
+        res.render('profile.ejs', {
+            user : req.user
+        });
+    });
 };
+
+function isLoggedIn (req, res, next) {
+
+    if (req.isAuthenticated())
+        return next();
+
+    res.redirect('/');
+}
 

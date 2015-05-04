@@ -10,7 +10,18 @@ var accountSchema = mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     isDeleted: Boolean,
-    resetExpireDate : {type: Date}
+    facebook        : {
+        id          : String,
+        token       : String,
+        email       : String,
+        name        : String
+    },
+    twitter         : {
+        id          : String,
+        token       : String,
+        displayName : String,
+        username    : String
+    }
 });
 
 
