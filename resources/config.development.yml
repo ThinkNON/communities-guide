@@ -1,0 +1,32 @@
+assets:
+    s3:
+        region: 'eu-central-1'
+        userBucket: 'maria.roman'
+        bucketName: 'vowlt-dev'
+        acl: 'public-read'
+        publicUrl: 'http://assets.dev.com/'
+        uploadLimit: 1000000
+
+mongodb:
+    schema:
+        autoindex: true
+
+serverURL: 'http://dev.com'
+
+application:
+    port: 8082
+    debug: true
+    uploadLimit: '2mb'
+    timezone: 'Europe/Bucharest'
+
+auth:
+    jwt:
+        secret:
+        exp: 0
+    bcrypt:
+        iterations: 10
+log:
+    morgan:
+        format: ':remote-addr - - [:date] ":method :url" :status :res[content-length] - ":user-agent" - :response-time ms'
+
+
