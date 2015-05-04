@@ -1,5 +1,6 @@
 // load all the things we need
 var FacebookStrategy = require('passport-facebook').Strategy,
+    TwitterStrategy = require('passport-twitter').Strategy,
     Account = require('../app/models/account'),
     moment = require('moment'),
     config = require('../resources/config'),
@@ -39,49 +40,95 @@ module.exports = function (passport) {
     // =========================================================================
     passport.use(new FacebookStrategy({
 
-            // pull in our app id and secret from our auth.js file
-            clientID        : FACEBOOK_APP_ID,
-            clientSecret    : FACEBOOK_APP_SECRET,
-            callbackURL     : config.facebookAuth.callbackURL
+        // pull in our app id and secret from our auth.js file
+        clientID        : FACEBOOK_APP_ID,
+        clientSecret    : FACEBOOK_APP_SECRET,
+        callbackURL     : config.facebookAuth.callbackURL
 
-        },
+    },
 
-        // facebook will send back the token and profile
-        function (token, refreshToken, profile, done) {
+    // facebook will send back the token and profile
+    function (token, refreshToken, profile, done) {
 
-            // asynchronous
-            process.nextTick(function () {
+        // asynchronous
+        process.nextTick(function () {
 
-                // find the user in the database based on their facebook id
-                Account.findOne({ 'facebook.id' : profile.id }, function (err, user) {
+            // find the user in the database based on their facebook id
+            Account.findOne({ 'facebook.id' : profile.id }, function (err, user) {
 
-                    if (err)
-                        return done(err);
-                    if (user) {
-                        console.log("PASSPORT USER", user);
-                        return done(null, user); // user found, return that user
-                    } else {
-                        var newUser = new Account();
+                if (err)
+                    return done(err);
+                if (user) {
+                    return done(null, user); // user found, return that user
+                } else {
+                    var newUser = new Account();
 
-                        // set all of the facebook information in our user model
-                        newUser.facebook.id    = profile.id; // set the users facebook id
-                        newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                        newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                        newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                    // set all of the facebook information in our user model
+                    newUser.facebook.id    = profile.id; // set the users facebook id
+                    newUser.facebook.token = token; // we will save the token that facebook provides to the user
+                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
-                        // save our user to the database
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
+                    // save our user to the database
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
 
-                            // if successful, return the new user
-                            return done(null, newUser);
-                        });
-                    }
+                        // if successful, return the new user
+                        return done(null, newUser);
+                    });
+                }
 
-                });
             });
+        });
 
-        }));
+    }));
+
+    // =========================================================================
+    // TWITTER ================================================================
+    // =========================================================================
+    passport.use(new TwitterStrategy({
+
+        // pull in our app id and secret from our auth.js file
+        consumerKey         : TWITTER_CONSUMER_KEY,
+        consumerSecret      : TWITTER_CONSUMER_SECRET,
+        callbackURL         : config.twitterAuth.callbackURL
+
+    },
+
+    // facebook will send back the token and profile
+    function (token, tokenSecret, profile, done) {
+
+        // asynchronous
+        process.nextTick(function () {
+            Account.findOne({ 'twiiter.id' : profile.id }, function (err, user) {
+
+                if (err)
+                    return done(err);
+                if (user) {
+                    return done(null, user); // user found, return that user
+                } else {
+                    var newUser = new Account();
+
+                    // set all of the facebook information in our user model
+                    newUser.twitter.id    = profile.id;
+                    newUser.twitter.token = token;
+                    newUser.twitter.name  = profile.username;
+                    newUser.twitter.displayName = profile.displayName;
+
+                    // save our user to the database
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+
+                        // if successful, return the new user
+                        return done(null, newUser);
+                    });
+                }
+
+            });
+        });
+
+    }));
 
 };
