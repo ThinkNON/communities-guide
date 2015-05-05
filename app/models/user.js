@@ -3,7 +3,6 @@ var Schema      = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
     isDeleted: Boolean,
-    communities: [{type: Schema.Types.ObjectId, ref: 'Community'}],
     facebook        : {
         id          : String,
         token       : String,

@@ -1,7 +1,6 @@
 var User      = require('../../../app/models/user');
 var Community = require('../../../app/models/community');
 var communities = require('../../../app/controllers/community/communities.js');
-var moment    = require('moment');
 var AWS       = require('aws-sdk');
 var config    = require('../../../resources/config');
 var _         = require('lodash');
@@ -18,10 +17,15 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/login', function (req, res) {
-        console.log("community", req.query.community);
-        console.log("COMMUNITY", req.body.community);
-        console.log("COMMUNITY", req.communities);
+    app.get('/login', function (req, res) {
+
+        //if authenticated update db adn return success and disable join button ->already a member
+        //else alert with Fb/Twitter connect message
+
+        //Fb/Twitter connect  -> /login route
+//        console.log("community", req.query.community);
+//        console.log("COMMUNITY", req.body.community);
+//        console.log("COMMUNITY", req.communities);
         res.render('login.ejs');
     });
 

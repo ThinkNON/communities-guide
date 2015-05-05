@@ -37,10 +37,12 @@ $(function(){
       $(this).css("background-color", hue);
   });
 
-   $('a.btn').click(function() {
+   $('.actions > .btn').on('click', function(e) {
+       e.preventDefault();
+       var URL = $(this).attr('href');
        // var community = $(this).attr('h3');
         //console.log("community name", community);
-        $.post('http://localhost:8085/login', {community: 'community'}, function(data, status) {
+        $.get( URL, function(data, status) {
             alert("Data:" + data);
         });
     });
