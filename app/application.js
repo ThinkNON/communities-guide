@@ -1,18 +1,18 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var events = require('events');
-var util = require('util'),
-    bytes = require('bytes'),
-    path = require('path'),
-    multipart = require('connect-multiparty'),
-    config = require('../resources/config'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    session = require('express-session'),
-    passport = require('passport'),
-    debug = require('debug'),
-    log = debug('application:log'),
-    error = debug('application:error');
+var util = require('util');
+var bytes = require('bytes');
+var path = require('path');
+var multipart = require('connect-multiparty');
+var config = require('../resources/config');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
+var debug = require('debug');
+var log = debug('application:log');
+var error = debug('application:error');
 
 var Application = function (options) {
     if (typeof options === 'undefined') options = {};
@@ -20,17 +20,16 @@ var Application = function (options) {
     events.EventEmitter.call(this);
 };
 
-
 util.inherits(Application, events.EventEmitter);
 
 Application.prototype.boot = function (cb) {
+
     if (typeof cb === 'undefined') cb = function () {
     };
     var _this = this;
 
     // get the express application
     var app = express();
-
 
     function configureApp() {
 
@@ -40,8 +39,7 @@ Application.prototype.boot = function (cb) {
 
 
         // init general middleware
-
-      //  app.use(clientErrorHandler());
+        //app.use(clientErrorHandler());
 
         // body parsers
         app.use(bodyParser.json({limit: bytes(config.application.uploadLimit)}));
@@ -52,15 +50,14 @@ Application.prototype.boot = function (cb) {
 
         // auth middleware
 
-
         // express validator exposes api like
         //  req.assert('field', 'message').isEmpty()
-       // app.use(validator());
+        // app.use(validator());
         app.use(express.static(path.join(__dirname, 'public')));
         app.set('view engine', 'ejs'); // set up ejs for templating
         app.use(passport.initialize());
         app.use(passport.session());
-        require('./controllers/account/accounts.js')(app, passport);
+        require('./controllers/user/users.js')(app, passport);
     }
 
     // connect to mongodb

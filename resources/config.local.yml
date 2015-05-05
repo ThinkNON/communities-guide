@@ -2,7 +2,7 @@ assets:
     s3:
         region: 'eu-central-1'
         userBucket: 'maria.roman'
-        bucketName: 'vowlt-local'
+        bucketName: 'communitiesguide-local'
         acl: 'public-read'
         publicUrl: 'https://communitiesguide-local.s3.eu-central-1.amazonaws.com/images/'
         uploadLimit: 1000000

@@ -37,4 +37,11 @@ $(function(){
       $(this).css("background-color", hue);
   });
 
+   $('a.btn').click(function() {
+       // var community = $(this).attr('h3');
+        //console.log("community name", community);
+        $.post('http://localhost:8085/login', {community: 'community'}, function(data, status) {
+            alert("Data:" + data);
+        });
+    });
 });

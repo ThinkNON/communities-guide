@@ -1,11 +1,10 @@
-var config = require('./resources/config'),
-    express = require('express'),
-    morgan = require('morgan'),
-    debug = require('debug'),
-    log = debug('server:log'),
-    error = debug('server:error'),
-    dotenv = require('dotenv');
-
+var config  = require('./resources/config');
+var express = require('express');
+var morgan  = require('morgan');
+var debug   = require('debug');
+var dotenv  = require('dotenv');
+var log     = debug('server:log');
+var error   = debug('server:error');
     dotenv.load();
 
 var MONGODB_CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING_LOCAL;
