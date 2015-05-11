@@ -13,6 +13,10 @@ exports.getCommunities = function (req, res, done) {
         if (err)
             res.send(err);
         req.communities = communities;
+
+        if (req.isAuthenticated()) {
+            return done();
+        }
         done();
     });
 }

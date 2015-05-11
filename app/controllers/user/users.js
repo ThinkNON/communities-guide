@@ -12,13 +12,38 @@ module.exports = function (app, passport) {
 
     app.get('/', communities.getCommunities, function (req, res) {
         console.log("COMMUNITIES", req.communities);
+
+        if (req.user) {
+            log(req.user);
+            res.render('index.ejs', {
+                communities: req.communities,
+                user: req.user
+            });
+        }
+
         res.render('index.ejs', {
-            communities: req.communities
+            communities: req.communities,
+            user: {}
         });
     });
 
-    app.get('/login', function (req, res) {
 
+
+    app.param('community', function (req, res, next, id) {
+        Community.find(id, function (err, community) {
+            if (err) {
+                next(err);
+            } else if (community) {
+                req.community = community;
+                next();
+            } else {
+                next(new Error('failed to load user'));
+            }
+        });
+    });
+
+    app.get('/community/join/:id', function (req, res) {
+        var communityId = req.params.id;
         //if authenticated update db adn return success and disable join button ->already a member
         //else alert with Fb/Twitter connect message
 
@@ -26,7 +51,7 @@ module.exports = function (app, passport) {
 //        console.log("community", req.query.community);
 //        console.log("COMMUNITY", req.body.community);
 //        console.log("COMMUNITY", req.communities);
-        res.render('login.ejs');
+        console.log(req.community);
     });
 
 
@@ -36,20 +61,38 @@ module.exports = function (app, passport) {
         });
     });
 
+    app.get('/connect/facebook', passport.authorize('facebook', {scope: 'email'}));
+
+    app.get('/connect/facebook/callback',
+        passport.authorize('facebook', {
+            successRedirect : '/',
+            failureRedirect : '/error'
+        })
+    );
+
+    app.get('/connect/twitter', passport.authorize('twitter', {scope: 'email'}));
+
+    app.get('/connect/twitter/callback',
+        passport.authorize('twitter', {
+            successRedirect : '/',
+            failureRedirect : '/error'
+        })
+    );
+
     app.get('/auth/facebook', passport.authenticate('facebook'));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/profile',
-            failureRedirect: '/'
+            successRedirect : '/',
+            failureRedirect : '/error'
         }));
 
     app.get('/auth/twitter', passport.authenticate('twitter'));
 
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
-            successRedirect: '/profile',
-            failureRedirect: '/'
+            successRedirect: '/',
+            failureRedirect: '/error'
         }));
 
     app.get('/logout', function (req, res) {
@@ -75,7 +118,6 @@ module.exports = function (app, passport) {
 };
 
 function isLoggedIn (req, res, next) {
-
     if (req.isAuthenticated()) {
         return next();
     }

@@ -18,12 +18,11 @@
     </div>
 
     <div class="row">
-
         <!-- FACEBOOK INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
+                <% if (user.facebook.token) {%>
                 <p>
                     <strong>id</strong>: <%= user.facebook.id %><br>
                     <strong>token</strong>: <%= user.facebook.token %><br>
@@ -31,6 +30,10 @@
                     <strong>name</strong>: <%= user.facebook.name %>
                 </p>
 
+                <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+                <% } else { %>
+                <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                <% } %>
             </div>
         </div>
 
@@ -38,7 +41,7 @@
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
-
+                <% if(user.twitter.token) { %>
                 <p>
                     <strong>id</strong>: <%= user.twitter.id %><br>
                     <strong>token</strong>: <%= user.twitter.token %><br>
@@ -46,6 +49,10 @@
                     <strong>displayName</strong>: <%= user.twitter.displayName %>
                 </p>
 
+                <a href="/unlink/twitter" class="btn btn-primary">Unlink</a>
+                <% } else { %>
+                <a href="/connect/twitter" class="btn btn-primary">Connect Twitter</a>
+                <% } %>
             </div>
         </div>
     </div>

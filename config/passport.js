@@ -33,42 +33,71 @@ module.exports = function (passport) {
         // pull in our app id and secret from our auth.js file
         clientID        : FACEBOOK_APP_ID,
         clientSecret    : FACEBOOK_APP_SECRET,
-        callbackURL     : config.facebookAuth.callbackURL
+        callbackURL     : config.facebookAuth.callbackURL,
+        passReqToCallback: true
 
     },
 
     // facebook will send back the token and profile
-    function (token, refreshToken, profile, done) {
+    function (req, token, refreshToken, profile, done) {
         // asynchronous
         process.nextTick(function () {
-            // find the user in the database based on their facebook id
-            User.findOne({ 'facebook.id' : profile.id }, function (err, user) {
+            //check if the user is already logged in
+            if (!req.user) {
+                // find the user in the database based on their facebook id
+                User.findOne({ 'facebook.id' : profile.id }, function (err, user) {
 
-                if (err) {
-                    return done(err);
-                }
+                    if (err) {
+                        return done(err);
+                    }
 
-                if (user) {
-                    return done(null, user); // user found, return that user
-                } else {
-                    var newUser = new User();
+                    if (user) {
 
-                    // set all of the facebook information in our user model
-                    newUser.facebook.id    = profile.id;
-                    newUser.facebook.token = token;
-                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                    newUser.facebook.email = profile.emails[0].value;
+                        if (!user.facebook.token) {
+                            user.facebook.token = token;
+                            user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                            user.facebook.email = profile.emails[0].value;
 
-                    // save our user to the database
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
+                            user.save(function (err) {
+                                if (err)
+                                    throw err;
+                                return done(null, user);
+                            });
+                        }
 
-                        // if successful, return the new user
-                        return done(null, newUser);
-                    });
-                }
-            });
+                        return done(null, user); // user found, return that user
+                    } else {
+                        var newUser = new User();
+
+                        // set all of the facebook information in our user model
+                        newUser.facebook.id    = profile.id;
+                        newUser.facebook.token = token;
+                        newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                        newUser.facebook.email = profile.emails[0].value;
+
+                        // save our user to the database
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+
+                            // if successful, return the new user
+                            return done(null, newUser);
+                        });
+                    }
+                });
+            } else {
+                var user = req.user;
+                user.facebook.id = profile.id;
+                user.facebook.token = token;
+                user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                user.facebook.email = profile.emails[0].value;
+
+                user.save(function(err) {
+                    if(err)
+                        throw err;
+                    return done(null,user);
+                })
+            }
         });
     }));
 
@@ -80,41 +109,69 @@ module.exports = function (passport) {
         // pull in our app id and secret from our auth.js file
         consumerKey         : TWITTER_CONSUMER_KEY,
         consumerSecret      : TWITTER_CONSUMER_SECRET,
-        callbackURL         : config.twitterAuth.callbackURL
+        callbackURL         : config.twitterAuth.callbackURL,
+        passReqToCallback: true
 
     },
 
     // facebook will send back the token and profile
-    function (token, tokenSecret, profile, done) {
+    function (req, token, tokenSecret, profile, done) {
 
         // asynchronous
         process.nextTick(function () {
-            User.findOne({ 'twitter.id' : profile.id }, function (err, user) {
 
-                if (err)
-                    return done(err);
+            if(!req.user) {
+                User.findOne({ 'twitter.id' : profile.id }, function (err, user) {
 
-                if (user) {
-                    return done(null, user); // user found, return that user
-                } else {
+                    if (err)
+                        return done(err);
 
-                    var newUser = new User();
+                    if (user) {
+                        if (!user.twitter.token) {
+                            user.twitter.id    = profile.id;
+                            user.twitter.token = token;
+                            user.twitter.name  = profile.username;
+                            user.twitter.displayName = profile.displayName;
 
-                    // set all of the facebook information in our user model
-                    newUser.twitter.id    = profile.id;
-                    newUser.twitter.token = token;
-                    newUser.twitter.name  = profile.username;
-                    newUser.twitter.displayName = profile.displayName;
-                    // save our user to the database
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
+                            user.save(function(err) {
+                                if (err)
+                                    throw err;
+                                return done(null, user);
+                            });
+                        }
+                        return done(null, user); // user found, return that user
+                    } else {
 
-                        // if successful, return the new user
-                        return done(null, newUser);
-                    });
-                }
-            });
+                        var newUser = new User();
+
+                        // set all of the facebook information in our user model
+                        newUser.twitter.id    = profile.id;
+                        newUser.twitter.token = token;
+                        newUser.twitter.name  = profile.username;
+                        newUser.twitter.displayName = profile.displayName;
+                        // save our user to the database
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+
+                            // if successful, return the new user
+                            return done(null, newUser);
+                        });
+                    }
+                });
+            } else {
+                var user = req.user;
+                user.twitter.id    = profile.id;
+                user.twitter.token = token;
+                user.twitter.name  = profile.username;
+                user.twitter.displayName = profile.displayName;
+
+                user.save(function(err) {
+                    if(err)
+                        throw err;
+                    return done(null,user);
+                })
+            }
         });
     }));
 };
