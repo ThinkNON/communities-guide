@@ -47,41 +47,42 @@
     </div>
     <div class="row">
         <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
                 <% if (user && user.facebook && user.facebook.token) {%>
                 <p>
                     <strong>id</strong>: <%= user.facebook.id %><br>
-                    <strong>token</strong>: <%= user.facebook.token %><br>
                     <strong>email</strong>: <%= user.facebook.email %><br>
                     <strong>name</strong>: <%= user.facebook.name %>
                 </p>
 
                 <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
                 <% } else { %>
-                <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                <a href="/auth/facebook" class="btn btn-primary">Login Facebook</a>
                 <% } %>
             </div>
         </div>
 
         <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
                 <% if (user && user.twitter && user.twitter.token){ %>
                 <p>
                     <strong>id</strong>: <%= user.twitter.id %><br>
-                    <strong>token</strong>: <%= user.twitter.token %><br>
                     <strong>username</strong>: <%= user.twitter.username %><br>
                     <strong>displayName</strong>: <%= user.twitter.displayName %>
                 </p>
 
                 <a href="/unlink/twitter" class="btn btn-primary">Unlink</a>
                 <% } else { %>
-                <a href="/connect/twitter" class="btn btn-primary">Connect Twitter</a>
+                <a href="/auth/twitter" class="btn btn-primary">Login Twitter</a>
                 <% } %>
             </div>
+        </div>
+        <div class="col-sm-2">
+            <a type="button" class="btn btn-primary" href="/logout">Logout</a>
         </div>
     </div>
 </div>
@@ -102,15 +103,30 @@
                 <h3><%= communities[i].title %></h3>
                 <p><%= communities[i].desc %></p>
             </div>
+            <% if (%>
             <div class="actions">
-                <a class="btn btn-primary" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%>>join community</a>
+                <a class="btn btn-primary" href="community/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
             </div>
         </div>
         <% } %>
     </div>
-
-    <div id="dialog-confirm" title="Login to join community" class="hidden">
-        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>In order to join a community you must login</p>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login in order to join</h4>
+                </div>
+                <div class="modal-body">
+                    Please login with one of the following accounts in order to join the community.
+                </div>
+                <div class="modal-footer">
+                    <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+                    <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -122,9 +138,7 @@
     </div>
 </footer>
 
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>

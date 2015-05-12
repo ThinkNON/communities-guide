@@ -11,51 +11,40 @@ var error     = debug('users:error');
 module.exports = function (app, passport) {
 
     app.get('/', communities.getCommunities, function (req, res) {
-        console.log("COMMUNITIES", req.communities);
-
-        if (req.user) {
-            log(req.user);
-            res.render('index.ejs', {
-                communities: req.communities,
-                user: req.user
-            });
+        var user;
+        if (req.isAuthenticated()) {
+            user = req.user;
+        } else {
+            user = {};
         }
-
         res.render('index.ejs', {
             communities: req.communities,
-            user: {}
+            user: user
         });
     });
 
 
+    app.get('/community/:id', function (req, res, next) {
 
-    app.param('community', function (req, res, next, id) {
-        Community.find(id, function (err, community) {
-            if (err) {
-                next(err);
-            } else if (community) {
-                req.community = community;
-                next();
-            } else {
-                next(new Error('failed to load user'));
-            }
-        });
-    });
-
-    app.get('/community/join/:id', function (req, res) {
-        var communityId = req.params.id;
-        //if authenticated update db adn return success and disable join button ->already a member
-        //else alert with Fb/Twitter connect message
-
-        //Fb/Twitter connect  -> /login route
-//        console.log("community", req.query.community);
-//        console.log("COMMUNITY", req.body.community);
-//        console.log("COMMUNITY", req.communities);
-        console.log(req.community);
+        if (!req.isAuthenticated()) {
+            return (res.json({status: 300, message: 'Not logged in'}));
+        } else {
+            Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
+                if (err) {
+                    next(err);
+                } else {
+                    req.community = community;
+                    console.log(community.memberList.push(req.user));
+                    community.save();
+                    console.log("COMMUNITY  MEMBERLIST", community.memberList);
+                }
+            });
+            return (res.json({status: 200, message: "Logged in"}));
+        }
     });
 
 
-    app.get('/profile', isLoggedIn, function (req, res) {
+    app.get('/profile', function (req, res) {
         res.render('profile.ejs', {
             user : req.user
         });
@@ -100,19 +89,19 @@ module.exports = function (app, passport) {
         res.redirect('/');
     });
 
-    app.get('/unlink/facebook', function(req, res) {
+    app.get('/unlink/facebook', function (req, res) {
         var user            = req.user;
         user.facebook.token = undefined;
         user.save(function (err) {
-            res.redirect('/profile');
+            res.redirect('/');
         });
     });
 
-    app.get('/unlink/twitter', function(req, res) {
+    app.get('/unlink/twitter', function (req, res) {
         var user           = req.user;
         user.twitter.token = undefined;
         user.save(function (err) {
-            res.redirect('/profile');
+            res.redirect('/');
         });
     });
 };

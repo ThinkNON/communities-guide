@@ -36,31 +36,19 @@ $(function () {
         $(this).css("background-color", hue);
     });
 
+    $('#myModal').modal({ show: false});
     $('.actions > .btn').on('click', function (e) {
         e.preventDefault();
         var URL = $(this).attr('href');
         var communityId = $(this).attr('data-communityId');
-        console.log(communityId);
-        var URL_FB = '/auth/facebook';
-        var URL_TW = '/auth/twitter';
+        document.cookie = 'communityId =' + communityId + ' ; path=/';
 
-        document.cookie = 'communityId = communityId; path=/';
-
-        $( "#dialog-confirm").dialog({
-            resizable: false,
-            height: 400,
-            modal: true,
-            buttons: {
-                "Facebook Login": function () {
-                    location.href = URL_FB;
-                },
-                "Twitter Login": function () {
-                    location.href = URL_TW;
-                },
-                "Cancel": function () {
-                    $( this ).dialog( "close" );
-                }
-            }
+        $.get(URL, function (data) {
+           if (data.status === 300) {
+               $('#myModal').modal('show');
+           } else if (data.status === 200) {
+                $(e.target).hide();
+           }
         });
     });
 });
