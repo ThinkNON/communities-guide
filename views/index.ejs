@@ -103,10 +103,23 @@
                 <h3><%= communities[i].title %></h3>
                 <p><%= communities[i].desc %></p>
             </div>
-            <% if (%>
-            <div class="actions">
-                <a class="btn btn-primary" href="community/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
+
+            <div class="members">
+                <%=  communities[i]._id %>
+                <%  _.forEach(communities[i].memberList, function(member) { %>
+                   <img width="48" src="<%= getAvatarFromServices('facebook', member.facebook.id, 48) %>">
+                <% }) %>
             </div>
+
+            <% if (!_.contains(user.communityList, communities[i])) { %>
+            <div class="actions">
+                <a class="btn btn-primary" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
+            </div>
+            <% } else { %>
+            <div class="actions">
+                <a class="btn btn-primary" href="community/exit/<%=communities[i]._id%>" >leave community</a>
+            </div>
+            <% } %>
         </div>
         <% } %>
     </div>

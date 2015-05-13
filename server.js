@@ -5,6 +5,7 @@ var debug   = require('debug');
 var dotenv  = require('dotenv');
 var log     = debug('server:log');
 var error   = debug('server:error');
+
     dotenv.load();
 
 var MONGODB_CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING_LOCAL;

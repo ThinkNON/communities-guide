@@ -16,7 +16,8 @@ var userSchema = mongoose.Schema({
         displayName : String,
         username    : String,
         avatar      : String
-    }
+    },
+    communityList: [{type: Schema.Types.ObjectId, ref : 'Community'}]
 });
 
 //
