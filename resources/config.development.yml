@@ -2,9 +2,9 @@ assets:
     s3:
         region: 'eu-central-1'
         userBucket: 'maria.roman'
-        bucketName: 'vowlt-dev'
+        bucketName: 'communities-guide-dev'
         acl: 'public-read'
-        publicUrl: 'http://assets.dev.com/'
+        publicUrl: 'https://communities-guide-dev.s3.eu-central-1.amazonaws.com/images/'
         uploadLimit: 1000000
 
 mongodb:
@@ -29,4 +29,11 @@ log:
     morgan:
         format: ':remote-addr - - [:date] ":method :url" :status :res[content-length] - ":user-agent" - :response-time ms'
 
+facebookAuth:
+    callbackURL: 'http://communities-guide-dev.elasticbeanstalk.com/auth/facebook/callback'
 
+twitterAuth:
+    callbackURL: 'http://communities-guide-dev.elasticbeanstalk.com/auth/twitter/callback'
+
+session:
+    secret: 'super secret session token'
