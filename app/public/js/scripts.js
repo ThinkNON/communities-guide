@@ -47,7 +47,8 @@ $(function () {
            if (data.status === 300) {
                $('#myModal').modal('show');
            } else if (data.status === 200) {
-                $(e.target).hide();
+                $(e.target).css('visibility', 'hidden');
+               // $("a.leave").removeClass('hidden');
            }
         });
     });
