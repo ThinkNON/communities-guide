@@ -3,6 +3,7 @@ var Community = require('../../../app/models/community');
 var communities = require('../../../app/controllers/community/communities.js');
 var AWS       = require('aws-sdk');
 var config    = require('../../../resources/config');
+var jQuery    = require('jquery');
 var _         = require('lodash');
 var debug     = require('debug');
 var log       = debug('users:log');
@@ -11,6 +12,7 @@ var error     = debug('users:error');
 module.exports = function (app, passport) {
 
     app.locals._ = _;
+    app.locals.jQuery = jQuery;
 
     app.locals.getAvatarFromServices = function (service, userid, size) {
         // this return the url that redirects to the according user image/avatar/profile picture
@@ -91,7 +93,6 @@ module.exports = function (app, passport) {
 
 
     app.get('/community/join/:id', function (req, res, next) {
-
         if (!req.isAuthenticated()) {
             return (res.json({status: 300, message: 'Not logged in'}));
         } else {
@@ -99,16 +100,21 @@ module.exports = function (app, passport) {
                 if (err) {
                     next(err);
                 } else {
-                    if (!_.contains(req.user.communityList, community)) {
-                        req.user.communityList.push(community._id);
+                    var isInCommunity = req.user.communityList.some(function (community) {
+                        return community.equals(req.params.id);
+                    });
+                    if (!isInCommunity) {
+                       req.user.communityList.push(req.params.id);
                     }
                     req.user.save();
-                    console.log("USER  COMMUNITYLIST", req.user.communityList);
-                    if (_.indexOf(community.memberList, req.user) === -1) {
+
+                    var isMember = community.memberList.some(function (member) {
+                        return member.equals(req.user._id);
+                    });
+                    if (!isMember) {
                         community.memberList.push(req.user);
                     }
                     community.save();
-                    console.log("COMMUNITY  MEMBERLIST", community.memberList);
                 }
             });
             return (res.json({status: 200, message: "Logged in"}));
@@ -143,7 +149,7 @@ module.exports = function (app, passport) {
         })
     );
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
@@ -151,7 +157,7 @@ module.exports = function (app, passport) {
             failureRedirect : '/error'
         }));
 
-    app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter', passport.authenticate('twitter', {scope: 'email'}));
 
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {

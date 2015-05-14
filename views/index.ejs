@@ -84,6 +84,7 @@
         <div class="col-sm-2">
             <a type="button" class="btn btn-primary" href="/logout">Logout</a>
         </div>
+
     </div>
 </div>
 
@@ -105,19 +106,24 @@
             </div>
 
             <div class="members">
-                <%=  communities[i]._id %>
                 <%  _.forEach(communities[i].memberList, function(member) { %>
                    <img width="48" src="<%= getAvatarFromServices('facebook', member.facebook.id, 48) %>">
                 <% }) %>
             </div>
 
-            <% if (!_.contains(user.communityList, communities[i])) { %>
+            <% if ( user.communityList) {
+                    var isMember = user.communityList.some(function (member) {
+                        return member.equals(communities[i]._id);
+                    });
+                }
+                if (!isMember) { %>
             <div class="actions">
-                <a class="btn btn-primary" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
+                <a class="btn btn-primary join" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
+                <a class="btn btn-primary leave hidden" href="community/exit/<%=communities[i]._id%>" >leave community</a>
             </div>
             <% } else { %>
             <div class="actions">
-                <a class="btn btn-primary" href="community/exit/<%=communities[i]._id%>" >leave community</a>
+                <a class="btn btn-primary leave" href="community/exit/<%=communities[i]._id%>" >leave community</a>
             </div>
             <% } %>
         </div>
