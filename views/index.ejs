@@ -107,7 +107,7 @@
 
             <div class="members">
                 <%  _.forEach(communities[i].memberList, function(member) { %>
-                   <img width="48" src="<%= getAvatarFromServices('facebook', member.facebook.id, 48) %>">
+                   <img class="join" src="<%= getAvatarFromServices('facebook', member.facebook.id, 48) %>">
                 <% }) %>
             </div>
 
@@ -119,11 +119,11 @@
                 if (!isMember) { %>
             <div class="actions">
                 <a class="btn btn-primary join" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
-                <a class="btn btn-primary leave hidden" href="community/exit/<%=communities[i]._id%>" >leave community</a>
+                <a class="btn btn-primary leave hidden" href="community/leave/<%=communities[i]._id%>" >leave community</a>
             </div>
             <% } else { %>
             <div class="actions">
-                <a class="btn btn-primary leave" href="community/exit/<%=communities[i]._id%>" >leave community</a>
+                <a class="btn btn-primary leave" href="community/leave/<%=communities[i]._id%>" >leave community</a>
             </div>
             <% } %>
         </div>

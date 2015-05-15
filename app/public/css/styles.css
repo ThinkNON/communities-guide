@@ -17,6 +17,10 @@
 .actions {
   padding: 15px 0;
 }
+img.join {
+    width: 50px;
+    height: 50px;
+}
 .footer {
   margin: 40px auto 20px;
 }

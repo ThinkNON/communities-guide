@@ -121,8 +121,38 @@ module.exports = function (app, passport) {
         }
     });
 
-    app.get('/community/exit/:id', function (req, res) {
+    app.get('/community/leave/:id', function (req, res) {
         //should delete member from community and and update the memberList of that community
+        Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
+            if (err) {
+                next(err);
+            } else {
+                console.log("req.user.communityList BEFORE", req.user.communityList);
+                var isInCommunity = req.user.communityList.some(function (community) {
+                    return community.equals(req.params.id);
+                });
+                console.log("isInCommunity", isInCommunity);
+                if (isInCommunity) {
+                   // req.user.update({_id: req.user._id},{$pull : {communityList : req.params.id}}, false, true);
+                    console.log("pull req.user.communityList",req.user);
+                }
+                req.user.save();
+                console.log("req.user.communityList AFTER", req.user.communityList);
+                console.log("community.memberList BEFORE", community.memberList);
+                var isMember = community.memberList.some(function (member) {
+                    return member.equals(req.user._id);
+                });
+                console.log("isMember", isMember);
+                if (isMember) {
+                   // _.pull(community.memberList, req.user);
+                    community.update({$pull : {memberList : req.user}});
+                    console.log("community updated", community);
+                }
+                community.save();
+                console.log("community.memberList AFTER", community.memberList);
+            }
+        });
+        res.json({status: 200, message: "You were successfully removed from the community"});
     });
 
     app.get('/profile', function (req, res) {
