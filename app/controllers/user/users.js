@@ -6,6 +6,8 @@ var config    = require('../../../resources/config');
 var jQuery    = require('jquery');
 var _         = require('lodash');
 var debug     = require('debug');
+//var mongoose  = require('mongoose');
+//var ObjectId  = mongoose.Types.ObjectId();
 var log       = debug('users:log');
 var error     = debug('users:error');
 
@@ -124,32 +126,26 @@ module.exports = function (app, passport) {
     app.get('/community/leave/:id', function (req, res) {
         //should delete member from community and and update the memberList of that community
         Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
-            if (err) {
-                next(err);
-            } else {
-                console.log("req.user.communityList BEFORE", req.user.communityList);
-                var isInCommunity = req.user.communityList.some(function (community) {
-                    return community.equals(req.params.id);
-                });
-                console.log("isInCommunity", isInCommunity);
-                if (isInCommunity) {
-                   // req.user.update({_id: req.user._id},{$pull : {communityList : req.params.id}}, false, true);
-                    console.log("pull req.user.communityList",req.user);
-                }
+
+            var isInCommunity = req.user.communityList.some(function (community) {
+                return community.equals(req.params.id);
+            });
+           console.log("isInCommunity", isInCommunity);
+            if (isInCommunity) {
+                console.log("communityList before", req.user.communityList);
+                req.user.communityList.remove(community._id);
                 req.user.save();
-                console.log("req.user.communityList AFTER", req.user.communityList);
-                console.log("community.memberList BEFORE", community.memberList);
-                var isMember = community.memberList.some(function (member) {
-                    return member.equals(req.user._id);
-                });
-                console.log("isMember", isMember);
-                if (isMember) {
-                   // _.pull(community.memberList, req.user);
-                    community.update({$pull : {memberList : req.user}});
-                    console.log("community updated", community);
-                }
+                console.log("communityList after", req.user.communityList);
+            }
+            var isMember = community.memberList.some(function (member) {
+                return member.equals(req.user._id);
+            });
+            console.log("isMember", isMember);
+            if (isMember) {
+                console.log("memberlist before", community.memberList);
+                community.memberList.remove(req.user._id);
                 community.save();
-                console.log("community.memberList AFTER", community.memberList);
+                console.log("memberlist after", community.memberList);
             }
         });
         res.json({status: 200, message: "You were successfully removed from the community"});
