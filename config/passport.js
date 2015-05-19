@@ -44,6 +44,8 @@ module.exports = function (passport) {
         process.nextTick(function () {
             //check if the user is already logged in
             if (!req.user) {
+
+                console.log("FACEBOOK PROFILE", profile);
                 // find the user in the database based on their facebook id
                 User.findOne({ 'facebook.id' : profile.id }, function (err, user) {
 
@@ -55,6 +57,7 @@ module.exports = function (passport) {
 
                         if (!user.facebook.token) {
                             user.facebook.token = token;
+                            user.facebook.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                             user.facebook.email = profile.emails[0].value;
 
@@ -72,6 +75,7 @@ module.exports = function (passport) {
                         // set all of the facebook information in our user model
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
+                        newUser.facebook.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                         newUser.facebook.email = profile.emails[0].value;
 
@@ -90,6 +94,7 @@ module.exports = function (passport) {
                 user.facebook.id = profile.id;
                 user.facebook.token = token;
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                user.facebook.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
                 user.facebook.email = profile.emails[0].value;
 
                 user.save(function(err) {
@@ -126,11 +131,13 @@ module.exports = function (passport) {
                     if (err)
                         return done(err);
 
+                    console.log("TWITTER PROFILE username", profile.username);
                     if (user) {
                         if (!user.twitter.token) {
                             user.twitter.id    = profile.id;
                             user.twitter.token = token;
                             user.twitter.name  = profile.username;
+                            user.twitter.avatar = profile._json.profile_image_url;
                             user.twitter.displayName = profile.displayName;
 
                             user.save(function(err) {
@@ -148,6 +155,7 @@ module.exports = function (passport) {
                         newUser.twitter.id    = profile.id;
                         newUser.twitter.token = token;
                         newUser.twitter.name  = profile.username;
+                        newUser.twitter.avatar = profile._json.profile_image_url;
                         newUser.twitter.displayName = profile.displayName;
                         // save our user to the database
                         newUser.save(function(err) {
@@ -164,6 +172,7 @@ module.exports = function (passport) {
                 user.twitter.id    = profile.id;
                 user.twitter.token = token;
                 user.twitter.name  = profile.username;
+                user.twitter.avatar = profile._json.profile_image_url;
                 user.twitter.displayName = profile.displayName;
 
                 user.save(function(err) {

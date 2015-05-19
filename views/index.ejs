@@ -71,7 +71,7 @@
                 <% if (user && user.twitter && user.twitter.token){ %>
                 <p>
                     <strong>id</strong>: <%= user.twitter.id %><br>
-                    <strong>username</strong>: <%= user.twitter.username %><br>
+                    <strong>username</strong>: <%= user.twitter.name %><br>
                     <strong>displayName</strong>: <%= user.twitter.displayName %>
                 </p>
 
@@ -81,10 +81,11 @@
                 <% } %>
             </div>
         </div>
+        <% if ((user  && user.facebook && user.facebook.id) || (user && user.twitter && user.twitter.token)) { %>
         <div class="col-sm-2">
-            <a type="button" class="btn btn-primary" href="/logout">Logout</a>
+            <a id="logout" type="button" class="btn btn-primary" href="/logout">Logout</a>
         </div>
-
+        <% } %>
     </div>
 </div>
 
@@ -106,8 +107,8 @@
             </div>
 
             <div class="members">
-                <%  _.forEach(communities[i].memberList, function(member) { %>
-                   <img class="join" src="<%= getAvatarFromServices('facebook', member.facebook.id, 48) %>">
+                <%  _.forEach(communities[i].memberList, function (member) { %>
+                   <img class="join" src="<%=member.facebook.avatar%>">
                 <% }) %>
             </div>
 

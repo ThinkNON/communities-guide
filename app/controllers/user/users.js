@@ -16,70 +16,6 @@ module.exports = function (app, passport) {
     app.locals._ = _;
     app.locals.jQuery = jQuery;
 
-    app.locals.getAvatarFromServices = function (service, userid, size) {
-        // this return the url that redirects to the according user image/avatar/profile picture
-        // implemented services: facebook, twitter, default fallback
-        // for facebook use get_avatar_from_service('facebook', vanity url or user-id , size-in-px or size-as-word )
-        // for twitter  use get_avatar_from_service('twitter', username, size-in-px or size-as-word )
-        // everything else will go to the fallback
-        var url = '';
-
-        switch (service) {
-
-            case "facebook":
-                // see https://developers.facebook.com/docs/reference/api/
-                // available sizes: square (50x50), small (50xH) , normal (100xH), large (200xH)
-                var sizeparam = '';
-                if (size) {
-                    if (size >= 200) {
-                        sizeparam = 'large';
-                    };
-                    if (size >= 100 && size < 200) {
-                        sizeparam = 'normal';
-                    };
-                    if (size >= 50 && size < 100) {
-                        sizeparam = 'small';
-                    };
-                    if (size < 50) {
-                        sizeparam = 'square';
-                    };
-                } else {
-                    sizeparam = size;
-                }
-                url = "https://graph.facebook.com/" + userid + "/picture?type=" + sizeparam;
-                break;
-
-            case "twitter":
-                // see https://dev.twitter.com/docs/api/1/get/users/profile_image/%3Ascreen_name
-                // available sizes: bigger (73x73), normal (48x48), mini (24x24), no param will give you full size
-                var sizeparam = '';
-                if (size) {
-                    if (size >= 73) {
-                        sizeparam = 'bigger';
-                    };
-                    if (size >= 48 && size < 73) {
-                        sizeparam = 'normal';
-                    };
-                    if (size < 48) {
-                        sizeparam = 'mini';
-                    };
-                } else {
-                    sizeparam = size;
-                }
-
-                url = "http://api.twitter.com/1/users/profile_image?screen_name=" + userid + "&size=" + sizeparam;
-                break;
-
-            default:
-                // http://www.iconfinder.com/icondetails/23741/128/avatar_devil_evil_green_monster_vampire_icon
-                // find your own
-                url = "http://i.imgur.com/RLiDK.png"; // 48x48
-        }
-
-
-        return url;
-    };
-
     app.get('/', communities.getCommunities, function (req, res) {
         var user;
         if (req.isAuthenticated()) {
@@ -130,29 +66,25 @@ module.exports = function (app, passport) {
             var isInCommunity = req.user.communityList.some(function (community) {
                 return community.equals(req.params.id);
             });
-           console.log("isInCommunity", isInCommunity);
+
             if (isInCommunity) {
-                console.log("communityList before", req.user.communityList);
                 req.user.communityList.remove(community._id);
                 req.user.save();
-                console.log("communityList after", req.user.communityList);
             }
             var isMember = community.memberList.some(function (member) {
                 return member.equals(req.user._id);
             });
-            console.log("isMember", isMember);
+
             if (isMember) {
-                console.log("memberlist before", community.memberList);
                 community.memberList.remove(req.user._id);
                 community.save();
-                console.log("memberlist after", community.memberList);
             }
         });
         res.json({status: 200, message: "You were successfully removed from the community"});
     });
 
-    app.get('/profile', function (req, res) {
-        res.render('profile.ejs', {
+    app.get('/error', function (req, res) {
+        res.render('error.ejs', {
             user : req.user
         });
     });
@@ -161,8 +93,8 @@ module.exports = function (app, passport) {
 
     app.get('/connect/facebook/callback',
         passport.authorize('facebook', {
-            successRedirect : '/',
-            failureRedirect : '/error'
+            successRedirect: '/',
+            failureRedirect: '/error'
         })
     );
 

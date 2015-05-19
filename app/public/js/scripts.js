@@ -48,7 +48,6 @@ $(function () {
                $('#myModal').modal('show');
            } else if (data.status === 200) {
                 $(e.target).css('visibility', 'hidden');
-               // $("a.leave").removeClass('hidden');
            }
         });
     });
