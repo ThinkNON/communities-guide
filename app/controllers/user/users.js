@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
 
     app.get('/community/join/:id', function (req, res, next) {
         if (!req.isAuthenticated()) {
-            return (res.json({status: 300, message: 'Not logged in'}));
+            return (res.status(401).json({ message: 'Not logged in'}));
         } else {
             Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
                 if (err) {
@@ -43,6 +43,8 @@ module.exports = function (app, passport) {
                     });
                     if (!isInCommunity) {
                        req.user.communityList.push(req.params.id);
+                    } else {
+                        return (res.send(500).json({message : 'Already a member!'}));
                     }
                     req.user.save();
 
@@ -51,36 +53,46 @@ module.exports = function (app, passport) {
                     });
                     if (!isMember) {
                         community.memberList.push(req.user);
+                    } else {
+                        return (res.send(500).json({message : 'Already a member!'}));
                     }
                     community.save();
                 }
             });
-            return (res.json({status: 200, message: "Logged in"}));
+            return (res.json({user: req.user}));
         }
     });
 
     app.get('/community/leave/:id', function (req, res) {
         //should delete member from community and and update the memberList of that community
-        Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
+        if (!req.isAuthenticated()) {
+            return (res.status(401).json({ message: 'Not logged in'}));
+        } else {
+            Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
 
-            var isInCommunity = req.user.communityList.some(function (community) {
-                return community.equals(req.params.id);
+                var isInCommunity = req.user.communityList.some(function (community) {
+                    return community.equals(req.params.id);
+                });
+
+                if (isInCommunity) {
+                    req.user.communityList.remove(community._id);
+                    req.user.save();
+                } else {
+                    return (res.send(500).json({message: 'Not a member!'}));
+                }
+                var isMember = community.memberList.some(function (member) {
+                    return member.equals(req.user._id);
+                });
+
+                if (isMember) {
+                    community.memberList.remove(req.user._id);
+                    community.save();
+                } else {
+                    return (res.send(500).json({message: 'Not a member!'}));
+                }
             });
-
-            if (isInCommunity) {
-                req.user.communityList.remove(community._id);
-                req.user.save();
-            }
-            var isMember = community.memberList.some(function (member) {
-                return member.equals(req.user._id);
-            });
-
-            if (isMember) {
-                community.memberList.remove(req.user._id);
-                community.save();
-            }
-        });
-        res.json({status: 200, message: "You were successfully removed from the community"});
+            res.json({user: req.user});
+        }
     });
 
     app.get('/error', function (req, res) {

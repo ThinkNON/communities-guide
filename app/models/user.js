@@ -3,6 +3,9 @@ var Schema      = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
     isDeleted: Boolean,
+    name     : String,
+    email    : String,
+    avatar    : String,
     facebook        : {
         id          : String,
         token       : String,

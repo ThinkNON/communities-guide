@@ -41,14 +41,31 @@ $(function () {
         e.preventDefault();
         var URL = $(this).attr('href');
         var communityId = $(this).attr('data-communityId');
-        document.cookie = 'communityId =' + communityId + ' ; path=/';
+        document.cookie = 'communityId =' + $(this).attr('data-communityId') + ' ; path=/';
 
-        $.get(URL, function (data) {
-           if (data.status === 300) {
-               $('#myModal').modal('show');
-           } else if (data.status === 200) {
-                $(e.target).css('visibility', 'hidden');
-           }
+        $.ajax({
+            url: URL,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $(e.target).addClass('hidden').siblings().removeClass('hidden');
+                if ($(e.target).hasClass('join')) {
+                    $(e.target).parents('.item').find('.members').append('<img class="join" title="' + data.user.facebook.name + '" src="' + data.user.facebook.avatar + '">');
+                } else {
+                    $(e.target).parents('.item').find('.members').find('img[src ="' + data.user.facebook.avatar + '"]').remove();
+                }
+                $container.isotope('layout');
+            },
+            error: function (jqXHR, status) {
+                console.log(jqXHR.status);
+                if (jqXHR.status == 401) {
+                    $('#myModal').modal('show');
+                } else if (jqXHR.status == 500) {
+                    alert(jqXHR.responseJSON.message);
+                } else {
+                    alert("Something fucked up");
+                }
+            }
         });
     });
 });

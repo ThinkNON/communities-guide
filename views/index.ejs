@@ -29,12 +29,12 @@
         <div class="col-xs-12">
             <label>Filters:</label>
             <button class="btn btn-primary" data-filter="*">show all</button>
-            <button class="btn btn-success" data-filter=".pinnacle">pinnacle</button>
-            <button class="btn btn-success" data-filter=".selfish">selfish</button>
-            <button class="btn btn-success" data-filter=".prejudice">prejudice</button>
-            <button class="btn btn-info" data-filter=".pinnacle, .selfish">pinnacle &amp; prejudice</button>
-            <button class="btn btn-danger" data-filter=":not(.selfish)">not selfish</button>
-            <button class="btn btn-warning" data-filter=".pinnacle:not(.prejudice)">pinnacle but not prejudice</button>
+            <button class="btn btn-success" data-filter=".technology">technology</button>
+            <button class="btn btn-success" data-filter=".other">other</button>
+            <button class="btn btn-success" data-filter=".creative">creative</button>
+            <button class="btn btn-info" data-filter=".technology, .creative">technology &amp; creative</button>
+            <button class="btn btn-danger" data-filter=":not(.creative)">not creative</button>
+            <button class="btn btn-warning" data-filter=".technology:not(.other)">technology but not other</button>
         </div>
     </div>
     <div class="row sorts">
@@ -93,7 +93,7 @@
 <div class="container isotope">
     <div class="row">
         <% for (var i=0; i<communities.length; i++) {%>
-        <div class="col-lg-3 col-md-4 col-sm-6 item pinnacle" data-interest=<%= communities[i].category %>>
+        <div class="col-lg-3 col-md-4 col-sm-6 item <%= communities[i].category.join(' ') %>" data-interest=<%= communities[i].category.join(', ') %>>
             <div class="visual">
                 <% if (communities[i].photoURL) {%>
                 <img src=<%=communities[i].photoURL%> >
@@ -124,6 +124,7 @@
             </div>
             <% } else { %>
             <div class="actions">
+                <a class="btn btn-primary join hidden" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
                 <a class="btn btn-primary leave" href="community/leave/<%=communities[i]._id%>" >leave community</a>
             </div>
             <% } %>

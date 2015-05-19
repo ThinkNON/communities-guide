@@ -45,7 +45,6 @@ module.exports = function (passport) {
             //check if the user is already logged in
             if (!req.user) {
 
-                console.log("FACEBOOK PROFILE", profile);
                 // find the user in the database based on their facebook id
                 User.findOne({ 'facebook.id' : profile.id }, function (err, user) {
 
@@ -73,6 +72,9 @@ module.exports = function (passport) {
                         var newUser = new User();
 
                         // set all of the facebook information in our user model
+                        newUser.name = profile.name.givenName + ' ' + profile.name.familyName;
+                        newUser.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
+                        newUser.email  = profile.emails[0].value;
                         newUser.facebook.id    = profile.id;
                         newUser.facebook.token = token;
                         newUser.facebook.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
@@ -131,7 +133,7 @@ module.exports = function (passport) {
                     if (err)
                         return done(err);
 
-                    console.log("TWITTER PROFILE username", profile.username);
+                    console.log("TWITTER PROFILE", profile);
                     if (user) {
                         if (!user.twitter.token) {
                             user.twitter.id    = profile.id;
@@ -148,10 +150,10 @@ module.exports = function (passport) {
                         }
                         return done(null, user); // user found, return that user
                     } else {
-
                         var newUser = new User();
 
-                        // set all of the facebook information in our user model
+                        newUser.name = profile.displayName;
+                        newUser.avatar = profile._json.profile_image_url;
                         newUser.twitter.id    = profile.id;
                         newUser.twitter.token = token;
                         newUser.twitter.name  = profile.username;
