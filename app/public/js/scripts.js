@@ -37,6 +37,10 @@ $(function () {
     });
 
     $('#myModal').modal({ show: false});
+
+    $('#login').on('click', function () {
+        $('#myModal').modal('show');
+    });
     $('.actions > .btn').on('click', function (e) {
         e.preventDefault();
         var URL = $(this).attr('href');
