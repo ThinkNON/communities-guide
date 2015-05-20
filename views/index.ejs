@@ -104,11 +104,28 @@
             <div class="description">
                 <h3><%= communities[i].title %></h3>
                 <p><%= communities[i].desc %></p>
+                <ul class="list-inline">
+                    <% if (communities[i].webLink) {%>
+                    <li><a href="<%=communities[i].webLink%>"><span class="icon-link"></span></a></li>
+                    <% } %>
+                    <% if (communities[i].fbLink) {%>
+                    <li><a href="<%=communities[i].fbLink%>"><span class="icon-facebook"></span></a></li>
+                    <% } %>
+                    <% if (communities[i].linkedinLink) {%>
+                    <li><a href="<%=communities[i].linkedinLink%>"><span class="icon-linkedin"></span></a></li>
+                    <% } %>
+                    <% if (communities[i].meetupLink) {%>
+                    <li><a href="<%=communities[i].meetupLink%>"><span class="icon-meetup"></span></a></li>
+                    <% } %>
+                </ul>
             </div>
 
             <div class="members">
+                <% if (communities[i].memberList.length == 0) {%>
+                    <span>No member has joined yet</span>
+                <% } %>
                 <%  _.forEach(communities[i].memberList, function (member) { %>
-                   <img class="join" src="<%=member.facebook.avatar%>">
+                   <img class="join" title="<%=member.name%>" data-id="<%=member._id%>" src="<%=member.facebook.avatar%>">
                 <% }) %>
             </div>
 

@@ -51,6 +51,7 @@ $(function () {
                 $(e.target).addClass('hidden').siblings().removeClass('hidden');
                 if ($(e.target).hasClass('join')) {
                     $(e.target).parents('.item').find('.members').append('<img class="join" title="' + data.user.facebook.name + '" src="' + data.user.facebook.avatar + '">');
+                    $(e.target).parents('.item').find('.members >  span').remove();
                 } else {
                     $(e.target).parents('.item').find('.members').find('img[src ="' + data.user.facebook.avatar + '"]').remove();
                 }

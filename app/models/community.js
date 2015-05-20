@@ -7,7 +7,11 @@ var communitySchema = mongoose.Schema({
     photoURL: String,
     category: [String],
     isDeleted: Boolean,
-    memberList: [{type: Schema.Types.ObjectId, ref : 'User'}]
+    memberList: [{type: Schema.Types.ObjectId, ref : 'User'}],
+    fbLink : String,
+    linkedinLink : String,
+    meetupLink: String,
+    webLink : String
 });
 
 module.exports = mongoose.model('Community', communitySchema);
