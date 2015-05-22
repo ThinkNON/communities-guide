@@ -16,16 +16,47 @@ module.exports = function (app, passport) {
     app.locals._ = _;
     app.locals.jQuery = jQuery;
 
-    app.get('/', communities.getCommunities, function (req, res) {
-        var user;
-        if (req.isAuthenticated()) {
-            user = req.user;
-        } else {
-            user = {};
+    var hasCookies = function (req, res, next) {
+        if (req.cookies == '') {
+            console.log("no cookies set");
+            next();
         }
+        if (req.cookies.communityId && req.cookies.userMethod == 'join') {
+            Community.findOne({'_id' : req.cookies.communityId}).exec(function (err, community) {
+                if (err) {
+                    next(err);
+                } else {
+                    var isInCommunity = req.user.communityList.some(function (community) {
+                        return community.equals(req.cookies.communityId);
+                    });
+                    if (!isInCommunity) {
+                        req.user.communityList.push(req.cookies.communityId);
+                    }
+                    console.log("req.user in hasCookies", req.user);
+                    req.user.save();
+
+                    var isMember = community.memberList.some(function (member) {
+                        return member.equals(req.user._id);
+                    });
+                    if (!isMember) {
+                        community.memberList.push(req.user);
+                    }
+                    community.save();
+                }
+                req.cookies = '';
+                console.log("req.cookies in findOne", req.cookies);
+                next();
+            });
+        } else {
+            next();
+        }
+    };
+
+    app.get('/', communities.getCommunities, function (req, res) {
+
         res.render('index.ejs', {
             communities: req.communities,
-            user: user
+            user: req.user || {}
         });
     });
 
@@ -122,10 +153,11 @@ module.exports = function (app, passport) {
     app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/',
-            failureRedirect : '/error'
-        }));
+        passport.authenticate('facebook', {failureRedirect : '/error'}), hasCookies, function (req,res) {
+                console.log("REQuest in callback", req.user);
+                res.redirect('/');
+            }
+        );
 
     app.get('/auth/twitter', passport.authenticate('twitter', {scope: 'email'}));
 
@@ -136,7 +168,10 @@ module.exports = function (app, passport) {
         }));
 
     app.get('/logout', function (req, res) {
+        console.log("req.cookies before logout", req.cookies);
+        req.cookies = '';
         req.logout();
+        console.log("req.cookies after logout", req.cookies);
         res.redirect('/');
     });
 

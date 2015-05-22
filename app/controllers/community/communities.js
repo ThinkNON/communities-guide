@@ -7,19 +7,6 @@ var log       = debug('communities:log');
 var error     = debug('communities:error');
 
 
-
-
-
-
-//helper methods
-
-//app.locals.isNumber = function (n) {
-//    // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-//    return !isNaN(parseFloat(n)) && isFinite(n);
-//};
-
-
-
 exports.getCommunities = function (req, res, done) {
     Community.find({}).populate('memberList')
         .exec(function (err, communities) {

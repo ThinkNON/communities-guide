@@ -41,11 +41,22 @@ $(function () {
     $('#login').on('click', function () {
         $('#myModal').modal('show');
     });
+
+    $('#logout').on('click', function () {
+       document.cookie = 'communityId=;';
+       document.cookie = 'userMethod=;';
+    });
     $('.actions > .btn').on('click', function (e) {
         e.preventDefault();
         var URL = $(this).attr('href');
         var communityId = $(this).attr('data-communityId');
-        document.cookie = 'communityId =' + $(this).attr('data-communityId') + ' ; path=/';
+        if ($(e.target).hasClass('join')) {
+            document.cookie = 'userMethod = join';
+            document.cookie = 'communityId =' + $(this).attr('data-communityId') + '; path =/';
+        } else if ($(e.target).hasClass('leave')) {
+            document.cookie = 'userMethod = leave';
+            document.cookie = 'communityId =' + $(this).attr('data-communityId') + '; path =/';
+        }
 
         $.ajax({
             url: URL,

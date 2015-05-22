@@ -15,6 +15,9 @@
 </head>
 <body>
 
+<navbar class="fixed">
+
+</navbar>
 <header class="container header">
     <div class="row">
         <div class="col-xs-6">
@@ -104,31 +107,19 @@
             </div>
 
             <div class="members">
-                <% if (communities[i].memberList.length == 0) {%>
+                <% if ( communities[i].memberList.length ) {
+                    _.forEach(communities[i].memberList, function (member) { %>
+                        <img class="join" title="<%= member.name %>" data-id="<%= member._id %>" src="<%= member.facebook.avatar %>">
+                <% })} else { %>
                     <span>No member has joined yet</span>
                 <% } %>
-                <%  _.forEach(communities[i].memberList, function (member) { %>
-                    <%console.log(member);%>
-                   <img class="join" title="<%=member.name%>" data-id="<%=member._id%>" src="<%=member.facebook.avatar%>">
-                <% }) %>
             </div>
 
-            <% if ( user.communityList) {
-                    var isMember = user.communityList.some(function (member) {
-                        return member.equals(communities[i]._id);
-                    });
-                }
-                if (!isMember) { %>
+            <% isMember = _.find(user.communityList, function(community) { return community.toString() == communities[i]._id; }) %>
             <div class="actions">
-                <a class="btn btn-primary join" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
-                <a class="btn btn-primary leave hidden" href="community/leave/<%=communities[i]._id%>" >leave community</a>
+                <a class="btn btn-primary join <%= isMember ? 'hidden' : '' %>" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
+                <a class="btn btn-primary leave <%= isMember ? '' : 'hidden' %>" href="community/leave/<%=communities[i]._id%>" >leave community</a>
             </div>
-            <% } else { %>
-            <div class="actions">
-                <a class="btn btn-primary join hidden" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
-                <a class="btn btn-primary leave" href="community/leave/<%=communities[i]._id%>" >leave community</a>
-            </div>
-            <% } %>
         </div>
         <% } %>
     </div>
