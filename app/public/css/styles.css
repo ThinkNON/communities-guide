@@ -58,9 +58,10 @@
 .icon-linkedin:before { content: '\e801'; } /* '' */
 .icon-meetup:before { content: '\e802'; } /* '' */
 .icon-facebook:before { content: '\e803'; } /* '' */
-
+nav.navbar-default { background-color: white !important;}
 .header {
-  margin-bottom: 30px;
+    margin-top: 100px;
+    margin-bottom: 30px;
 }
 .controls > .row {
   padding: 10px 0;
@@ -82,9 +83,8 @@ a {
     color: black;
 }
 .nav > li {
-    padding-top: 30px;
-    float: right;
-
+    padding: 10px 0;
+    float:right;
 }
 @media(max-width:767px){
     .nav > li { clear: both; }
@@ -103,7 +103,7 @@ img.join {
     border-radius: 5px;
 }
 #login {
-    margin-top: 30px;
+    margin: 20px 0;
 }
 .footer {
   margin: 40px auto 20px;
