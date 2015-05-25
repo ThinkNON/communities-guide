@@ -65,10 +65,10 @@ $(function () {
             success: function (data) {
                 $(e.target).addClass('hidden').siblings().removeClass('hidden');
                 if ($(e.target).hasClass('join')) {
-                    $(e.target).parents('.item').find('.members').append('<img class="join" title="' + data.user.facebook.name + '" src="' + data.user.facebook.avatar + '">');
+                    $(e.target).parents('.item').find('.members').append('<a target="_blank" href= "' + data.user.profileUrl + '"><img class="join" title="' + data.user.name + '" src="' + data.user.avatar + '" data-id = "' + data.user._id + '"><\/a>');
                     $(e.target).parents('.item').find('.members >  span').remove();
                 } else {
-                    $(e.target).parents('.item').find('.members').find('img[src ="' + data.user.facebook.avatar + '"]').remove();
+                    $(e.target).parents('.item').find('.members').find('img[data-id ="' + data.user._id + '"]').remove();
                 }
                 $container.isotope('layout');
             },
@@ -79,7 +79,7 @@ $(function () {
                 } else if (jqXHR.status == 500) {
                     alert(jqXHR.responseJSON.message);
                 } else {
-                    alert("Something fucked up");
+                    alert("Something didn't work! :(");
                 }
             }
         });

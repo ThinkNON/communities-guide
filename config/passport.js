@@ -44,7 +44,6 @@ module.exports = function (passport) {
         process.nextTick(function () {
             //check if the user is already logged in
             if (!req.user) {
-
                 // find the user in the database based on their facebook id
                 User.findOne({ 'facebook.id' : profile.id }, function (err, user) {
 
@@ -53,7 +52,6 @@ module.exports = function (passport) {
                     }
 
                     if (user) {
-
                         if (!user.facebook.token) {
                             user.facebook.token = token;
                             user.facebook.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
@@ -70,9 +68,9 @@ module.exports = function (passport) {
                         return done(null, user); // user found, return that user
                     } else {
                         var newUser = new User();
-
                         // set all of the facebook information in our user model
                         newUser.name = profile.name.givenName + ' ' + profile.name.familyName;
+                        newUser.profileUrl = profile.profileUrl;
                         newUser.avatar = "https://graph.facebook.com/" + profile.id + "/picture?type=square";
                         newUser.email  = profile.emails[0].value;
                         newUser.facebook.id    = profile.id;
@@ -126,7 +124,6 @@ module.exports = function (passport) {
 
         // asynchronous
         process.nextTick(function () {
-
             if(!req.user) {
                 User.findOne({ 'twitter.id' : profile.id }, function (err, user) {
 
@@ -154,6 +151,7 @@ module.exports = function (passport) {
 
                         newUser.name = profile.displayName;
                         newUser.avatar = profile._json.profile_image_url;
+                        newUser.profileUrl = 'https://twitter.com/intent/user?user_id='+ profile.id;
                         newUser.twitter.id    = profile.id;
                         newUser.twitter.token = token;
                         newUser.twitter.name  = profile.username;

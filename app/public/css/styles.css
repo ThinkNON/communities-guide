@@ -105,6 +105,10 @@ img.join {
 #login {
     margin: 20px 0;
 }
+a.leader img {
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.6);
+}
+
 .footer {
   margin: 40px auto 20px;
 }

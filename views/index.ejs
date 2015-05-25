@@ -107,8 +107,9 @@
 
             <div class="members">
                 <% if ( communities[i].memberList.length ) {
-                    _.forEach(communities[i].memberList, function (member) { %>
-                        <img class="join" title="<%= member.name %>" data-id="<%= member._id %>" src="<%= member.facebook.avatar %>">
+                    _.forEach(communities[i].memberList, function (member) {
+                        isLeader = _.find(communities[i].leaders, function(leader) { return leader.toString() == member._id; })%>
+                        <a class ="<%= isLeader ? 'leader' : '' %>" href="<%= member.profileUrl %>" target="_blank"><img class="join" title="<%= member.name %>" data-id="<%= member._id %>" src="<%= member.avatar %>"></a>
                 <% })} else { %>
                     <span>No member has joined yet</span>
                 <% } %>

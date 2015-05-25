@@ -7,6 +7,7 @@ var communitySchema = mongoose.Schema({
     photoURL: String,
     category: [String],
     isDeleted: Boolean,
+    leaders : [{type: Schema.Types.ObjectId, ref : 'User'}],
     memberList: [{type: Schema.Types.ObjectId, ref : 'User'}],
     fbLink : String,
     linkedinLink : String,

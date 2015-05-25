@@ -32,7 +32,6 @@ module.exports = function (app, passport) {
                     if (!isInCommunity) {
                         req.user.communityList.push(req.cookies.communityId);
                     }
-                    console.log("req.user in hasCookies", req.user);
                     req.user.save();
 
                     var isMember = community.memberList.some(function (member) {
@@ -44,7 +43,6 @@ module.exports = function (app, passport) {
                     community.save();
                 }
                 req.cookies = '';
-                console.log("req.cookies in findOne", req.cookies);
                 next();
             });
         } else {
@@ -84,6 +82,18 @@ module.exports = function (app, passport) {
                     });
                     if (!isMember) {
                         community.memberList.push(req.user);
+                        if (community.leaders.length) {
+                            console.log("LEADERS", community.leaders);
+                            console.log("MEMBERLIST", community.memberList);
+                            var sortedMemberList = [];
+                            sortedMemberList = _.sortBy(community.memberList, function (member) {
+                                return _.find(community.leaders, function (leader) {
+                                    return leader.toString() == member.toString();
+                                });
+                            });
+                            community.memberList = sortedMemberList;
+                            console.log("sortedMemberList", community.memberList);
+                        }
                     } else {
                         return (res.send(500).json({message : 'Already a member!'}));
                     }
@@ -191,11 +201,3 @@ module.exports = function (app, passport) {
         });
     });
 };
-
-function isLoggedIn (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/');
-}
-
