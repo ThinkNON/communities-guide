@@ -4,14 +4,14 @@ assets:
         userBucket: 'maria.roman'
         bucketName: 'communities-guide-dev'
         acl: 'public-read'
-        publicUrl: 'https://communities-guide-dev.s3.eu-central-1.amazonaws.com/images/'
+        publicUrl: 'https://assets.dev.communities.guide/'
         uploadLimit: 1000000
 
 mongodb:
     schema:
         autoindex: true
 
-serverURL: 'http://dev.com'
+serverURL: 'http://iasi.communities.guide'
 
 application:
     port: 8082
@@ -30,10 +30,10 @@ log:
         format: ':remote-addr - - [:date] ":method :url" :status :res[content-length] - ":user-agent" - :response-time ms'
 
 facebookAuth:
-    callbackURL: 'http://communities-guide-dev.elasticbeanstalk.com/auth/facebook/callback'
+    callbackURL: 'http://iasi.communities.guide/auth/facebook/callback'
 
 twitterAuth:
-    callbackURL: 'http://communities-guide-dev.elasticbeanstalk.com/auth/twitter/callback'
+    callbackURL: 'http://iasi.communities.guide/auth/twitter/callback'
 
 session:
     secret: 'super secret session token'

@@ -2,16 +2,16 @@ assets:
     s3:
         region: 'eu-central-1'
         userBucket: 'maria.roman'
-        bucketName: 'vowlt-api'
+        bucketName: 'communities-guide-prod'
         acl: 'public-read'
-        publicUrl: 'http://assets.com/'
+        publicUrl: 'https://assets.communities.guide/'
         uploadLimit: 1000000
 
 mongodb:
     schema:
         autoindex: true
 
-serverURL: 'http://api.com'
+serverURL: 'http://iasi.communities.guide'
 
 application:
     port: 8085
