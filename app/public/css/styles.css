@@ -56,15 +56,14 @@ nav.navbar-default {
   margin-top: 100px;
   margin-bottom: 30px;
 }
-.controls > .row {
-  padding: 10px 0;
+.header button {
+  font-size: 1rem;
 }
 .isotope {
   margin: 20px auto;
 }
 .item {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 15px;
+  padding-bottom: 35px;
 }
 .item .visual {
   padding: 15px 0;
@@ -76,8 +75,35 @@ nav.navbar-default {
 .item .actions {
   padding: 15px 0;
 }
-a {
-  color: black;
+.find-out-more li {
+  padding-right: 0;
+}
+.find-out-more [class^="icon-"] {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: #fff;
+}
+.find-out-more .icon-link {
+  background-color: #00bf8f;
+}
+.find-out-more .icon-facebook {
+  background-color: #3b5998;
+}
+.find-out-more .icon-linkedin {
+  background-color: #007bb6;
+}
+.find-out-more .icon-meetup {
+  background-color: #d62f30;
+  padding-right: 6px;
+}
+.member {
+  width: 32px;
+  height: 32px;
+  margin: 0 5px 5px 0;
+  border-radius: 7px;
 }
 .nav > li {
   padding: 10px 0;
@@ -95,12 +121,6 @@ a {
   display: block;
   width: 90%;
   margin: 2px auto;
-}
-.member {
-  width: 32px;
-  height: 32px;
-  margin: 0 5px 5px 0;
-  border-radius: 7px;
 }
 .footer {
   margin: 40px auto 20px;

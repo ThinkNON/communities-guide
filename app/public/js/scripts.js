@@ -6,7 +6,8 @@ $(function () {
             layoutMode: 'masonry',
             getSortData: {
                 interest: '[data-interest]',
-                alpha: 'h3'
+                members: '[data-members]',
+                alphabetical: 'h3'
             }
         });
 
@@ -18,7 +19,7 @@ $(function () {
         $('.sorts').on('click', 'button', function () {
             var sortValue = $(this).attr('data-sort');
             sortValue = sortValue.split(',');
-            $container.isotope({ sortBy: sortValue });
+            $container.isotope({ sortBy: sortValue, sortAscending: sortValue != 'members' });
         });
 
         $('.filters, .sorts').each(function (i, buttonGroup) {

@@ -50,21 +50,25 @@
 .icon-facebook:before { content: '\e803'; } /* '' */
 
 
-nav.navbar-default { background-color: white !important;}
+nav.navbar-default {
+  background-color: white !important;
+}
+
 .header {
   margin-top: 100px;
   margin-bottom: 30px;
+
+  button {
+    font-size: 1rem;
+  }
 }
-.controls > .row {
-  padding: 10px 0;
-}
+
 .isotope {
   margin: 20px auto;
 }
 
 .item {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 15px;
+  padding-bottom: 35px;
 
   .visual {
     padding: 15px 0;
@@ -80,9 +84,45 @@ nav.navbar-default { background-color: white !important;}
   }
 }
 
-a {
-  color: black;
+.find-out-more {
+  li {
+    padding-right: 0;
+  }
+
+  [class^="icon-"] {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .icon-link {
+    background-color: #00bf8f;
+  }
+
+  .icon-facebook {
+    background-color: #3b5998;
+  }
+
+  .icon-linkedin {
+    background-color: #007bb6;
+  }
+
+  .icon-meetup {
+    background-color: #d62f30;
+    padding-right: 6px;
+  }
 }
+
+.member {
+  width: 32px;
+  height: 32px;
+  margin: 0 5px 5px 0;
+  border-radius: 7px;
+}
+
 .nav > li {
   padding: 10px 0;
   float:right;
@@ -96,15 +136,6 @@ a {
   width: 90%;
   margin: 2px auto;
 }
-
-.member {
-  width: 32px;
-  height: 32px;
-  margin: 0 5px 5px 0;
-  border-radius: 7px;
-}
-
-
 .footer {
   margin: 40px auto 20px;
 }
