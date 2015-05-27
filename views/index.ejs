@@ -178,15 +178,26 @@
         </div>
         <div class="col-sm-6">
             <p>Build with <a href="http://getbootstrap.com" target="_blank">Bootstrap</a> and <a href="http://isotope.metafizzy.co" target="_blank">Isotope</a> over <a href="https://nodejs.org" target="_blank">NodeJS</a>. Deployed to <a href="http://aws.amazon.com/elasticbeanstalk/" target="_blank">Amazon Elastic Beanstalk</a> by <a href="https://codeship.com" target="_blank">Codeship</a> from <a href="http://github.com" target="_blank">GitHub</a>. Playful endeavour by <a href="http://non.ro" target="_blank">NON</a>.</p>
+            <div class="fb-share-button hidden-xs" data-href="http://iasi.communities.guide" data-layout="button_count"></div>
         </div>
     </div>
 </footer>
+
+<div id="fb-root"></div>
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
 <script src="/js/scripts.js"></script>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=1452879161672569";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
