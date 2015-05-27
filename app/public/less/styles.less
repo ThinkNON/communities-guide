@@ -50,8 +50,8 @@
 .icon-facebook:before { content: '\e803'; } /* '' */
 
 
-nav.navbar-default {
-  background-color: white !important;
+.navbar-nav > li > .dropdown-toggle {
+  padding: 10px;
 }
 
 .header {
@@ -123,19 +123,6 @@ nav.navbar-default {
   border-radius: 7px;
 }
 
-.nav > li {
-  padding: 10px 0;
-  float:right;
-}
-@media(max-width:767px){
-  .nav > li { clear: both; }
-}
-.nav > li > a { display: inline-block; }
-.dropdown-menu a {
-  display: block;
-  width: 90%;
-  margin: 2px auto;
-}
 .footer {
   margin: 40px auto 20px;
 }
