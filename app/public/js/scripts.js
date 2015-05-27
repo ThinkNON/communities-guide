@@ -28,7 +28,6 @@ $(function () {
                 $(this).addClass('active');
             });
         });
-
     });
 
     $('#myModal').modal({ show: false});
@@ -61,7 +60,7 @@ $(function () {
             success: function (data) {
                 $(e.target).addClass('hidden').siblings().removeClass('hidden');
                 if ($(e.target).hasClass('join')) {
-                    $(e.target).parents('.item').find('.members').append('<a target="_blank" href= "' + data.user.profileUrl + '"><img class="join" title="' + data.user.name + '" src="' + data.user.avatar + '" data-id = "' + data.user._id + '"><\/a>');
+                    $(e.target).parents('.item').find('.members').append('<a target="_blank" href= "' + data.user.profileUrl + '"><img class="member" title="' + data.user.name + '" src="' + data.user.avatar + '" data-id = "' + data.user._id + '"><\/a>');
                     $(e.target).parents('.item').find('.members >  span').remove();
                 } else {
                     $(e.target).parents('.item').find('.members').find('img[data-id ="' + data.user._id + '"]').remove();

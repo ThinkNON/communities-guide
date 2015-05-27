@@ -109,16 +109,16 @@
                 <% if ( communities[i].memberList.length ) {
                     _.forEach(communities[i].memberList, function (member) {
                         isLeader = _.find(communities[i].leaders, function(leader) { return leader.toString() == member._id; })%>
-                        <a class ="<%= isLeader ? 'leader' : '' %>" href="<%= member.profileUrl %>" target="_blank"><img class="join" title="<%= member.name %>" data-id="<%= member._id %>" src="<%= member.avatar %>"></a>
+                        <a class ="<%= isLeader ? 'leader' : '' %>" href="<%= member.profileUrl %>" target="_blank"><img class="member" title="<%= member.name %>" data-id="<%= member._id %>" src="<%= member.avatar %>"></a>
                 <% })} else { %>
-                    <span>No member has joined yet</span>
+                    <span>No member has joined yet.</span>
                 <% } %>
             </div>
 
             <% isMember = _.find(user.communityList, function(community) { return community.toString() == communities[i]._id; }) %>
             <div class="actions">
-                <a class="btn btn-primary join <%= isMember ? 'hidden' : '' %>" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >join community</a>
-                <a class="btn btn-primary leave <%= isMember ? '' : 'hidden' %>" href="community/leave/<%=communities[i]._id%>" >leave community</a>
+                <a class="btn btn-success join <%= isMember ? 'hidden' : '' %>" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >Support community!</a>
+                <a class="btn btn-danger pull-right leave <%= isMember ? '' : 'hidden' %>" href="community/leave/<%=communities[i]._id%>" >Abandon team</a>
             </div>
         </div>
         <% } %>
