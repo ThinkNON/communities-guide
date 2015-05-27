@@ -62,14 +62,18 @@ nav.navbar-default {
 .isotope {
   margin: 20px auto;
 }
-.item img {
+.item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
+.item .visual {
+  padding: 15px 0;
+}
+.item .visual img {
   width: 100%;
   height: auto;
 }
-.visual {
-  padding: 15px 0;
-}
-.actions {
+.item .actions {
   padding: 15px 0;
 }
 a {
@@ -107,3 +111,4 @@ a.leader img {
 .footer {
   margin: 40px auto 20px;
 }
+/*# sourceMappingURL=/css/styles.css.map */

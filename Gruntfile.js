@@ -4,17 +4,17 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
-                    compress: true,
-                    yuicompress: true,
+                    compress: false,
+                    yuicompress: false,
                     optimization: 2,
                     sourceMap: true,
-                    sourceMapFilename: 'public/css/styles.css.map',
+                    sourceMapFilename: 'app/public/css/styles.css.map',
                     sourceMapURL: '/css/styles.css.map',
                     sourceMapBasepath: 'public',
                     sourceMapRootpath: '/'
                 },
                 files: {
-                    'public/css/styles.css': 'app/public/less/styles.less'
+                    'app/public/css/styles.css': 'app/public/less/styles.less'
                 }
             }
         }

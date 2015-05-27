@@ -31,11 +31,6 @@ $(function () {
 
     });
 
-    $('.item').each(function () {
-        var hue = 'rgb(' + (Math.floor((256 - 199) * Math.random()) + 200) + ',' + (Math.floor((256 - 199) * Math.random()) + 200) + ',' + (Math.floor((256 - 199) * Math.random()) + 200) + ')';
-        $(this).css("background-color", hue);
-    });
-
     $('#myModal').modal({ show: false});
 
     $('#login').on('click', function () {
@@ -46,6 +41,7 @@ $(function () {
        document.cookie = 'communityId=;';
        document.cookie = 'userMethod=;';
     });
+
     $('.actions > .btn').on('click', function (e) {
         e.preventDefault();
         var URL = $(this).attr('href');
