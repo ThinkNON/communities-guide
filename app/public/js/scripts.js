@@ -6,7 +6,9 @@ $(function () {
             layoutMode: 'masonry',
             getSortData: {
                 interest: '[data-interest]',
-                members: '[data-members]',
+                members: function(item) {
+                    return parseInt($(item).data('members'));
+                },
                 alphabetical: 'h3'
             }
         });
