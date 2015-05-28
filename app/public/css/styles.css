@@ -58,6 +58,7 @@
 }
 .header button {
   font-size: 1rem;
+  margin-bottom: 3px;
 }
 .isotope {
   margin: 20px auto;
@@ -97,15 +98,32 @@
 }
 .find-out-more .icon-meetup {
   background-color: #d62f30;
-  padding-right: 6px;
+  padding-right: 9px;
 }
-.member {
+.leader {
+  display: inline-block;
+  position: relative;
+}
+.leader:after {
+  position: absolute;
+  top: -5px;
+  right: -2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 9px;
+  text-align: center;
+  content: '★';
+}
+.leader .member {
   width: 32px;
   height: 32px;
-  margin: 0 5px 5px 0;
+  margin: 0 5px 7px 0;
   border-radius: 7px;
 }
-.footer {
+.leader .footer {
   margin: 40px auto 20px;
   border-top: 1px solid #ccc;
   padding-top: 10px;

@@ -113,20 +113,39 @@
 
   .icon-meetup {
     background-color: #d62f30;
-    padding-right: 6px;
+    padding-right: 9px;
   }
 }
 
-.member {
-  width: 32px;
-  height: 32px;
-  margin: 0 5px 7px 0;
-  border-radius: 7px;
-}
+.leader {
+  display: inline-block;
+  position: relative;
 
-.footer {
-  margin: 40px auto 20px;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
-  font-size: 80%;
+  &:after {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+    width: 15px;
+    height: 15px;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    font-size: 9px;
+    text-align: center;
+    content: '★';
+  }
+
+  .member {
+    width: 32px;
+    height: 32px;
+    margin: 0 5px 7px 0;
+    border-radius: 7px;
+  }
+
+  .footer {
+    margin: 40px auto 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    font-size: 80%;
+  }
 }
