@@ -103,7 +103,7 @@
 <div class="container isotope">
     <div class="row">
         <% for (var i=0; i<communities.length; i++) {%>
-        <div class="col-lg-3 col-md-4 col-sm-6 item <%= communities[i].category.join(' ') %>" data-interest="<%= communities[i].category.join(', ') %>" data-members="<%= communities[i].memberList.length %>">
+        <div class="col-lg-3 col-md-4 col-sm-6 item <%= communities[i].categories.join(' ') %>" data-interest="<%= communities[i].categories.join(', ') %>" data-members="<%= communities[i].members.length %>">
             <div class="visual">
                 <% if (communities[i].photoURL) {%>
                 <img src=<%=communities[i].photoURL%> >
@@ -133,8 +133,8 @@
 
             <div class="members">
                 <h4>Current supporters:</h4>
-                <% if ( communities[i].memberList.length ) {
-                    _.forEach(communities[i].memberList, function (member) {
+                <% if ( communities[i].members.length ) {
+                    _.forEach(communities[i].members, function (member) {
                         isLeader = _.find(communities[i].leaders, function(leader) { return leader.toString() == member._id; })%>
                         <a class ="<%= isLeader ? 'leader' : '' %>" href="<%= member.profileUrl %>" target="_blank"><img class="member" title="<%= member.name %>" data-id="<%= member._id %>" src="<%= member.avatar %>"></a>
                 <% })} else { %>
@@ -142,7 +142,7 @@
                 <% } %>
             </div>
 
-            <% isMember = _.find(user.communityList, function(community) { return community.toString() == communities[i]._id; }) %>
+            <% isMember = _.find(user.communities, function(community) { return community.toString() == communities[i]._id; }) %>
             <div class="actions">
                 <a class="btn btn-primary join <%= isMember ? 'hidden' : '' %>" href="community/join/<%=communities[i]._id%>" data-communityId = <%=communities[i]._id%> >Support community!</a>
                 <a class="btn btn-danger pull-right leave <%= isMember ? '' : 'hidden' %>" href="community/leave/<%=communities[i]._id%>" >Abandon team</a>

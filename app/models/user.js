@@ -1,30 +1,27 @@
-var mongoose    = require('mongoose');
-var Schema      = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
-    isDeleted: Boolean,
-    name     : String,
-    email    : String,
-    avatar    : String,
-    profileUrl      : String,
-    facebook        : {
-        id          : String,
-        token       : String,
-        email       : String,
-        name        : String,
-        avatar      : String
+    isDeleted: {type: Boolean},
+    name: {type: String},
+    email: {type: String},
+    avatar: {type: String},
+    profileUrl: {type: String},
+    facebook: {
+        id: {type: String},
+        token: {type: String},
+        email: {type: String},
+        name: {type: String},
+        avatar: {type: String}
     },
-    twitter         : {
-        id          : String,
-        token       : String,
-        displayName : String,
-        name        : String,
-        avatar      : String
+    twitter: {
+        id: {type: String},
+        token: {type: String},
+        displayName: {type: String},
+        name: {type: String},
+        avatar: {type: String}
     },
-    communityList: [{type: Schema.Types.ObjectId, ref : 'Community'}]
+    communities: [{type: Schema.Types.ObjectId, ref : 'Community'}]
 });
-
-//
-//accountSchema.plugin(timestamps);
 
 module.exports = mongoose.model('User', userSchema);

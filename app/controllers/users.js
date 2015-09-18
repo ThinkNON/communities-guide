@@ -1,8 +1,7 @@
-var User      = require('../../../app/models/user');
-var Community = require('../../../app/models/community');
-var communities = require('../../../app/controllers/community/communities.js');
+var User      = require('../models/user');
+var Community = require('../models/community');
 var AWS       = require('aws-sdk');
-var config    = require('../../../resources/config');
+var config    = require('../../resources/config');
 var jQuery    = require('jquery');
 var _         = require('lodash');
 var debug     = require('debug');
@@ -26,19 +25,19 @@ module.exports = function (app, passport) {
                 if (err) {
                     next(err);
                 } else {
-                    var isInCommunity = req.user.communityList.some(function (community) {
+                    var isInCommunity = req.user.communities.some(function (community) {
                         return community.equals(req.cookies.communityId);
                     });
                     if (!isInCommunity) {
-                        req.user.communityList.push(req.cookies.communityId);
+                        req.user.communities.push(req.cookies.communityId);
                     }
                     req.user.save();
 
-                    var isMember = community.memberList.some(function (member) {
+                    var isMember = community.members.some(function (member) {
                         return member.equals(req.user._id);
                     });
                     if (!isMember) {
-                        community.memberList.push(req.user);
+                        community.members.push(req.user);
                     }
                     community.save();
                 }
@@ -50,15 +49,6 @@ module.exports = function (app, passport) {
         }
     };
 
-    app.get('/', communities.getCommunities, function (req, res) {
-
-        res.render('index.ejs', {
-            communities: req.communities,
-            user: req.user || {}
-        });
-    });
-
-
     app.get('/community/join/:id', function (req, res, next) {
         if (!req.isAuthenticated()) {
             return (res.status(401).json({ message: 'Not logged in'}));
@@ -67,32 +57,29 @@ module.exports = function (app, passport) {
                 if (err) {
                     next(err);
                 } else {
-                    var isInCommunity = req.user.communityList.some(function (community) {
+                    var isInCommunity = req.user.communities.some(function (community) {
                         return community.equals(req.params.id);
                     });
                     if (!isInCommunity) {
-                       req.user.communityList.push(req.params.id);
+                       req.user.communities.push(req.params.id);
                     } else {
                         return (res.send(500).json({message : 'Already a member!'}));
                     }
                     req.user.save();
 
-                    var isMember = community.memberList.some(function (member) {
+                    var isMember = community.members.some(function (member) {
                         return member.equals(req.user._id);
                     });
                     if (!isMember) {
-                        community.memberList.push(req.user);
+                        community.members.push(req.user);
                         if (community.leaders.length) {
-                            console.log("LEADERS", community.leaders);
-                            console.log("MEMBERLIST", community.memberList);
-                            var sortedMemberList = [];
-                            sortedMemberList = _.sortBy(community.memberList, function (member) {
+                            var sortedMembers = [];
+                            sortedMembers = _.sortBy(community.members, function (member) {
                                 return _.find(community.leaders, function (leader) {
                                     return leader.toString() == member.toString();
                                 });
                             });
-                            community.memberList = sortedMemberList;
-                            console.log("sortedMemberList", community.memberList);
+                            community.members = sortedMembers;
                         }
                     } else {
                         return (res.send(500).json({message : 'Already a member!'}));
@@ -105,28 +92,28 @@ module.exports = function (app, passport) {
     });
 
     app.get('/community/leave/:id', function (req, res) {
-        //should delete member from community and and update the memberList of that community
+        //should delete member from community and and update the members of that community
         if (!req.isAuthenticated()) {
             return (res.status(401).json({ message: 'Not logged in'}));
         } else {
             Community.findOne({'_id' : req.params.id}).exec(function (err, community) {
 
-                var isInCommunity = req.user.communityList.some(function (community) {
+                var isInCommunity = req.user.communities.some(function (community) {
                     return community.equals(req.params.id);
                 });
 
                 if (isInCommunity) {
-                    req.user.communityList.remove(community._id);
+                    req.user.communities.remove(community._id);
                     req.user.save();
                 } else {
                     return (res.send(500).json({message: 'Not a member!'}));
                 }
-                var isMember = community.memberList.some(function (member) {
+                var isMember = community.members.some(function (member) {
                     return member.equals(req.user._id);
                 });
 
                 if (isMember) {
-                    community.memberList.remove(req.user._id);
+                    community.members.remove(req.user._id);
                     community.save();
                 } else {
                     return (res.send(500).json({message: 'Not a member!'}));

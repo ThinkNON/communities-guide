@@ -56,7 +56,8 @@ Application.prototype.boot = function (cb) {
         app.set('view engine', 'ejs'); // set up ejs for templating
         app.use(passport.initialize());
         app.use(passport.session());
-        require('./controllers/user/users.js')(app, passport);
+        require('./controllers/users.js')(app, passport);
+        require('./controllers/communities.js')(app);
     }
 
     // connect to mongodb
