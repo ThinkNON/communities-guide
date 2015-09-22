@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Message = require('./message').Message;
 
 var communitySchema = mongoose.Schema({
     title: {type: String, required: true},
@@ -10,11 +11,7 @@ var communitySchema = mongoose.Schema({
     categories: [{type: String}],
     leaders: [{type: Schema.Types.ObjectId, ref : 'User'}],
     members: [{type: Schema.Types.ObjectId, ref : 'User'}],
-    messages: [{
-        message: {type: String},
-        user: {type: Schema.Types.ObjectId, ref : 'User'},
-        date: {type: Date}
-    }],
+    messages: [Message],
     fbLink: {type: String},
     linkedinLink: {type: String},
     meetupLink: {type: String},

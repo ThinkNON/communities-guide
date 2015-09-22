@@ -26,13 +26,13 @@ module.exports = {
         });
     },
     'findById': function(id, callback) {
-        Community.findOne({_id: id}).populate('leaders members messages.user').exec(function(err, communities) {
+        Community.findOne({_id: id}).populate('leaders members messages.user').exec(function(err, community) {
             if (err) {
                 callback(err);
             } else {
                 callback({
                     success: true,
-                    communities: communities
+                    community: community
                 });
             }
         });
@@ -63,6 +63,17 @@ module.exports = {
     },
     'delete': function(id, callback) {
         Community.find({_id: id}).remove(function(err) {
+            if (err) {
+                callback(err);
+            } else {
+                callback({success: true});
+            }
+        });
+    },
+    'addMessage': function(messageJSON, callback) {
+        var id = messageJSON._id;
+        delete messageJSON._id;
+        Community.update({_id: id}, {$push: {'messages': messageJSON}}, function(err) {
             if (err) {
                 callback(err);
             } else {
