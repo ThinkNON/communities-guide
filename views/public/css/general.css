@@ -36,3 +36,7 @@ input::-moz-focus-inner {
 .unstyled-list.inline {
   display: inline-block;
 }
+.unstyled-list.inline li {
+  display: inline;
+  margin: 5px;
+}
