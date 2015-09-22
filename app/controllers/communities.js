@@ -12,10 +12,25 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/api/communities/findById', function(req, res) {
-        var communityId = req.query.id;
+    app.get('/communities/:id', function(req, res) {
+        var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
-            res.json(result);
+            if (result.success) {
+                res.render('view_community', {
+                    community: result.community
+                });
+            }
+        });
+    });
+
+    app.get('/communities/edit/:id', function(req, res) {
+        var communityId = req.params.id;
+        communitiesService.findById(communityId, function(result) {
+            if (result.success) {
+                res.render('edit_community', {
+                    community: result.community
+                });
+            }
         });
     });
 
