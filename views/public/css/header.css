@@ -1,0 +1,20 @@
+header {
+  margin: 6px 0;
+  padding: 8px 30px 12px;
+  background-image: url('../images/header-background.png');
+  backround-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+header a {
+  color: #ffffff;
+}
+header p {
+  margin: 0;
+  padding-bottom: 34px;
+}
+header p:first-of-type {
+  padding-top: 12px;
+}

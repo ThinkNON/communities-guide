@@ -1,0 +1,46 @@
+button {
+  background-color: #ffffff;
+}
+button.default {
+  text-transform: uppercase;
+  padding: 20px 86px;
+  color: #333c41;
+  border: 1px solid #cccecf;
+  font-size: 1.4rem;
+  font-family: 'soleilbold';
+  letter-spacing: 2px;
+}
+button.default.no-border {
+  padding: 18px 30px;
+  margin: 0 10px 25px 0;
+  border: none;
+}
+button.default.support {
+  margin: 18px 0 12px;
+  padding: 20px 63px;
+  color: #ffffff;
+  background-color: #58bc00;
+  border: none;
+}
+button.default.report {
+  color: #999da0;
+  padding: 20px 123px;
+}
+button.round {
+  margin: 0 10px;
+  padding: 17px 21px;
+  border-radius: 28px;
+  boder: 1px;
+  font-size: 1.6rem;
+  font-family: 'soleilsemibold';
+}
+button.search {
+  margin-left: -63px;
+  padding: 12px 12px;
+  border-radius: 100%;
+  border: none;
+  color: #666d71;
+  background-color: #ffffff;
+  font-size: 2.2rem;
+  font-family: 'soleilsemibold';
+}

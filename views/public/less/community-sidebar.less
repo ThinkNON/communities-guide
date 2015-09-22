@@ -1,0 +1,30 @@
+@white: #ffffff;
+@grey: #333c41;
+@light-grey: #cccecf;
+@lighter-grey: #999da0;
+@dark-grey: #666d71;
+
+.community-highlights {
+  background-color: @white;
+  padding: 24px 30px 30px;
+
+  > div {
+    padding-bottom: 30px;
+    border-bottom: 1px solid @light-grey;
+
+    span:not(:last-child){
+      display: inline-block;
+      padding: 18px 0 24px;
+      color: @lighter-grey;
+    }
+
+    .community-tags {
+      padidng: 0;
+    }
+
+
+    &:last-child{
+      border-bottom:  none;
+    }
+  }
+}

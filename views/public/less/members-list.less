@@ -1,0 +1,40 @@
+@lighter-grey: #999da0;
+@white: #ffffff;
+@avatar-height: 55px;
+.community-members {
+  img {
+    position: absolute;
+    margin: 0 0 -@avatar-height/2 20px;
+    bottom: 0;
+  }
+ .community-counter {
+      position: absolute;
+      margin: 0 0 -@avatar-height/2 20px+@avatar-height;
+      bottom: 0;
+    }
+}
+
+img {
+  &.round {
+    width: @avatar-height;
+    height: @avatar-height;
+    border-radius: 100%;
+
+    &.small {
+      width: @avatar-height - 25px;
+      height: @avatar-height - 25px;
+      margin-right: 25px;
+    }
+  }
+}
+
+.community-counter {
+  display: inline-block;
+  line-height: @avatar-height;
+  width: @avatar-height;
+  height: @avatar-height;
+  text-align: center;
+  border-radius: 100%;
+  background-color: @lighter-grey;
+  color: @white;
+}

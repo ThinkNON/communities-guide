@@ -1,0 +1,38 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-family: 'soleillight';
+  background: url('../images/background-image.png'), no-repeat;
+  background-size: cover;
+  font-size: 1.6rem;
+  color: #333c41;
+}
+a:hover {
+  text-decoration: none;
+}
+input::-moz-focus-inner {
+  border: 0;
+  outline: 0;
+}
+.no-padding-left {
+  padding-left: 0;
+}
+.no-padding-right {
+  padding-right: 0;
+}
+.unstyled-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.unstyled-list li {
+  display: inline;
+  margin: 0 10px;
+}
+.unstyled-list.inline {
+  display: inline-block;
+}

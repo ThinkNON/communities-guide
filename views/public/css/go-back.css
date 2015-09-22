@@ -1,0 +1,10 @@
+header + .back {
+  padding: 33px 0;
+  margin-bottom: 6px;
+  text-align: center;
+  background-color: #ffffff;
+}
+header + .back a {
+  color: #666d71;
+  font-size: 2rem;
+}

@@ -1,0 +1,30 @@
+.community-members img {
+  position: absolute;
+  margin: 0 0 -27.5px 20px;
+  bottom: 0;
+}
+.community-members .community-counter {
+  position: absolute;
+  margin: 0 0 -27.5px 75px;
+  bottom: 0;
+}
+img.round {
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+}
+img.round.small {
+  width: 30px;
+  height: 30px;
+  margin-right: 25px;
+}
+.community-counter {
+  display: inline-block;
+  line-height: 55px;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  border-radius: 100%;
+  background-color: #999da0;
+  color: #ffffff;
+}
