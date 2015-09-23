@@ -1,17 +1,15 @@
-@white: #ffffff;
-@grey: #333c41;
-@black: #000000;
 nav {
   a {
     &.round {
       padding: 17px 29px;
       background-color: rgba(0, 0, 0, 0.5);
+    }
+    &.avatar {
+      padding: 17px 0;
 
-      &:hover {
-        background-color: inherit;
-        color: inherit;
-        background-color: rgba(0, 0, 0, 0.2);
-      }
+    }
+    &:hover {
+      color: inherit;
     }
   }
   ul {
@@ -20,6 +18,10 @@ nav {
       li {
         display: inline-block;
         margin: 0 10px;
+
+        a:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
 
         span {
           &.username {
@@ -38,8 +40,8 @@ a.round {
   font-family: 'soleilsemibold';
   display: inline-block;
 
-  :hover {
-    color: inherit;
+  &:hover {
+    color: inherit !important;
   }
   &.small {
     padding: 10px;
