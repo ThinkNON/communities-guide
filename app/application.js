@@ -53,7 +53,7 @@ Application.prototype.boot = function (cb) {
         //  req.assert('field', 'message').isEmpty()
         // app.use(validator());
         app.use(express.static(path.join(__dirname, 'public')));
-        app.set('view engine', 'ejs'); // set up ejs for templating
+        app.set('view engine', 'hbs'); // set up hbs for templating
         app.use(passport.initialize());
         app.use(passport.session());
         require('./controllers/users.js')(app, passport);
