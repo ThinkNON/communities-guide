@@ -44,15 +44,19 @@
 }
 .bg-fb-blue {
   background-color: #465799;
+  color: #ffffff;
 }
 .bg-in-blue {
   background-color: #017bb7;
+  color: #ffffff;
 }
 .bg-m-red {
   background-color: #f20000;
+  color: #ffffff;
 }
 .bg-lighter-grey {
   background-color: #999da0;
+  color: #ffffff;
 }
 .bg-neon-green {
   background-color: #58bc00;
