@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
 var debug = require('debug');
+var hbs = require('hbs');
 var log = debug('application:log');
 var error = debug('application:error');
 
@@ -53,7 +54,9 @@ Application.prototype.boot = function (cb) {
         //  req.assert('field', 'message').isEmpty()
         // app.use(validator());
         app.use(express.static(path.join(__dirname, 'public')));
-        app.set('view engine', 'ejs'); // set up ejs for templating
+        app.set('view engine', 'hbs'); // set up hbs for templating
+        app.set('views', __dirname + '/views/templates');
+        hbs.registerPartials(__dirname + '/views/partials');
         app.use(passport.initialize());
         app.use(passport.session());
         require('./controllers/users.js')(app, passport);

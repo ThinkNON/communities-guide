@@ -8,13 +8,13 @@ module.exports = function(grunt) {
                     yuicompress: false,
                     optimization: 2,
                     sourceMap: true,
-                    sourceMapFilename: 'app/public/css/styles.css.map',
-                    sourceMapURL: '/css/styles.css.map',
+                    sourceMapFilename: 'app/public/css/main.css.map',
+                    sourceMapURL: '/css/main.css.map',
                     sourceMapBasepath: 'public',
                     sourceMapRootpath: '/'
                 },
                 files: {
-                    'app/public/css/styles.css': 'app/public/less/styles.less'
+                    'app/public/css/main.css': 'app/public/less/main.less'
                 }
             }
         }
