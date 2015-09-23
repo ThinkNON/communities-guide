@@ -3,38 +3,38 @@
   background-color: #666d71;
   border: 1px solid #666d71;
 }
-.bg-indigo {
+.bg-technology {
   background-color: #5a25a2;
 }
-.indigo {
+.technology {
   color: #5a25a2;
   border: 1px solid #5a25a2;
 }
-.bg-pink {
+.bg-management {
   background-color: #f34b7d;
 }
-.pink {
+.management {
   color: #f34b7d;
   border: 1px solid #f34b7d;
 }
-.bg-green {
+.bg-educational {
   background-color: #00e6b5;
 }
-.green {
+.educational {
   color: #00e6b5;
   border: 1px solid #00e6b5;
 }
-.bg-orange {
+.bg-fun {
   background-color: #f15501;
 }
-.orange {
+.fun {
   color: #f15501;
   border: 1px solid #f15501;
 }
-.bg-blue {
+.bg-creative {
   background-color: #438eff;
 }
-.blue {
+.creative {
   color: #438eff;
   border: 1px solid #438eff;
 }
@@ -528,7 +528,12 @@ footer {
   margin-bottom: 50px;
 }
 footer a.back-top {
-  margin-top: 120px;
+  margin-top: 110px;
   display: inline-block;
   color: #333c41;
+}
+@media (max-width: 767px) {
+  footer a.back-top {
+    margin-top: -40px;
+  }
 }
