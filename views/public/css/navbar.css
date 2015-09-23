@@ -4,6 +4,7 @@ nav a.round {
 }
 nav a.round:hover {
   background-color: inherit;
+  color: inherit;
   background-color: rgba(0, 0, 0, 0.2);
 }
 nav ul.inline {
@@ -22,6 +23,9 @@ a.round {
   font-size: 1.6rem;
   font-family: 'soleilsemibold';
   display: inline-block;
+}
+a.round :hover {
+  color: inherit;
 }
 a.round.small {
   padding: 10px;

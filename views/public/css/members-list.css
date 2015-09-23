@@ -28,3 +28,6 @@ img.round.small {
   background-color: #999da0;
   color: #ffffff;
 }
+.community-counter:hover {
+  color: #ffffff;
+}
