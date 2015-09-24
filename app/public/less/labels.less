@@ -1,4 +1,5 @@
 label {
+  display: block;
   margin-bottom: 0;
   padding-bottom: 10px;
   font-size: 1.2rem;
@@ -6,12 +7,14 @@ label {
   text-transform: uppercase;
   color: @lighter-grey;
 
-  &:after {
-    padding-left: 2px;
-    content: '\e808';
-    font-family: 'communities-guide';
-    font-size: 5px;
-    color: red;
-    vertical-align: super;
+  &.mandatory {
+    &:after {
+      padding-left: 2px;
+      content: '\e808';
+      font-family: 'communities-guide';
+      font-size: 5px;
+      color: red;
+      vertical-align: super;
+    }
   }
 }
