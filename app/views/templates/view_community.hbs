@@ -39,12 +39,12 @@
     </div>
     <main class="row">
         <div class="col-sm-4 community-sidebar">
-            <img src="{{community.photoURL}}">
+            <img class="community-logo" src="{{community.photoURL}}">
             <div class="community-highlights">
                 <div>
                     <ul class="unstyled-list inline">
                         {{#each community.categories}}
-                            <li><span class="tag {{this}}">{{this}}</span></li>
+                            <li><span class="tag bg-{{this}}">{{this}}</span></li>
                         {{/each}}
                     </ul>
                     <h2>{{community.title}}</h2>
@@ -79,7 +79,7 @@
                     </ul>
                 </div>
                 <div>
-                    <button class="default support">Support community</button>
+                    <button class="default green">Support community</button>
                     <button class="default report">Report</button>
                 </div>
             </div>

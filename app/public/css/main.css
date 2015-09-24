@@ -426,6 +426,12 @@ article {
 .about > div:last-of-type span.time-elapsed {
   padding-top: 0;
 }
+.cover-image {
+  max-height: 475px;
+}
+.community-logo {
+  max-height: 240px;
+}
 .community-tags {
   padding: 30px 0 0 25px;
 }
@@ -438,6 +444,10 @@ article {
   position: absolute;
   margin: 0 0 -27.5px 75px;
   bottom: 0;
+}
+img {
+  max-width: 100%;
+  width: 100%;
 }
 img.round {
   width: 55px;
@@ -558,7 +568,6 @@ div.search-input input[type="search"][placeholder] {
   border: 1px solid #cccecf;
   border-radius: 10px;
   width: 100%;
-  wrap: off;
 }
 .edit-about textarea[placeholder] {
   padding: 18px;
@@ -599,4 +608,3 @@ footer a.back-top {
     margin-top: -40px;
   }
 }
-/*# sourceMappingURL=/css/main.css.map */
