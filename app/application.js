@@ -14,6 +14,7 @@ var debug = require('debug');
 var hbs = require('hbs');
 var log = debug('application:log');
 var error = debug('application:error');
+var customHelpers = require('../app/public/js/custom_helpers');
 
 var Application = function (options) {
     if (typeof options === 'undefined') options = {};
@@ -59,6 +60,7 @@ Application.prototype.boot = function (cb) {
         hbs.registerPartials(__dirname + '/views/partials');
         app.use(passport.initialize());
         app.use(passport.session());
+        customHelpers.init();
         require('./controllers/users.js')(app, passport);
         require('./controllers/communities.js')(app);
     }

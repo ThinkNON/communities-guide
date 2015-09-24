@@ -17,7 +17,8 @@ module.exports = function(app) {
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
                 res.render('view_community', {
-                    community: result.community
+                    community: result.community,
+                    user: req.user || {}
                 });
             }
         });
