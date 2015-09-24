@@ -323,6 +323,22 @@ nav ul.inline li a:hover {
 nav ul.inline li span.username {
   font-size: 1.4rem;
 }
+nav.secondary {
+  margin-bottom: 6px;
+  padding: 35px 30px;
+  font-size: 2rem;
+  background-color: #ffffff;
+}
+nav.secondary li a {
+  color: #999da0;
+}
+nav.secondary li:nth-of-type(2) {
+  margin-left: 0;
+}
+nav.secondary li:nth-of-type(2) a {
+  font-family: 'soleilbold';
+  color: #666d71;
+}
 a.round {
   padding: 17px 29px;
   border-radius: 30px;
@@ -577,6 +593,7 @@ label.mandatory:after {
   vertical-align: super;
 }
 .form-group {
+  margin-bottom: 6px;
   padding: 30px;
   background-color: #ffffff;
 }
