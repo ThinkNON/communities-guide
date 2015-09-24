@@ -1,0 +1,31 @@
+img {
+  max-width: 100%;
+  width: 100%;
+  &.round {
+    width: @avatar-height;
+    height: @avatar-height;
+    border-radius: 100%;
+
+    &.small {
+      width: @avatar-height - 25px;
+      height: @avatar-height - 25px;
+      margin-right: 25px;
+    }
+  }
+
+  &.edit {
+    position: relative;
+  }
+}
+
+img.edit + span {
+    //z-index: 50;
+    position: absolute;
+    padding: 2px;
+    top: 20px;
+    right: 10px;
+    border-radius: 3px;
+    background-color: @red;
+    font-size: 15px;
+    color: @grey;
+}
