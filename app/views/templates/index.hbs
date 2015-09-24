@@ -86,10 +86,10 @@
         <div class="row">
             {{#each communities}}
                 <div class="col-sm-6 col-md-4 community">
-                    <div class="community-visual" style="background: url('{{this.photoURL}}'), no-repeat;background-size: cover;">
-                        <ul class="unstyled-list community-tags">
+                    <div class="community-visual" style="background: url('{{this.photoURL}}'), no-repeat;background-size: cover; background-position: center center;">
+                        <ul class="unstyled-list inline community-tags">
                             {{#each this.categories}}
-                                <li><span class="tag {{this}}">{{this}}</span></li>
+                                <li><span class="tag bg-{{this}}">{{this}}</span></li>
                             {{/each}}
                         </ul>
                         <ul class="unstyled-list community-members">
