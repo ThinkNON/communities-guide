@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Communities Guide</title>
+    <meta name="description" content="Communities Guide Iasi">
+    <meta name="author" content="NON">
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="container wrapper">
+    <header class="clearfix">
+        <div class="col-sm-12 col-md-6 col-md-push-6">
+            <nav>
+                <ul class="nav inline">
+                    {{#if user.name}}
+                        <li><span class="username">Welcome, <strong>{{user.name}}</strong></span></li>
+                    {{/if}}
+                    {{#if user.avatar}}
+                        <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
+                    {{/if}}
+                    <li><a href="#" class="round">About</a></li>
+                    <li><a href="#" class="round">Share</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-12 col-md-6 col-md-pull-6">
+            <span class="credits">Photography by Greg Wood</span>
+            <h2>Iași<br/> Communities<br/> Guide</h2>
+        </div>
+    </header>
+    <div class="back col-xs-12">
+        <a href="#" class="col-xs-1 icon-left"></a>
+        <a href="#" class="col-xs-10">Back to list</a>
+        <a href="#" class="col-xs-1 icon-right"></a>
+    </div>
+    <main class="row">
+        <div class="col-sm-4 community-sidebar">
+            <img src="{{community.photoURL}}">
+            <div class="community-highlights">
+                <div>
+                    <ul class="unstyled-list inline">
+                        {{#each community.categories}}
+                            <li><span class="tag {{this}}">{{this}}</span></li>
+                        {{/each}}
+                    </ul>
+                    <h2>{{community.title}}</h2>
+                    {{#if community.founded}}
+                        <span class="created-at">Founded on {{community.founded}}</span>
+                    {{/if}}
+                </div>
+                <div>
+                    <span>Admin:</span>
+                    <span class="admin-counter">{{community.leaders.length}}</span>
+                    <ul class="unstyled-list">
+                        {{#each community.leaders}}
+                            <li><img class="round" src="{{this.avatar}}"></li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div>
+                    <span>Follow:</span>
+                    <ul class="unstyled-list inline social-links">
+                        {{#if community.webLink}}
+                            <li><a href="{{community.webLink}}" class="round small icon-globe bg-lighter-grey"></a></li>
+                        {{/if}}
+                        {{#if community.fbLink}}
+                            <li><a href="{{community.fbLink}}" class="round small icon-facebook bg-fb-blue"></a></li>
+                        {{/if}}
+                        {{#if community.meetupLink}}
+                            <li><a href="{{community.meetupLink}}" class="round small icon-meetup bg-m-red"></a></li>
+                        {{/if}}
+                        {{#if community.linkedinLink}}
+                            <li><a href="{{community.linkedinLink}}" class="round small icon-linkedin bg-in-blue"></a></li>
+                        {{/if}}
+                    </ul>
+                </div>
+                <div>
+                    <button class="default support">Support community</button>
+                    <button class="default report">Report</button>
+                </div>
+            </div>
+        </div>
+        <article class="col-sm-8">
+            <img class="cover-image" src="{{community.photoURL}}">
+            <div class="about">
+                <div>
+                    <h1>About us</h1>
+                    <p>{{community.desc}}</p>
+                </div>
+                <div class="members">
+                    <span>Members:</span>
+                    <span class="members-counter">
+                        {{#if community.leaders.length}}
+                            {{#if community.members.length}}
+                                {{math community.members.length "+" community.leaders.length}}
+                            {{else}}
+                                {{community.leaders.length}}
+                            {{/if}}
+                        {{else}}
+                            {{#if community.members.length}}
+                                {{community.members.length}}
+                            {{/if}}
+                        {{/if}}
+                    </span>
+                    {{#compare community.leaders.length 1 operator="==="}}
+                        <span name="admin-counter">(1 admin)</span>
+                    {{/compare}}
+                    {{#compare community.leaders.length 1 operator=">"}}
+                        <span name="admin-counter">({{community.leaders.length}} admins)</span>
+                    {{/compare}}
+                    <ul class="unstyled-list inline">
+                        {{#each community.leaders}}
+                            {{#compare @index 8 operator="<"}}
+                                <li><a href="{{this.profileUrl}}" class="leader"><img src="{{this.avatar}}" class="round"></a></li>
+                            {{/compare}}
+                        {{/each}}
+                        {{#each community.members}}
+                            {{#compare (math ../community.leaders.length "+" @index) 8 operator="<"}}
+                                <li><a href="{{this.profileUrl}}"><img src="{{this.avatar}}" class="round"></a></li>
+                            {{/compare}}
+                        {{/each}}
+                        {{#if community.leaders.length}}
+                            {{#if community.members.length}}
+                                {{#compare (math community.members.length "+" community.leaders.length) 8 operator=">"}}
+                                    <li><a class="community-counter">+{{math (math community.members.length "+" community.leaders.length) "-" 8}}</a></li>
+                                {{/compare}}
+                            {{else}}
+                                {{#compare community.leaders.length 8 operator=">"}}
+                                    <li><a class="community-counter">+{{math community.leaders.length "-" 8}}</a></li>
+                                {{/compare}}
+                            {{/if}}
+                        {{else}}
+                            {{#if community.members.length}}
+                                {{#compare community.members.length 8 operator=">"}}
+                                    <li><a class="community-counter">+{{math community.members.length "-" 8}}</a></li>
+                                {{/compare}}
+                            {{/if}}
+                        {{/if}}
+                    </ul>
+                </div>
+                {{#if community.messages.length}}
+                    <div class="comments">
+                        <span>Comments:</span>
+                        <span class="comments-counter">{{community.messages.length}}</span>
+                        {{#each community.messages}}
+                            <div class="row">
+                                <img class="col-xs-1 round small" src="{{this.user.avatar}}">
+                                <div class="col-xs-8">
+                                    <div class="row">
+                                        <span class="col-xs-12 admin">{{this.user.name}} (Admin)</span>
+                                        <p class="col-xs-12">{{this.message}}</p>
+                                    </div>
+                                </div>
+                                <span class="col-xs-2 time-elapsed">{{this.date}}</span>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/if}}
+            </div>
+        </article>
+    </main>
+
+    <footer class="clearfix">
+        <div class="col-sm-4">
+            <h2>Iași<br/>Communities<br/>Guide</h2>
+        </div>
+        <div class="col-sm-2 col-sm-offset-6">
+            <a class="back-top pull-right" href="#">Back to top</a>
+        </div>
+    </footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
