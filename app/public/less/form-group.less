@@ -1,3 +1,39 @@
 .form-group{
+  padding: 30px;
   background-color: @white;
+
+  input, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid @light-grey;
+    padding: 18px 0 18px 18px;
+    border-radius: 7px;
+    color: @grey;
+
+    &[placeholder] {
+      color: @lighter-grey;
+    }
+  }
+
+ .select-caret {
+   position: relative;
+   select {
+     background-color: @light-grey;
+   }
+   &:after {
+     position: absolute;
+     bottom: 38px;
+     right: 10px;
+     content: '\e808';
+     font-family: 'communities-guide';
+     font-size: 15px;
+     color: @grey;
+     vertical-align: super;
+   }
+ }
 }

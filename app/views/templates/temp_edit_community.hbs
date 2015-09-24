@@ -47,29 +47,38 @@
     </div>
     <main class="row">
         <div class="col-sm-4 community-sidebar">
-            <img src="{{this.photoURL}}">
+            <div>
+                <img class="edit" src="/images/agile-logo.png">
+                <span class="icon-star"></span>
+            </div>
             <div class="form-group">
                 <label class="mandatory">Category List</label>
-                <select>
-                    <option value="default">Select category</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
+                <div class="select-caret">
+                    <select>
+                        <option value="default">Select category</option>
+                        <option value="">Technology</option>
+                        <option value="">Management</option>
+                        <option value="">Fun</option>
+                        <option value="">Creative</option>
+                    </select>
+                </div>
                 <label class="mandatory">Community name</label>
-                <input name="" value="Agile Software Group Iasi">
+                <input name="" placeholder="Agile Software Group Iasi">
                 <label>Website</label>
-                <input name="" value="http://www.agileworks.ro">
-                <label class="mandatory">Facebook page</label>
+                <input name="" placeholder="http://www.agileworks.ro">
+                <label>Facebook page</label>
                 <input name="" value="">
-                <label class="mandatory">Meetup page</label>
+                <label>Meetup page</label>
                 <input name="" value="">
-                <label class="mandatory">Linkedin page</label>
+                <label>Linkedin page</label>
                 <input name="" value="">
             </div>
         </div>
         <article class="col-sm-8">
-            <img class="cover-image" src="./images/agile-gallery.png">
+            <div>
+                <img class="cover-image edit" src="/images/agile-gallery.png">
+                <span class="icon-star"></span>
+            </div>
             <div class="edit-about">
                 <div class="add-note row">
                     <div class="col-xs-12">
