@@ -46,6 +46,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/communities/about/:id', function(req, res) {
+        var communityId = req.params.id;
+        communitiesService.findById(communityId, function(result) {
+            if (result.success) {
+                res.render('temp_about_community', {
+                    community: result.community
+                });
+            }
+        });
+    });
+
 
     app.get('/communities/logged-user/:id', function(req, res) {
         var communityId = req.params.id;
