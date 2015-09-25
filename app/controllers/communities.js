@@ -50,8 +50,19 @@ module.exports = function(app) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
-                res.render('temp_about_community', {
+                res.render('temp_start_community', {
                     community: result.community
+                });
+            }
+        });
+    });
+
+    app.get('/communities/new', function(req, res) {
+        communitiesService.findAll(function(result) {
+            if (result.success) {
+                res.render('temp_start_community', {
+                    communities: result.communities,
+                    user: req.user || {}
                 });
             }
         });

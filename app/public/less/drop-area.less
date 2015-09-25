@@ -1,0 +1,39 @@
+.drop-area {
+  position: relative;
+  background-color: @drop-area-bg;
+  text-align: center;
+  display: table-cell;
+  padding: 190px;
+  width: 765px;
+  height: 435px;
+
+  > span {
+    display: block;
+    vertical-align: middle;
+    &:first-child {
+      color: @dark-grey;
+      padding-bottom: 10px;
+    }
+    &:last-child {
+      color: @lighter-grey;
+    }
+  }
+  &.small {
+    width: 374px;
+    height: 240px;
+    font-size: 1.6rem;
+    padding: 92px;
+  }
+}
+
+.drop-area + span {
+  //z-index: 50;
+  position: absolute;
+  padding: 2px;
+  top: 20px;
+  right: 10px;
+  border-radius: 3px;
+  background-color:  @lighter-grey;
+  font-size: 15px;
+  color: @drop-area-bg;
+}
