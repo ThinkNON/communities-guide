@@ -44,15 +44,18 @@
         <nav class="secondary col-xs-12">
             <ul class="unstyled-list">
                 <li><a href="#">Home /</a></li>
-                <li><a href="#">Edit</a></li>
+                <li><a href="#">Create an account</a></li>
             </ul>
         </nav>
     </div>
     <main class="row">
         <div class="col-sm-4 community-sidebar">
             <div>
-                <img class="edit" src="/images/agile-logo.png">
-                <span class="icon-cancel"></span>
+                <div class="drop-area small">
+                    <span>Drop your logo here<br/> or click to pick manually</span>
+                    <span>(380px x 240px Jpeg file)</span>
+                </div>
+                <span class="icon-cancel bg-light-grey"></span>
             </div>
             <div class="form-group">
                 <label class="mandatory">Category List</label>
@@ -79,16 +82,22 @@
         </div>
         <article class="col-sm-8">
             <div>
-                <img class="cover-image edit" src="/images/agile-gallery.png">
-                <span class="icon-cancel"></span>
+                <div class="drop-area">
+                    <span>Drop your logo here<br/> or click to pick manually</span>
+                    <span>(380px x 240px Jpeg file)</span>
+                </div>
+                <span class="icon-cancel bg-light-grey"></span>
             </div>
             <div class="edit-about">
                 <div class="add-note row">
                     <div class="col-xs-12">
                         <label class="mandatory">About community</label>
-                        <textarea placeholder="Add a note...">Meet other local people interested in Agile methods of software development. Agile software development processes such as Scrum, Extreme Programming, Feature Driven Development and Test Driven Development are on their way to becoming more and more adopted. If you want to share your experience or to hear other experience, this is the group you are looking for.</textarea>
+                        <textarea placeholder="Add a note...">Add a note...</textarea>
                     </div>
-                    <button class="default green small pull-right">Save changes</button>
+                    <div class="col-xs-12">
+                        <span class="terms pull-left">By continuing you agree with <a href="#">Terms and Conditions</a></span>
+                        <button class="default green small pull-right">Submit community</button>
+                    </div>
                 </div>
             </div>
         </article>
