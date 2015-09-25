@@ -34,21 +34,26 @@ nav {
 
   &.secondary {
     margin-bottom: 6px;
-    padding: 35px 30px;
-    font-size: 2rem;
-    background-color: @white;
 
-    li {
-      a {
-        color: @lighter-grey;
-      }
-      &:nth-of-type(2) {
-        margin-left: 0;
+    font-size: 2rem;
+
+    > ul {
+      padding: 35px 30px;
+      background-color: @white;
+      li {
         a {
-          font-family: 'soleilbold';
-          color: @dark-grey
+          color: @lighter-grey;
+        }
+        &:nth-of-type(2) {
+          margin-left: 0;
+          a {
+            font-weight: 700;
+            font-family: 'Soleil';
+            color: @dark-grey
+          }
         }
       }
+
     }
   }
 }
@@ -57,7 +62,8 @@ a.round {
   padding: 17px 29px;
   border-radius: 30px;
   font-size: 1.6rem;
-  font-family: 'soleilsemibold';
+  font-weight: 600;
+  font-family: 'Soleil';
   display: inline-block;
 
   &:hover {

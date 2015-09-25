@@ -65,31 +65,31 @@
   background-color: #58bc00;
 }
 @font-face {
-  font-family: 'soleilbold';
+  font-family: 'Soleil';
   src: url('../fonts/soleil-bold-webfont.eot');
   src: url('../fonts/soleil-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-bold-webfont.woff2') format('woff2'), url('../fonts/soleil-bold-webfont.woff') format('woff'), url('../fonts/soleil-bold-webfont.ttf') format('truetype'), url('../fonts/soleil-bold-webfont.svg#soleilbold') format('svg');
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 @font-face {
-  font-family: 'soleillight';
+  font-family: 'Soleil';
   src: url('../fonts/soleil-light-webfont.eot');
   src: url('../fonts/soleil-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-light-webfont.woff2') format('woff2'), url('../fonts/soleil-light-webfont.woff') format('woff'), url('../fonts/soleil-light-webfont.ttf') format('truetype'), url('../fonts/soleil-light-webfont.svg#soleillight') format('svg');
-  font-weight: normal;
+  font-weight: 200;
   font-style: normal;
 }
 @font-face {
-  font-family: 'soleilregular';
+  font-family: 'Soleil';
   src: url('../fonts/soleil-regular-webfont.eot');
   src: url('../fonts/soleil-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-regular-webfont.woff2') format('woff2'), url('../fonts/soleil-regular-webfont.woff') format('woff'), url('../fonts/soleil-regular-webfont.ttf') format('truetype'), url('../fonts/soleil-regular-webfont.svg#soleilregular') format('svg');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: 'soleilsemibold';
+  font-family: 'Soleil';
   src: url('../fonts/soleil-semibold-webfont.eot');
   src: url('../fonts/soleil-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-semibold-webfont.woff2') format('woff2'), url('../fonts/soleil-semibold-webfont.woff') format('woff'), url('../fonts/soleil-semibold-webfont.ttf') format('truetype'), url('../fonts/soleil-semibold-webfont.svg#soleilsemibold') format('svg');
-  font-weight: normal;
+  font-weight: 600;
   font-style: normal;
 }
 html {
@@ -99,7 +99,8 @@ body {
   position: relative;
   padding-top: 0;
   padding-bottom: 0;
-  font-family: 'soleillight';
+  font-weight: 200;
+  font-family: 'Soleil';
   background: url('../images/background-image.png'), no-repeat;
   background-size: cover;
   font-size: 1.6rem;
@@ -144,28 +145,38 @@ input::-moz-focus-inner {
 h1 {
   margin: 0;
   font-size: 3.6rem;
-  font-family: 'soleilbold';
+  font-weight: 700;
+  font-family: 'Soleil';
 }
 h2 {
   margin: 0;
   font-size: 3rem;
-  font-family: 'soleilbold';
+  font-weight: 700;
+  font-family: 'Soleil';
   padding: 34px 0 18px;
 }
 h3 {
   margin: 0;
   font-size: 2.6rem;
-  font-family: 'soleilbold';
+  font-weight: 700;
+  font-family: 'Soleil';
 }
 header {
   margin: 6px 0;
-  padding: 8px 30px 12px;
+  padding: 0 3px;
   background-image: url('../images/header-background.png');
-  backround-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-origin: content-box;
   color: #ffffff;
   font-size: 1.8rem;
+}
+header > div {
+  padding-top: 18px;
+}
+header > div:nth-child(2) {
+  padding: 18px 0 15px 30px;
 }
 header a {
   color: #ffffff;
@@ -278,7 +289,8 @@ button.default {
   color: #333c41;
   border: 1px solid #cccecf;
   font-size: 1.4rem;
-  font-family: 'soleilbold';
+  font-family: 'Soleil';
+  font-weight: 700;
   letter-spacing: 2px;
 }
 button.default.no-border {
@@ -306,17 +318,21 @@ button.round {
   border-radius: 28px;
   boder: 1px;
   font-size: 1.6rem;
-  font-family: 'soleilsemibold';
+  font-weight: 600;
+  font-family: 'Soleil';
 }
 button.search {
-  margin-left: -63px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
   padding: 12px 12px;
   border-radius: 100%;
   border: none;
   color: #666d71;
   background-color: #ffffff;
   font-size: 2.2rem;
-  font-family: 'soleilsemibold';
+  font-weight: 600;
+  font-family: 'Soleil';
 }
 nav a.round {
   padding: 17px 29px;
@@ -343,25 +359,29 @@ nav ul.inline li span.username {
 }
 nav.secondary {
   margin-bottom: 6px;
-  padding: 35px 30px;
   font-size: 2rem;
+}
+nav.secondary > ul {
+  padding: 35px 30px;
   background-color: #ffffff;
 }
-nav.secondary li a {
+nav.secondary > ul li a {
   color: #999da0;
 }
-nav.secondary li:nth-of-type(2) {
+nav.secondary > ul li:nth-of-type(2) {
   margin-left: 0;
 }
-nav.secondary li:nth-of-type(2) a {
-  font-family: 'soleilbold';
+nav.secondary > ul li:nth-of-type(2) a {
+  font-weight: 700;
+  font-family: 'Soleil';
   color: #666d71;
 }
 a.round {
   padding: 17px 29px;
   border-radius: 30px;
   font-size: 1.6rem;
-  font-family: 'soleilsemibold';
+  font-weight: 600;
+  font-family: 'Soleil';
   display: inline-block;
 }
 a.round:hover {
@@ -375,6 +395,7 @@ a.round.small {
   position: relative;
   min-height: 243px;
   max-width: 100%;
+  background-color: #999da0;
 }
 .community .community-content {
   padding: 60px 30px 37px 30px;
@@ -383,6 +404,7 @@ a.round.small {
   text-align: center;
 }
 .community .community-content .fixed-height {
+  position: relative;
   height: 190px;
   overflow: hidden;
   text-align: left;
@@ -390,81 +412,29 @@ a.round.small {
 .community .community-content .fixed-height .community-desc {
   padding: 36px 0;
   margin: 0;
-}
-article {
   overflow: hidden;
 }
-.about {
-  margin: 6px 0;
-  background-color: #ffffff;
-  padding: 64px 30px 164px;
-}
-.about > div {
-  border-bottom: 1px solid #cccecf;
-}
-.about > div h1 {
-  padding-bottom: 34px;
-}
-.about > div p {
-  margin-bottom: 0;
-  padding-bottom: 54px;
-}
-.about > div span {
-  display: inline-block;
-  color: #999da0;
-  padding: 25px 0;
-}
-.about > div a.leader {
-  position: relative;
-  text-align: center;
-}
-.about > div a.leader:after {
+.community .community-content .fixed-height .community-desc:before {
+  content: '...';
+  text-align: right;
   position: absolute;
-  right: 0;
-  bottom: -18px;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  border-radius: 100%;
-  background-color: #f9ce3d;
-  color: #ffffff;
-  font-family: 'communities-guide';
-  content: '\e808';
+  display: block;
+  width: 2em;
+  height: 1em;
+  bottom: 1em;
+  right: 20px;
+  background: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00e0e0e0', endColorstr='#e0e0e0', GradientType=1);
 }
-.about > div.add-note {
-  padding: 30px 0;
-}
-.about > div.add-note textarea {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  min-height: 120px;
-  border: 1px solid #cccecf;
-  border-radius: 10px;
+.community .community-content .fixed-height .community-desc:after {
+  content: ' ';
+  position: absolute;
+  display: block;
   width: 100%;
-}
-.about > div.add-note textarea[placeholder] {
-  padding: 18px;
-  color: #999da0;
-}
-.about > div:nth-child(2) {
-  padding-bottom: 35px;
-}
-.about > div:last-of-type {
-  color: #999da0;
-}
-.about > div:last-of-type span.admin {
-  padding-top: 0;
-  color: #666d71;
-}
-.about > div:last-of-type span.time-elapsed {
-  padding-top: 0;
-}
-.cover-image {
-  max-height: 475px;
-}
-.community-logo {
-  max-height: 240px;
+  height: 1em;
+  bottom: 0px;
+  left: 0px;
+  background: #ffffff;
 }
 .community-tags {
   padding: 30px 0 0 25px;
@@ -528,6 +498,7 @@ span.sort {
   color: #ffffff;
 }
 div.search-input {
+  position: relative;
   display: inline-block;
   padding-left: 5px;
 }
@@ -605,7 +576,8 @@ label {
   margin-bottom: 0;
   padding-bottom: 10px;
   font-size: 1.2rem;
-  font-family: 'soleilbold';
+  font-weight: 700;
+  font-family: 'Soleil';
   text-transform: uppercase;
   color: #999da0;
   letter-spacing: 1px;
@@ -695,7 +667,6 @@ img.edit + span {
   padding-bottom: 50px;
 }
 .drop-area {
-  position: relative;
   background-color: #e5e6e7;
   text-align: center;
   display: table-cell;
@@ -729,6 +700,78 @@ img.edit + span {
   background-color: #999da0;
   font-size: 15px;
   color: #e5e6e7;
+}
+article {
+  overflow: hidden;
+}
+.about {
+  margin: 6px 0;
+  background-color: #ffffff;
+  padding: 64px 30px 164px;
+}
+.about > div {
+  border-bottom: 1px solid #cccecf;
+}
+.about > div h1 {
+  padding-bottom: 34px;
+}
+.about > div p {
+  margin-bottom: 0;
+  padding-bottom: 54px;
+}
+.about > div span {
+  display: inline-block;
+  color: #999da0;
+  padding: 25px 0;
+}
+.about > div a.leader {
+  position: relative;
+  text-align: center;
+}
+.about > div a.leader:after {
+  position: absolute;
+  right: 0;
+  bottom: -18px;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  background-color: #f9ce3d;
+  color: #ffffff;
+  font-family: 'communities-guide';
+  content: '\e808';
+}
+.about > div.add-note {
+  padding: 30px 0;
+}
+.about > div.add-note textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 120px;
+  border: 1px solid #cccecf;
+  border-radius: 10px;
+  width: 100%;
+}
+.about > div.add-note textarea[placeholder] {
+  padding: 18px;
+  color: #999da0;
+}
+.about > div:nth-child(2) {
+  padding-bottom: 35px;
+}
+.about > div:last-of-type {
+  color: #999da0;
+}
+.about > div:last-of-type span.admin {
+  padding-top: 0;
+  color: #666d71;
+}
+.about > div:last-of-type span.time-elapsed {
+  padding-top: 0;
+}
+.cover-image {
+  max-height: 475px;
 }
 footer {
   padding: 10px 30px 22px;
