@@ -16,11 +16,12 @@
         <div class="col-sm-12 col-md-6 col-md-push-6">
             <nav>
                 <ul class="nav inline">
-                    {{#if user.name}}
+                    {{#if user}}
                         <li><span class="username">Welcome, <strong>{{user.name}}</strong></span></li>
-                    {{/if}}
-                    {{#if user.avatar}}
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
+                        <li><a href="/logout" class="round">Logout</a></li>
+                    {{else}}
+                        <li><a href="/auth/facebook" class="round small icon-user"></a></li>
                     {{/if}}
                     <li><a href="#" class="round">About</a></li>
                     <li><a href="#" class="round">Share</a></li>

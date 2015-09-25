@@ -6,7 +6,7 @@ module.exports = function(app) {
             if (result.success) {
                 res.render('index', {
                     communities: result.communities,
-                    user: req.user || {}
+                    user: req.user || null
                 });
             }
         });
@@ -18,7 +18,7 @@ module.exports = function(app) {
             if (result.success) {
                 res.render('view_community', {
                     community: result.community,
-                    user: req.user || {}
+                    user: req.user || null
                 });
             }
         });
