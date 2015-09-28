@@ -16,15 +16,12 @@
         </div>
         <div class="form-group">
             <label class="mandatory">Category List</label>
-            <div class="select-caret">
-                <select>
-                    <option value="default">Select category</option>
-                    <option value="">Technology</option>
-                    <option value="">Management</option>
-                    <option value="">Fun</option>
-                    <option value="">Creative</option>
-                </select>
-            </div>
+            <select id="select-category" multiple="multiple">
+                <option value="">Technology</option>
+                <option value="">Management</option>
+                <option value="">Fun</option>
+                <option value="">Creative</option>
+            </select>
             <label class="mandatory">Community name</label>
             <input name="title" value="{{community.title}}">
             <label>Website</label>
