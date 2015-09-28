@@ -12,6 +12,12 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/communities/new', function(req, res) {
+        res.render('temp_start_community', {
+            user: req.user || null
+        });
+    });
+
     app.get('/communities/:id', function(req, res) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
@@ -28,8 +34,9 @@ module.exports = function(app) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
-                res.render('edit_community', {
-                    community: result.community
+                res.render('temp_edit_community', {
+                    community: result.community,
+                    user: req.user || null
                 });
             }
         });
@@ -68,18 +75,6 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/communities/new', function(req, res) {
-        communitiesService.findAll(function(result) {
-            if (result.success) {
-                res.render('temp_start_community', {
-                    communities: result.communities,
-                    user: req.user || {}
-                });
-            }
-        });
-    });
-
-
     app.get('/communities/logged-user/:id', function(req, res) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
@@ -91,6 +86,19 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/api/communities/save', function(req, res) {
+        var communityJSON = req.body.communityJSON;
+        communitiesService.save(communityJSON, function(result) {
+            res.json(result);
+        });
+    });
+
+    app.post('/api/communities/update', function(req, res) {
+        var communityJSON = req.body.communityJSON;
+        communitiesService.update(communityJSON, function(result) {
+            res.json(result);
+        });
+    });
 
     app.post('/api/communities/add-message', function(req, res) {
         var messageJSON = req.body.messageJSON;

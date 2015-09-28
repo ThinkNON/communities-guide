@@ -28,8 +28,13 @@
         <div class="col-sm-12 col-md-6 col-md-push-6">
             <nav>
                 <ul class="nav inline">
-                    <li><span class="username">Welcome, <strong>Justin Gerowitz</strong></span></li>
-                    <li><a href="#" class="avatar"><img src="./images/user-1.png" class="round"></a></li>
+                    {{#if user}}
+                        <li><span class="username">Welcome, <strong>{{user.name}}</strong></span></li>
+                        <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
+                        <li><a href="/logout" class="round">Logout</a></li>
+                    {{else}}
+                        <li><a href="/auth/facebook" class="round small icon-user"></a></li>
+                    {{/if}}
                     <li><a href="#" class="round">About</a></li>
                     <li><a href="#" class="round">Share</a></li>
                 </ul>
@@ -43,64 +48,13 @@
     <div class="row">
         <nav class="secondary col-xs-12">
             <ul class="unstyled-list">
-                <li><a href="#">Home /</a></li>
+                <li><a href="/">Home /</a></li>
                 <li><a href="#">Create an account</a></li>
             </ul>
         </nav>
     </div>
     <main class="row">
-        <div class="col-sm-4 community-sidebar">
-            <div>
-                <div class="drop-area small">
-                    <span>Drop your logo here<br/> or click to pick manually</span>
-                    <span>(380px x 240px Jpeg file)</span>
-                </div>
-                <span class="icon-cancel bg-light-grey"></span>
-            </div>
-            <div class="form-group">
-                <label class="mandatory">Category List</label>
-                <div class="select-caret">
-                    <select>
-                        <option value="default">Select category</option>
-                        <option value="">Technology</option>
-                        <option value="">Management</option>
-                        <option value="">Fun</option>
-                        <option value="">Creative</option>
-                    </select>
-                </div>
-                <label class="mandatory">Community name</label>
-                <input name="" placeholder="Agile Software Group Iasi">
-                <label>Website</label>
-                <input name="" placeholder="http://www.agileworks.ro">
-                <label>Facebook page</label>
-                <input name="" value="">
-                <label>Meetup page</label>
-                <input name="" value="">
-                <label>Linkedin page</label>
-                <input name="" value="">
-            </div>
-        </div>
-        <article class="col-sm-8">
-            <div>
-                <div class="drop-area">
-                    <span>Drop your logo here<br/> or click to pick manually</span>
-                    <span>(380px x 240px Jpeg file)</span>
-                </div>
-                <span class="icon-cancel bg-light-grey"></span>
-            </div>
-            <div class="edit-about">
-                <div class="add-note row">
-                    <div class="col-xs-12">
-                        <label class="mandatory">About community</label>
-                        <textarea placeholder="Add a note...">Add a note...</textarea>
-                    </div>
-                    <div class="col-xs-12">
-                        <span class="terms pull-left">By continuing you agree with <a href="#">Terms and Conditions</a></span>
-                        <button class="default green small pull-right">Submit community</button>
-                    </div>
-                </div>
-            </div>
-        </article>
+        {{> edit_community}}
     </main>
 
     <footer class="clearfix">
@@ -117,6 +71,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
 <script src="/js/scripts.js"></script>
+<script src="/js/communities.js"></script>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;

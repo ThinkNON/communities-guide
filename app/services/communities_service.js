@@ -53,6 +53,8 @@ module.exports = {
     'update': function(communityJSON, callback) {
         var id = communityJSON._id;
         delete communityJSON._id;
+        console.log(communityJSON);
+        console.log(id);
         Community.update({_id : id}, communityJSON, {runValidators: true}, function(err) {
             if (err) {
                 callback(err);
