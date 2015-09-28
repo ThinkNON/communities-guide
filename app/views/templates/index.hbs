@@ -25,7 +25,7 @@
 <body>
 
 <div class="container">
-    <header class="clearfix">
+    <header class="row">
         <div class="col-sm-12 col-md-6 col-md-push-6">
             <nav>
                 <ul class="nav inline">
@@ -92,7 +92,11 @@
         <div class="row">
             {{#each communities}}
                 <div class="col-sm-6 col-md-4 community">
+                    {{#if this.photoURL}}
                     <div class="community-visual" style="background: url('{{this.photoURL}}'), no-repeat;background-size: cover; background-position: center center;">
+                    {{else}}
+                    <div class="community-visual">
+                    {{/if}}
                         <ul class="unstyled-list inline community-tags">
                             {{#each this.categories}}
                                 <li><span class="tag bg-{{this}}">{{this}}</span></li>
@@ -132,7 +136,7 @@
             {{/each}}
         </div>
     </main>
-    <footer class="clearfix">
+    <footer class="row">
         <div class="col-sm-4">
             <h2>Iași<br/>Communities<br/>Guide</h2>
         </div>

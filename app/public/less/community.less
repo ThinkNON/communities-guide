@@ -3,6 +3,7 @@
     position: relative;
     min-height: 243px;
     max-width: 100%;
+   background-color: @lighter-grey;
  }
   .community-content {
     padding: 60px 30px 37px 30px;
@@ -11,101 +12,39 @@
     text-align: center;
 
     .fixed-height {
+      position: relative;
       height: 190px;
       overflow: hidden;
       text-align: left;
       .community-desc {
         padding: 36px 0;
         margin: 0;
+        overflow: hidden;
+        &:before {
+          content:                    '...';
+          text-align:                 right;
+          position:                   absolute;
+          display:                    block;
+          width:                      2em;
+          height:                     1em;
+          bottom:                     1em;
+          right:                      20px;
+          background: transparent;
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00e0e0e0', endColorstr='#e0e0e0',GradientType=1 );
+        }
+
+        &:after {
+          content:                    ' ';
+          position:                   absolute;
+          display:                    block;
+          width:                      100%;
+          height:                     1em;
+          bottom:                     0px;
+          left:                       0px;
+          background:                @white;
+        }
       }
     }
   }
 }
 
-article {
-  overflow: hidden;
-}
-
-.about {
-  margin: 6px 0;
-  background-color: @white;
-  padding: 64px 30px 164px;
-
-   > div {
-     border-bottom: 1px solid @light-grey;
-     h1 {
-       padding-bottom: 34px;
-     }
-     p {
-       margin-bottom: 0;
-       padding-bottom: 54px;
-     }
-
-     span {
-       display: inline-block;
-       color: @lighter-grey;
-       padding: 25px 0;
-     }
-
-     a {
-       &.leader {
-         position: relative;
-         text-align: center;
-         &:after {
-           position: absolute;
-           right: 0;
-           bottom: -18px;
-           display: inline-block;
-           width: 22px;
-           height: 22px;
-           border-radius: 100%;
-           background-color:@yellow;
-           color: @white;
-           font-family: 'communities-guide';
-           content: '\e808';
-         }
-       }
-     }
-     &.add-note {
-       padding: 30px 0;
-       textarea {
-         -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-         box-sizing: border-box;
-
-         min-height: 120px;
-         border: 1px solid @light-grey;
-         border-radius: 10px;
-         width: 100%;
-
-         &[placeholder] {
-           padding: 18px;
-           color: @lighter-grey;
-         }
-       }
-     }
-     &:nth-child(2) {
-       padding-bottom: 35px;
-     }
-
-     &:last-of-type {
-       color: @lighter-grey;
-       span {
-         &.admin{
-           padding-top: 0;
-           color: @dark-grey;
-         }
-         &.time-elapsed {
-           padding-top: 0;
-         }
-       }
-     }
-   }
-}
-
-.cover-image {
-  max-height: 475px;
-}
-.community-logo {
-  max-height: 240px;
-}
