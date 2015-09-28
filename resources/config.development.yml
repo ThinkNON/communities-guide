@@ -32,8 +32,5 @@ log:
 facebookAuth:
     callbackURL: 'http://iasi.communities.guide/auth/facebook/callback'
 
-twitterAuth:
-    callbackURL: 'http://iasi.communities.guide/auth/twitter/callback'
-
 session:
     secret: 'super secret session token'

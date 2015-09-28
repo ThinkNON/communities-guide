@@ -1,53 +1,12 @@
-var User      = require('../models/user');
 var Community = require('../models/community');
-var AWS       = require('aws-sdk');
 var config    = require('../../resources/config');
 var jQuery    = require('jquery');
 var _         = require('lodash');
 var debug     = require('debug');
-//var mongoose  = require('mongoose');
-//var ObjectId  = mongoose.Types.ObjectId();
 var log       = debug('users:log');
 var error     = debug('users:error');
 
 module.exports = function (app, passport) {
-
-    app.locals._ = _;
-    app.locals.jQuery = jQuery;
-
-    var hasCookies = function (req, res, next) {
-        if (req.cookies == '') {
-            console.log("no cookies set");
-            next();
-        }
-        if (req.cookies.communityId && req.cookies.userMethod == 'join') {
-            Community.findOne({'_id' : req.cookies.communityId}).exec(function (err, community) {
-                if (err) {
-                    next(err);
-                } else {
-                    var isInCommunity = req.user.communities.some(function (community) {
-                        return community.equals(req.cookies.communityId);
-                    });
-                    if (!isInCommunity) {
-                        req.user.communities.push(req.cookies.communityId);
-                    }
-                    req.user.save();
-
-                    var isMember = community.members.some(function (member) {
-                        return member.equals(req.user._id);
-                    });
-                    if (!isMember) {
-                        community.members.push(req.user);
-                    }
-                    community.save();
-                }
-                req.cookies = '';
-                next();
-            });
-        } else {
-            next();
-        }
-    };
 
     app.get('/community/join/:id', function (req, res, next) {
         if (!req.isAuthenticated()) {
@@ -124,67 +83,23 @@ module.exports = function (app, passport) {
     });
 
     app.get('/error', function (req, res) {
-        res.render('error.ejs', {
+        res.render('error', {
             user : req.user
         });
     });
 
-    app.get('/connect/facebook', passport.authorize('facebook', {scope: 'email'}));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
 
-    app.get('/connect/facebook/callback',
-        passport.authorize('facebook', {
-            successRedirect: '/',
-            failureRedirect: '/error'
-        })
-    );
-
-    app.get('/connect/twitter', passport.authorize('twitter', {scope: 'email'}));
-
-    app.get('/connect/twitter/callback',
-        passport.authorize('twitter', {
-            successRedirect : '/',
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: 'back',
             failureRedirect : '/error'
         })
     );
 
-    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {failureRedirect : '/error'}), hasCookies, function (req,res) {
-                console.log("REQuest in callback", req.user);
-                res.redirect('/');
-            }
-        );
-
-    app.get('/auth/twitter', passport.authenticate('twitter', {scope: 'email'}));
-
-    app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect: '/',
-            failureRedirect: '/error'
-        }));
-
     app.get('/logout', function (req, res) {
-        console.log("req.cookies before logout", req.cookies);
         req.cookies = '';
         req.logout();
-        console.log("req.cookies after logout", req.cookies);
         res.redirect('/');
-    });
-
-    app.get('/unlink/facebook', function (req, res) {
-        var user            = req.user;
-        user.facebook.token = undefined;
-        user.save(function (err) {
-            res.redirect('/');
-        });
-    });
-
-    app.get('/unlink/twitter', function (req, res) {
-        var user           = req.user;
-        user.twitter.token = undefined;
-        user.save(function (err) {
-            res.redirect('/');
-        });
     });
 };
