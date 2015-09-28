@@ -650,6 +650,7 @@ img.round.small {
 img.logo {
   display: block;
   width: auto;
+  padding: 0 0 40px 20px;
 }
 @media (max-width: 767px) {
   img.logo {
