@@ -571,6 +571,7 @@ div.search-input input[type="search"][placeholder] {
   border: 1px solid #cccecf;
   border-radius: 10px;
   width: 100%;
+  padding: 18px 0 0 18px;
 }
 .edit-about textarea[placeholder] {
   padding: 18px;
