@@ -4,8 +4,9 @@ var Message = require('./message').Message;
 
 var communitySchema = mongoose.Schema({
     title: {type: String, required: true},
-    desc: {type: String},
+    desc: {type: String, required: true},
     photoURL: {type: String},
+    logoURL: {type: String},
     isDeleted: {type: Boolean},
     founded: {type: Date},
     categories: [{type: String}],

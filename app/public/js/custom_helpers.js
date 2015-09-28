@@ -45,5 +45,19 @@ module.exports = {
             }
 
         });
+
+        hbs.registerHelper('inArray', function(elem, list, prop, options) {
+            var isInArray = false;
+            list.forEach(function(element) {
+                if (element[prop].toString() === elem.toString()) {
+                    isInArray = true;
+                }
+            });
+            if (isInArray) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
     }
 };

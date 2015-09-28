@@ -650,6 +650,11 @@ img.logo {
   display: block;
   width: auto;
 }
+@media (max-width: 767px) {
+  img.logo {
+    padding-top: 50px;
+  }
+}
 img.edit {
   position: relative;
 }
@@ -679,6 +684,9 @@ img.edit + span {
   text-align: center;
   padding-top: 190px;
   padding-bottom: 190px;
+}
+.drop-area input[type="file"] {
+  margin: 0 auto;
 }
 .drop-area > span {
   display: block;

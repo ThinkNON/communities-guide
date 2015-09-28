@@ -8,6 +8,7 @@
     <meta name="author" content="NON">
     <meta name = "viewport" content="width=device-width, initial-scale=1">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +35,7 @@
     </header>
     <div class="back col-xs-12">
         <a href="#" class="col-xs-1 icon-left"></a>
-        <a href="#" class="col-xs-10">Back to list</a>
+        <a href="/" class="col-xs-10">Back to list</a>
         <a href="#" class="col-xs-1 icon-right"></a>
     </div>
     <main class="row">
@@ -79,7 +80,19 @@
                     </ul>
                 </div>
                 <div>
-                    <button class="default green">Support community</button>
+                    {{#if user}}
+                        {{#inArray user._id community.members '_id'}}
+                            <button class="default green" onclick="leave('{{community._id}}')">Leave community</button>
+                        {{else}}
+                            {{#inArray user._id community.leaders '_id'}}
+                                <button class="default green" onclick="leave('{{community._id}}')">Leave community</button>
+                            {{else}}
+                                <button class="default green" onclick="join('{{community._id}}')">Support community</button>
+                            {{/inArray}}
+                        {{/inArray}}
+                    {{else}}
+                        <button class="default report" disabled>Support community<br/>(You need to be logged in)</button>
+                    {{/if}}
                     <button class="default report">Report</button>
                 </div>
             </div>
@@ -175,5 +188,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-multiselect.js"></script>
+<script src="/js/communities.js"></script>
 </body>
 </html>
