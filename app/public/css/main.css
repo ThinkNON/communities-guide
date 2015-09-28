@@ -106,18 +106,19 @@ body {
   font-size: 1.6rem;
   color: #333c41;
 }
-a:hover {
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
   text-decoration: none;
 }
-input::-moz-focus-inner {
-  border: 0;
+*:focus {
   outline: 0;
 }
-.no-padding-left {
-  padding-left: 0;
-}
-.no-padding-right {
-  padding-right: 0;
+*::-moz-focus-inner {
+  border: 0;
+  outline: 0;
 }
 .unstyled-list {
   margin: 0;
@@ -186,7 +187,7 @@ header p {
   padding-bottom: 34px;
 }
 header p:first-of-type {
-  padding-top: 12px;
+  padding-top: 32px;
 }
 @font-face {
   font-family: 'communities-guide';
@@ -338,6 +339,11 @@ nav a.round {
   padding: 17px 29px;
   background-color: rgba(0, 0, 0, 0.5);
 }
+@media (max-width: 767px) {
+  nav a.round {
+    padding: 7px 12px;
+  }
+}
 nav a.avatar {
   padding: 17px 0;
 }
@@ -390,6 +396,12 @@ a.round:hover {
 a.round.small {
   padding: 10px;
   font-size: 2.5rem;
+}
+@media (max-width: 767px) {
+  a.round.small {
+    padding: 5px;
+    font-size: 1.8rem;
+  }
 }
 .community .community-visual {
   position: relative;
@@ -461,9 +473,6 @@ a.round.small {
 }
 .community-counter:hover {
   color: #ffffff;
-}
-span.credits {
-  font-size: 1.4rem;
 }
 span.tag {
   display: inline-block;
@@ -612,21 +621,13 @@ label.mandatory:after {
 .form-group select[placeholder] {
   color: #999da0;
 }
-.form-group .select-caret {
-  position: relative;
-}
-.form-group .select-caret select {
+.form-group button.multiselect {
   background-color: #cccecf;
-}
-.form-group .select-caret:after {
-  position: absolute;
-  bottom: 38px;
-  right: 10px;
-  content: '\e80a';
-  font-family: 'communities-guide';
-  font-size: 20px;
-  color: #999da0;
-  vertical-align: super;
+  width: 100%;
+  max-width: 100%;
+  padding: 18px 28px 18px 12px;
+  box-shadow: none;
+  font-size: 1.6rem;
 }
 img {
   max-width: 100%;
@@ -641,6 +642,10 @@ img.round.small {
   width: 30px;
   height: 30px;
   margin-right: 25px;
+}
+img.logo {
+  display: block;
+  width: auto;
 }
 img.edit {
   position: relative;
@@ -669,14 +674,11 @@ img.edit + span {
 .drop-area {
   background-color: #e5e6e7;
   text-align: center;
-  display: table-cell;
-  padding: 190px;
-  width: 765px;
-  height: 435px;
+  padding-top: 190px;
+  padding-bottom: 190px;
 }
 .drop-area > span {
   display: block;
-  vertical-align: middle;
 }
 .drop-area > span:first-child {
   color: #666d71;
@@ -686,10 +688,9 @@ img.edit + span {
   color: #999da0;
 }
 .drop-area.small {
-  width: 374px;
-  height: 240px;
+  padding-top: 92px;
+  padding-bottom: 92px;
   font-size: 1.6rem;
-  padding: 92px;
 }
 .drop-area + span {
   position: absolute;
@@ -772,6 +773,20 @@ article {
 }
 .cover-image {
   max-height: 475px;
+}
+.multiselect-container li a label {
+  padding-left: 28px;
+}
+.multiselect-container li a label input[type="checkbox"] {
+  max-width: none;
+  width: auto;
+  padding: 5px;
+  border-radius: 0;
+  background-image: none;
+  border: none;
+}
+div.btn-group + label {
+  margin-top: 20px;
 }
 footer {
   padding: 10px 30px 22px;

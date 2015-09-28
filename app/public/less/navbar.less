@@ -3,10 +3,13 @@ nav {
     &.round {
       padding: 17px 29px;
       background-color: rgba(0, 0, 0, 0.5);
+
+      @media(max-width: 767px){
+        padding: 7px 12px;
+      }
     }
     &.avatar {
       padding: 17px 0;
-
     }
     &:hover {
       color: inherit;
@@ -72,5 +75,10 @@ a.round {
   &.small {
     padding: 10px;
     font-size: 2.5rem;
+
+    @media(max-width: 767px){
+      padding: 5px;
+      font-size: 1.8rem;
+    }
   }
 }
