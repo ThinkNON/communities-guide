@@ -612,21 +612,13 @@ label.mandatory:after {
 .form-group select[placeholder] {
   color: #999da0;
 }
-.form-group .select-caret {
-  position: relative;
-}
-.form-group .select-caret select {
+.form-group button.multiselect {
   background-color: #cccecf;
-}
-.form-group .select-caret:after {
-  position: absolute;
-  bottom: 38px;
-  right: 10px;
-  content: '\e80a';
-  font-family: 'communities-guide';
-  font-size: 20px;
-  color: #999da0;
-  vertical-align: super;
+  width: 100%;
+  max-width: 100%;
+  padding: 18px 12px;
+  box-shadow: none;
+  font-size: 1.6rem;
 }
 img {
   max-width: 100%;
@@ -772,6 +764,20 @@ article {
 }
 .cover-image {
   max-height: 475px;
+}
+.multiselect-container li a label {
+  padding-left: 20px;
+}
+.multiselect-container li a label input[type="checkbox"] {
+  max-width: none;
+  width: auto;
+  padding: 5px;
+  border-radius: 0;
+  background-image: none;
+  border: none;
+}
+div.btn-group + label {
+  margin-top: 20px;
 }
 footer {
   padding: 10px 30px 22px;

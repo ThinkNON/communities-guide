@@ -8,6 +8,7 @@
     <meta name="description" content="Communities Guide - Join one. Start one. Build something. No matter if it's purely technical, just for fun or sports oriented, sharing knowledge or passion is always worth it.">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <meta property="og:title" content="Join one. Start one. Build something." />
     <meta property="og:site_name" content="Iași Communities Guide" />
@@ -59,15 +60,12 @@
             </div>
             <div class="form-group">
                 <label class="mandatory">Category List</label>
-                <div class="select-caret">
-                    <select>
-                        <option value="default">Select category</option>
-                        <option value="">Technology</option>
-                        <option value="">Management</option>
-                        <option value="">Fun</option>
-                        <option value="">Creative</option>
-                    </select>
-                </div>
+                <select id="select-category" multiple="multiple">
+                    <option value="technology">Technology</option>
+                    <option value="management">Management</option>
+                    <option value="fun">Fun</option>
+                    <option value="creative">Creative</option>
+                </select>
                 <label class="mandatory">Community name</label>
                 <input name="" placeholder="Agile Software Group Iasi">
                 <label>Website</label>
@@ -114,6 +112,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-multiselect.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
 <script src="/js/scripts.js"></script>
