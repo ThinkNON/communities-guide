@@ -1,5 +1,7 @@
 $(function () {
 
+    $('#select-category').multiselect();
+
     var $container = $('.isotope > .row').imagesLoaded(function () {
         $container.isotope({
             itemSelector: '.item',
