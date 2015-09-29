@@ -1,4 +1,15 @@
 var communitiesService = require('../services/communities_service');
+var categories = [
+    {id: 'technology', text: 'Technology'},
+    {id: 'management', text: 'Management'},
+    {id: 'fun', text: 'Fun'},
+    {id: 'creative', text: 'Creative'},
+    {id: 'business analysis', text: 'Business Analysis'},
+    {id: 'technologies', text: 'Technologies'},
+    {id: 'educational', text: 'Educational'},
+    {id: 'testing', text: 'Testing'},
+    {id: 'mobile', text: 'Mobile'}
+];
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
@@ -14,7 +25,8 @@ module.exports = function(app) {
 
     app.get('/communities/new', function(req, res) {
         res.render('temp_start_community', {
-            user: req.user || null
+            user: req.user || null,
+            categories: categories
         });
     });
 
@@ -36,7 +48,8 @@ module.exports = function(app) {
             if (result.success) {
                 res.render('temp_edit_community', {
                     community: result.community,
-                    user: req.user || null
+                    user: req.user || null,
+                    categories: categories
                 });
             }
         });

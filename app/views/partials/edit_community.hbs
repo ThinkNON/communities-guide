@@ -16,11 +16,10 @@
         </div>
         <div class="form-group">
             <label class="mandatory">Category List</label>
-            <select id="select-category" multiple="multiple">
-                <option value="technology">Technology</option>
-                <option value="management">Management</option>
-                <option value="fun">Fun</option>
-                <option value="creative">Creative</option>
+            <select id="select-category" name="categories" multiple="multiple">
+                {{#each categories}}
+                    <option value="{{this.id}}" {{#inSelected this.id ../community.categories}}{{/inSelected}}>{{this.text}}</option>
+                {{/each}}
             </select>
             <label class="mandatory">Community name</label>
             <input name="title" value="{{community.title}}">

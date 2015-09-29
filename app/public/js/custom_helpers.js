@@ -59,5 +59,16 @@ module.exports = {
                 return options.inverse(this);
             }
         });
+
+        hbs.registerHelper('inSelected', function(elem, list) {
+            var isInArray = false;
+            if (!elem || !list) return '';
+            list.forEach(function(element) {
+                if (element === elem) {
+                    isInArray = true;
+                }
+            });
+            return (isInArray ? 'selected' : '');
+        });
     }
 };
