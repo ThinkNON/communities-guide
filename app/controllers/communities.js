@@ -1,4 +1,5 @@
 var communitiesService = require('../services/communities_service');
+var authService = require('../services/auth_service');
 var config = require('../../resources/config');
 var AWS = require('aws-sdk');
 var fs = require('fs');
@@ -26,7 +27,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/communities/new', function(req, res) {
+    app.get('/communities/new', authService.isLoggedIn, function(req, res) {
         res.render('temp_start_community', {
             user: req.user || null,
             categories: categories
@@ -45,7 +46,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/communities/edit/:id', function(req, res) {
+    app.get('/communities/edit/:id', authService.isLeader('das'), function(req, res) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
@@ -82,6 +83,7 @@ module.exports = function(app) {
 
     app.post('/api/communities/save', function(req, res) {
         var communityJSON = req.body.communityJSON;
+        communityJSON.leaders = [req.user];
         communitiesService.save(communityJSON, function(result) {
             res.json(result);
         });
