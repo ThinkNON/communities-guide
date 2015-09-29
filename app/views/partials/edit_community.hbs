@@ -4,11 +4,11 @@
             {{#if community.logoURL}}
                 <div>
                     <img class="edit" src="{{community.logoURL}}">
-                    <span class="icon-cancel"></span>
+                    <span class="icon-cancel" onclick="deleteFile('{{community.logoURL}}', 'logoURL')"></span>
                 </div>
             {{else}}
                 <div class="drop-area small">
-                    <input type="file" name="logoURL">
+                    <input type="file" id="logoURL" accept="image/*">
                     <span>(380px x 240px Jpeg file)</span>
                 </div>
                 <span class="icon-cancel bg-light-grey"></span>
@@ -35,12 +35,12 @@
     </div>
     <article class="col-sm-8">
         <div>
-            {{#if community.logoURL}}
+            {{#if community.photoURL}}
                 <img class="cover-image edit" src="{{community.photoURL}}">
-                <span class="icon-cancel"></span>
+                <span class="icon-cancel" onclick="deleteFile('{{community.photoURL}}', 'photoURL')"></span>
             {{else}}
                 <div class="drop-area">
-                    <input type="file" name="photoURL">
+                    <input type="file" id="photoURL" accept="image/*">
                     <span>(380px x 240px Jpeg file)</span>
                 </div>
                 <span class="icon-cancel bg-light-grey"></span>
@@ -53,7 +53,7 @@
                     <textarea name="desc">{{community.desc}}</textarea>
                 </div>
                 {{#if community._id}}
-                    <input type="hidden" name="_id" value="{{community._id}}">
+                    <input id="communityId" type="hidden" name="_id" value="{{community._id}}">
                     <button id="updateCommunity" class="default green small pull-right">Save changes</button>
                 {{else}}
                     <div class="col-xs-12">

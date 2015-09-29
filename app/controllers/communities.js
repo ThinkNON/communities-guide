@@ -1,4 +1,7 @@
 var communitiesService = require('../services/communities_service');
+var config = require('../../resources/config');
+var AWS = require('aws-sdk');
+var fs = require('fs');
 var categories = [
     {id: 'technology', text: 'Technology'},
     {id: 'management', text: 'Management'},
@@ -97,6 +100,80 @@ module.exports = function(app) {
         messageJSON.date = new Date();
         communitiesService.addMessage(messageJSON, function(result) {
             res.json(result);
+        });
+    });
+
+    app.post('/api/communities/add-file', function(req, res) {
+        AWS.config.update({
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_KEY,
+            region: config.assets.s3.region
+        });
+
+        var s3Bucket = new AWS.S3({
+            params: {
+                Bucket: config.assets.s3.bucketName,
+                ACL: config.assets.s3.acl
+            }
+        });
+
+        var file = req.files.file;
+
+        fs.readFile(file.path, function(err, file_buffer) {
+            var data = {
+                Key: 'images/' + file.originalFilename,
+                Body: file_buffer
+            };
+
+            s3Bucket.upload(data, function(err, data) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    var url = config.assets.s3.publicUrl + file.originalFilename;
+                    res.json(url);
+                }
+            });
+        });
+    });
+
+    app.post('/api/communities/unset-field', function(req, res) {
+        var communityId = req.body.id;
+        var field = req.body.field;
+        communitiesService.findById(communityId, function(result) {
+            if (result.success) {
+                var community = result.community;
+                community[field] = undefined;
+                community.save();
+                res.json(result);
+            } else {
+                res.send(err);
+            }
+        });
+    });
+
+    app.post('/api/communities/delete-file', function(req, res) {
+        AWS.config.update({
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_KEY,
+            region: config.assets.s3.region
+        });
+        var s3Bucket = new AWS.S3({
+            params: {
+                Bucket: config.assets.s3.bucketName
+            }
+        });
+
+        var key = req.body.key;
+
+        s3Bucket.deleteObject({
+            Bucket: config.assets.s3.bucketName,
+            Key :'images/' + key
+        }, function(err, data) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(data);
+            }
         });
     });
 };
