@@ -186,9 +186,6 @@ header p {
   margin: 0;
   padding-bottom: 34px;
 }
-header p:first-of-type {
-  padding-top: 32px;
-}
 @font-face {
   font-family: 'communities-guide';
   src: url('../fonts/communities-guide.eot?75866876');
@@ -392,6 +389,7 @@ a.round {
   font-weight: 600;
   font-family: 'Soleil';
   display: inline-block;
+  cursor: pointer;
 }
 a.round:hover {
   color: inherit !important;
@@ -651,6 +649,8 @@ img.logo {
   display: block;
   width: auto;
   padding: 0 0 40px 20px;
+  outline: 0;
+  border: 0;
 }
 @media (max-width: 767px) {
   img.logo {
