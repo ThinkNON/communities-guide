@@ -398,6 +398,9 @@ a.round.small {
   padding: 10px;
   font-size: 2.5rem;
 }
+a.round.small:before {
+  line-height: inherit;
+}
 @media (max-width: 767px) {
   a.round.small {
     padding: 5px;
@@ -425,29 +428,6 @@ a.round.small {
 .community .community-content .fixed-height .community-desc {
   padding: 36px 0;
   margin: 0;
-  overflow: hidden;
-}
-.community .community-content .fixed-height .community-desc:before {
-  content: '...';
-  text-align: right;
-  position: absolute;
-  display: block;
-  width: 2em;
-  height: 1em;
-  bottom: 1em;
-  right: 20px;
-  background: transparent;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00e0e0e0', endColorstr='#e0e0e0', GradientType=1);
-}
-.community .community-content .fixed-height .community-desc:after {
-  content: ' ';
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 1em;
-  bottom: 0px;
-  left: 0px;
-  background: #ffffff;
 }
 .community-tags {
   padding: 30px 0 0 25px;

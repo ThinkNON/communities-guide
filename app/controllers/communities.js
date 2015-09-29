@@ -42,28 +42,6 @@ module.exports = function(app) {
         });
     });
 
-    //app.get('/communities/edit-temp/:id', function(req, res) {
-    //    var communityId = req.params.id;
-    //    communitiesService.findById(communityId, function(result) {
-    //        if (result.success) {
-    //            res.render('temp_edit_community', {
-    //                community: result.community
-    //            });
-    //        }
-    //    });
-    //});
-    //
-    //app.get('/communities/about/:id', function(req, res) {
-    //    var communityId = req.params.id;
-    //    communitiesService.findById(communityId, function(result) {
-    //        if (result.success) {
-    //            res.render('temp_start_community', {
-    //                community: result.community
-    //            });
-    //        }
-    //    });
-    //});
-
     app.get('/communities/about-guide/:id', function(req, res) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {

@@ -126,12 +126,12 @@
                     <ul class="unstyled-list inline">
                         {{#each community.leaders}}
                             {{#compare @index 8 operator="<"}}
-                                <li><a href="{{this.profileUrl}}" class="leader"><img src="{{this.avatar}}" class="round"></a></li>
+                                <li><a href="{{this.profileUrl}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
                         {{/each}}
                         {{#each community.members}}
                             {{#compare (math ../community.leaders.length "+" @index) 8 operator="<"}}
-                                <li><a href="{{this.profileUrl}}"><img src="{{this.avatar}}" class="round"></a></li>
+                                <li><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
                         {{/each}}
                         {{#if community.leaders.length}}
