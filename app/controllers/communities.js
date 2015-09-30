@@ -63,17 +63,6 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/communities/logged-user/:id', function(req, res) {
-        var communityId = req.params.id;
-        communitiesService.findById(communityId, function(result) {
-            if (result.success) {
-                res.render('temp_logged_user', {
-                    community: result.community
-                });
-            }
-        });
-    });
-
     app.post('/api/communities/save', authService.isLoggedIn, function(req, res) {
         var communityJSON = req.body.communityJSON;
         communityJSON.leaders = [req.user];

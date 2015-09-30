@@ -157,6 +157,16 @@
                         {{/if}}
                     </ul>
                 </div>
+                {{#if user}}
+                    {{#inArray user._id community.leaders '_id'}}
+                        <div class="add-note row">
+                            <div class="col-xs-12">
+                                <textarea placeholder="Add a note..." id="message"></textarea>
+                            </div>
+                            <button class="default green small pull-right" id="submitComment">Submit comment</button>
+                        </div>
+                    {{/inArray}}
+                {{/if}}
                 {{#if community.messages.length}}
                     <div class="comments">
                         <span>Comments:</span>
@@ -175,6 +185,7 @@
                         {{/each}}
                     </div>
                 {{/if}}
+                <input id="communityId" type="hidden" value="{{community._id}}">
             </div>
         </article>
     </main>

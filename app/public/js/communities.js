@@ -78,12 +78,16 @@ var unsetField = function(field) {
 
 var deleteFile = function(URL, field) {
     var key = URL.split('images/')[1];
+    var communityId = $('#communityId').val();
 
     $.ajax({
         method: 'POST',
         url: '/api/communities/delete-file',
         dataType : 'json',
-        data: {key: key},
+        data: {
+            id: communityId,
+            key: key
+        },
         success: function(response) {
             unsetField(field);
         },
@@ -96,7 +100,10 @@ var initIsotope = function() {
     var qsRegex;
     var buttonFilter;
 
-    var $container = $('.isotope > .row').imagesLoaded(function() {
+    var $container = $('.isotope > .row');
+    if (!$container.length) return;
+
+    $container.imagesLoaded(function() {
         $container.isotope({
             itemSelector: '.community',
             layoutMode: 'masonry',
@@ -177,7 +184,9 @@ $(document).ready(function() {
             $.ajax({
                 method: 'POST',
                 url: '/api/communities/save',
-                data: {'communityJSON': communityJSON},
+                data: {
+                    communityJSON: communityJSON
+                },
                 success: function (response) {
                     if (response.success) {
                         window.location.href = '/';
@@ -211,13 +220,17 @@ $(document).ready(function() {
     $('#updateCommunity').on('click', function(e) {
         e.preventDefault();
         var communityJSON = serializeJSON('#editCommunity');
+        var communityId = $('#communityId').val();
         var file1 = ($('#photoURL').length ? $('#photoURL').prop('files')[0] : '');
         var file2 = ($('#logoURL').length ? $('#logoURL').prop('files')[0] : '');
         var update = function() {
             $.ajax({
                 method: 'POST',
                 url: '/api/communities/update',
-                data: {'communityJSON': communityJSON},
+                data: {
+                    id: communityId,
+                    communityJSON: communityJSON
+                },
                 success: function (response) {
                     if (response.success) {
                         window.location.href = '/';
@@ -246,5 +259,28 @@ $(document).ready(function() {
         } else {
             update();
         }
+    });
+
+    $('#submitComment').on('click', function(e) {
+        e.preventDefault();
+        var messageJSON = {
+            _id: $('#communityId').val(),
+            message: $('#message').val()
+        };
+        var communityId = $('#communityId').val();
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/communities/add-message',
+            data: {
+                id: communityId,
+                messageJSON: messageJSON
+            },
+            success: function(response) {
+                if (response.success) {
+                    window.location.reload();
+                }
+            }
+        });
     });
 });
