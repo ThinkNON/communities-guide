@@ -1,4 +1,5 @@
 var communityService = require('../services/communities_service');
+var authService = require('../services/auth_service');
 var config    = require('../../resources/config');
 var jQuery    = require('jquery');
 var _         = require('lodash');
@@ -8,7 +9,7 @@ var error     = debug('users:error');
 
 module.exports = function(app, passport) {
 
-    app.get('/community/join/:id', function(req, res, next) {
+    app.get('/community/join/:id', authService.isLoggedIn, function(req, res, next) {
         if (!req.isAuthenticated()) {
             return (res.status(401).json({ message: 'Not logged in'}));
         } else {
@@ -42,7 +43,7 @@ module.exports = function(app, passport) {
         }
     });
 
-    app.get('/community/leave/:id', function(req, res) {
+    app.get('/community/leave/:id', authService.isLoggedIn, function(req, res) {
         //should delete member from community and and update the members of that community
         if (!req.isAuthenticated()) {
             return (res.status(401).json({ message: 'Not logged in'}));

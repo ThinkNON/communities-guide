@@ -50,7 +50,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/communities/edit/:id', authService.isLeader('das'), function(req, res) {
+    app.get('/communities/edit/:id', authService.isLeader(), function(req, res) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
@@ -74,7 +74,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/api/communities/save', function(req, res) {
+    app.post('/api/communities/save', authService.isLoggedIn, function(req, res) {
         var communityJSON = req.body.communityJSON;
         communityJSON.leaders = [req.user];
         communitiesService.save(communityJSON, function(result) {
@@ -82,14 +82,14 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/api/communities/update', function(req, res) {
+    app.post('/api/communities/update', authService.isLeader(), function(req, res) {
         var communityJSON = req.body.communityJSON;
         communitiesService.update(communityJSON, function(result) {
             res.json(result);
         });
     });
 
-    app.post('/api/communities/add-message', function(req, res) {
+    app.post('/api/communities/add-message', authService.isLeader(), function(req, res) {
         var messageJSON = req.body.messageJSON;
         messageJSON.user = req.user;
         messageJSON.date = new Date();
@@ -98,7 +98,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/api/communities/add-file', function(req, res) {
+    app.post('/api/communities/add-file', authService.isLoggedIn, function(req, res) {
         AWS.config.update({
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
             secretAccessKey: process.env.AWS_SECRET_KEY,
@@ -131,7 +131,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/api/communities/unset-field', function(req, res) {
+    app.post('/api/communities/unset-field', authService.isLeader(), function(req, res) {
         var communityId = req.body.id;
         var field = req.body.field;
         communitiesService.findById(communityId, function(result) {
@@ -146,7 +146,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/api/communities/delete-file', function(req, res) {
+    app.post('/api/communities/delete-file', authService.isLeader(), function(req, res) {
         AWS.config.update({
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
             secretAccessKey: process.env.AWS_SECRET_KEY,
