@@ -143,6 +143,11 @@ a:active {
 .unstyled-list.block li a {
   padding: 0;
 }
+.logged-in {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px !important;
+}
 h1 {
   margin: 0;
   font-size: 3.6rem;
@@ -808,3 +813,4 @@ footer a.back-top {
     margin-top: -40px;
   }
 }
+/*# sourceMappingURL=/css/main.css.map */
