@@ -6,6 +6,9 @@ module.exports = {
             lvalue = parseFloat(lvalue);
             rvalue = parseFloat(rvalue);
 
+            if (lvalue && isNaN(rvalue)) return lvalue;
+            if (isNaN(lvalue) && rvalue) return rvalue;
+
             return {
                 '+': lvalue + rvalue,
                 '-': lvalue - rvalue,

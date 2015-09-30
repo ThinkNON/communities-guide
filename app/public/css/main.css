@@ -484,6 +484,7 @@ span.sort {
   color: #999da0;
 }
 .filters,
+.sorts,
 .criteria {
   background-color: #ffffff;
   margin-bottom: 5px;

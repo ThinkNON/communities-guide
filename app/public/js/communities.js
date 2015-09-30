@@ -92,7 +92,52 @@ var deleteFile = function(URL, field) {
     });
 };
 
+var initIsotope = function() {
+    var $container = $('.isotope > .row').imagesLoaded(function() {
+        $container.isotope({
+            itemSelector: '.community',
+            layoutMode: 'masonry',
+            getSortData: {
+                interest: '[data-interest]',
+                members: function(item) {
+                    return parseInt($(item).data('members'));
+                },
+                alphabetical: 'h3'
+            }
+        });
+
+        $('.filters').on('click', 'a', function() {
+            var filterValue = $(this).attr('data-filter');
+            $container.isotope({filter: filterValue});
+        });
+
+        $('.sorts').on('click', 'a', function() {
+            var sortValue = $(this).attr('data-sort');
+            sortValue = sortValue.split(',');
+            $container.isotope({sortBy: sortValue, sortAscending: sortValue != 'members' });
+        });
+
+        $('.filters').each(function(i, buttonGroup) {
+            var $buttonGroup = $(buttonGroup);
+            $buttonGroup.on('click', 'a', function () {
+                $buttonGroup.find('.active').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+
+        $('.sorts').each(function(i, buttonGroup) {
+            var $buttonGroup = $(buttonGroup);
+            $buttonGroup.on('click', 'a', function() {
+                $buttonGroup.find('.active').removeClass('active').addClass('grey');
+                $(this).removeClass('grey').addClass('active');
+            });
+        });
+    });
+};
+
 $(document).ready(function() {
+    initIsotope();
+    $('#select-category').multiselect();
 
     $('#saveCommunity').on('click', function(e) {
         e.preventDefault();

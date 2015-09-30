@@ -71,33 +71,33 @@
             <div class="filters">
                 <span class="filter">Filter by topic:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round active">Show All</a></li>
-                    <li><a class="round technology">Technology</a></li>
-                    <li><a class="round management">Management</a></li>
-                    <li><a class="round creative">Creative</a></li>
-                    <li><a class="round fun">Fun</a></li>
-                    <li><a class="round educational">Educational</a></li>
+                    <li><a class="round active" data-filter="*">Show All</a></li>
+                    <li><a class="round technology" data-filter=".filter-technology">Technology</a></li>
+                    <li><a class="round management" data-filter=".filter-management">Management</a></li>
+                    <li><a class="round creative" data-filter=".filter-creative">Creative</a></li>
+                    <li><a class="round fun" data-filter=".filter-fun">Fun</a></li>
+                    <li><a class="round educational" data-filter=".filter-educational">Educational</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="filters">
+            <div class="sorts">
                 <span class="sort">Sort list by:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round grey">Original order</a></li>
-                    <li><a class="round active">Topic</a></li>
-                    <li><a class="round grey">Alphabetical</a></li>
-                    <li><a class="round grey">Members</a></li>
+                    <li><a class="round active" data-sort="original-order">Original order</a></li>
+                    <li><a class="round grey" data-sort="interest">Topic</a></li>
+                    <li><a class="round grey" data-sort="alphabetical">Alphabetical</a></li>
+                    <li><a class="round grey" data-sort="members">Members</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <main>
+    <main class="isotope">
         <div class="row">
             {{#each communities}}
-                <div class="col-sm-6 col-md-4 community">
+            <div class="col-sm-6 col-md-4 community {{#each this.categories}}filter-{{this}} {{/each}}" data-interest="{{#each this.categories}}{{this}},{{/each}}" data-members="{{math this.leaders.length '+' this.members.length}}">
                     {{#if this.logoURL}}
                     <div class="community-visual" style="background: url('{{this.logoURL}}'), no-repeat;background-size: cover; background-position: center center;">
                     {{else}}
@@ -158,7 +158,8 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-multiselect.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
-<script src="/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="/js/communities.js"></script>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
