@@ -27,8 +27,12 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/about', function(req, res) {
+        res.render('about', {user: req.user || null});
+    });
+
     app.get('/communities/new', authService.isLoggedIn, function(req, res) {
-        res.render('temp_start_community', {
+        res.render('start_community', {
             user: req.user || null,
             categories: categories
         });
@@ -50,21 +54,10 @@ module.exports = function(app) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
-                res.render('temp_edit_community', {
+                res.render('edit_community', {
                     community: result.community,
                     user: req.user || null,
                     categories: categories
-                });
-            }
-        });
-    });
-
-    app.get('/communities/about-guide/:id', function(req, res) {
-        var communityId = req.params.id;
-        communitiesService.findById(communityId, function(result) {
-            if (result.success) {
-                res.render('temp_about_community', {
-                    community: result.community
                 });
             }
         });

@@ -51,7 +51,11 @@
                 You’ll be amazed how many people shareyour interest.
             </p>
             <div>
-                <button class="default no-border" onclick="window.location.href='communities/new'">Start a community</button>
+                {{#if user}}
+                    <button class="default no-border" onclick="window.location.href='communities/new'">Start a community</button>
+                {{else}}
+                    <button class="default no-border" disabled>Start a community<br/>(You need to be logged in)</button>
+                {{/if}}
                 <span>Or</span>
                 <div class="search-input">
                     <input type="search" placeholder="Search for one...">
