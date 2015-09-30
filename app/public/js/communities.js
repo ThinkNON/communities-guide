@@ -93,6 +93,9 @@ var deleteFile = function(URL, field) {
 };
 
 var initIsotope = function() {
+    var qsRegex;
+    var buttonFilter;
+
     var $container = $('.isotope > .row').imagesLoaded(function() {
         $container.isotope({
             itemSelector: '.community',
@@ -103,12 +106,38 @@ var initIsotope = function() {
                     return parseInt($(item).data('members'));
                 },
                 alphabetical: 'h3'
+            },
+            filter: function() {
+                var $this = $(this);
+                var searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
+                var buttonResult = buttonFilter ? $this.is( buttonFilter ) : true;
+                return searchResult && buttonResult;
             }
         });
 
+        var $quicksearch = $('#quicksearch').keyup(debounce(function() {
+            qsRegex = new RegExp($quicksearch.val(), 'gi');
+            $container.isotope();
+        }));
+
+        // debounce so filtering doesn't happen every millisecond
+        function debounce(fn, threshold) {
+            var timeout;
+            return function debounced() {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                function delayed() {
+                    fn();
+                    timeout = null;
+                }
+                setTimeout(delayed, threshold || 100);
+            };
+        }
+
         $('.filters').on('click', 'a', function() {
-            var filterValue = $(this).attr('data-filter');
-            $container.isotope({filter: filterValue});
+            buttonFilter = $(this).attr('data-filter');
+            $container.isotope();
         });
 
         $('.sorts').on('click', 'a', function() {

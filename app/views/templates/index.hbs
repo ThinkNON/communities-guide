@@ -54,13 +54,13 @@
                 {{#if user}}
                     <button class="default no-border" onclick="window.location.href='communities/new'">Start a community</button>
                 {{else}}
-                    <button class="default no-border" disabled>Start a community
+                    <button class="default no-border not-logged" disabled>Start a community
                         <span class="logged-in">(You need to be logged in)</span>
                     </button>
                 {{/if}}
                 <span>Or</span>
                 <div class="search-input">
-                    <input type="search" placeholder="Search for one...">
+                    <input type="search" placeholder="Search for one..." id="quicksearch">
                     <button class="search icon-search" type="submit"></button>
                 </div>
             </div>
