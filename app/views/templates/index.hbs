@@ -98,6 +98,7 @@
         <div class="row">
             {{#each communities}}
             <div class="col-sm-6 col-md-4 community {{#each this.categories}}filter-{{this}} {{/each}}" data-interest="{{#each this.categories}}{{this}},{{/each}}" data-members="{{math this.leaders.length '+' this.members.length}}">
+                <input class="communityId" type="hidden" value="{{this._id}}">
                     {{#if this.logoURL}}
                     <div class="community-visual" style="background: url('{{this.logoURL}}'), no-repeat;background-size: cover; background-position: center center;">
                     {{else}}

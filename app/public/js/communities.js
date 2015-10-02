@@ -96,9 +96,19 @@ var deleteFile = function(URL, field) {
     });
 };
 
+var saveIdsToLocalStorage = function() {
+    var ids = [];
+    var iso = $('.isotope > .row').data('isotope');
+    if (iso && typeof(localStorage) !== undefined) {
+        iso.filteredItems.forEach(function (item) {
+            ids.push($(item.element).find('input.communityId').val());
+        });
+        localStorage['communities-order'] = JSON.stringify(ids);
+    }
+};
+
 var initIsotope = function() {
-    var qsRegex;
-    var buttonFilter;
+    var qsRegex, buttonFilter;
 
     var $container = $('.isotope > .row');
     if (!$container.length) return;
@@ -122,9 +132,12 @@ var initIsotope = function() {
             }
         });
 
+        saveIdsToLocalStorage();
+
         var $quicksearch = $('#quicksearch').keyup(debounce(function() {
             qsRegex = new RegExp($quicksearch.val(), 'gi');
             $container.isotope();
+            saveIdsToLocalStorage();
         }));
 
         // debounce so filtering doesn't happen every millisecond
@@ -145,12 +158,14 @@ var initIsotope = function() {
         $('.filters').on('click', 'a', function() {
             buttonFilter = $(this).attr('data-filter');
             $container.isotope();
+            saveIdsToLocalStorage();
         });
 
         $('.sorts').on('click', 'a', function() {
             var sortValue = $(this).attr('data-sort');
             sortValue = sortValue.split(',');
             $container.isotope({sortBy: sortValue, sortAscending: sortValue != 'members' });
+            saveIdsToLocalStorage();
         });
 
         $('.filters').each(function(i, buttonGroup) {
@@ -282,5 +297,21 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+
+    $('#prev').on('click', function(e) {
+        e.preventDefault();
+        var communitiesOrder = JSON.parse(localStorage['communities-order']);
+        var id = $('#communityId').val();
+        var index = communitiesOrder.indexOf(id) > 0 ?  communitiesOrder.indexOf(id) - 1 : communitiesOrder.length - 1;
+        window.location.href = '/communities/' + communitiesOrder[index];
+    });
+
+    $('#next').on('click', function(e) {
+        e.preventDefault();
+        var communitiesOrder = JSON.parse(localStorage['communities-order']);
+        var id = $('#communityId').val();
+        var index = communitiesOrder.indexOf(id) < communitiesOrder.length - 1 ?  communitiesOrder.indexOf(id) + 1 : 0;
+        window.location.href = '/communities/' + communitiesOrder[index];
     });
 });
