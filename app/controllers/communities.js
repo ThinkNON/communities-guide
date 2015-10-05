@@ -79,6 +79,7 @@ module.exports = function(app) {
     app.post('/api/communities/save', authService.isLoggedIn, function(req, res) {
         var communityJSON = req.body.communityJSON;
         communityJSON.leaders = [req.user];
+        communityJSON.active = false;
         communitiesService.save(communityJSON, function(result) {
             res.json(result);
         });
@@ -179,6 +180,19 @@ module.exports = function(app) {
             } else {
                 res.json(data);
             }
+        });
+    });
+
+    app.post('/send-email', function(req, res) {
+        var emailJSON = req.body.emailJSON;
+        app.mailer.send('start_community_email', emailJSON, function (err) {
+            if (err) {
+                // handle error
+                console.log(err);
+                res.json({'error': err});
+                return;
+            }
+            res.json({'success': true});
         });
     });
 };

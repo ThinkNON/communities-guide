@@ -114,6 +114,20 @@ var deleteFile = function(URL, field) {
     });
 };
 
+var sendEmail = function(emailJSON, callback) {
+    $.ajax({
+        method: 'POST',
+        url: '/send-email',
+        dataType : 'json',
+        data: {emailJSON: emailJSON},
+        success: function(response) {
+            if (callback) callback();
+        },
+        error: function(err) {
+        }
+    });
+};
+
 var saveIdsToLocalStorage = function() {
     var ids = [];
     var iso = $('.isotope > .row').data('isotope');
@@ -234,7 +248,18 @@ $(document).ready(function() {
                 },
                 success: function (response) {
                     if (response.success) {
-                        window.location.href = '/';
+                        var community = response.community;
+                        var emailJSON = {
+                            to: 'petrica_horlescu@yahoo.com',
+                            subject: 'New community',
+                            content: 'Title: ' + community.title + ', Id: ' + community._id
+                        };
+                        sendEmail(emailJSON, function() {
+                            $('.modal').modal('show');
+                            $('.modal').on('hidden.bs.modal', function (e) {
+                                window.location.href = '/';
+                            });
+                        });
                     }
                 }
             });

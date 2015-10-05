@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
-    isDeleted: {type: Boolean},
     name: {type: String},
     email: {type: String},
     avatar: {type: String},

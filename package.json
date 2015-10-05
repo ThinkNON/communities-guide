@@ -36,6 +36,7 @@
     "passport-twitter": "~1.0.2",
     "should": "^4.4.1",
     "grunt-cli": "latest",
-    "grunt-contrib-less": "latest"
+    "grunt-contrib-less": "latest",
+    "express-mailer": "~0.3.0"
   }
 }

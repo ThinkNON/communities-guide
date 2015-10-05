@@ -15,6 +15,7 @@ var hbs = require('hbs');
 var log = debug('application:log');
 var error = debug('application:error');
 var customHelpers = require('../app/public/js/custom_helpers');
+var mailer = require('express-mailer');
 
 var Application = function (options) {
     if (typeof options === 'undefined') options = {};
@@ -63,6 +64,18 @@ Application.prototype.boot = function (cb) {
         customHelpers.init();
         require('./controllers/users.js')(app, passport);
         require('./controllers/communities.js')(app);
+
+        mailer.extend(app, {
+            from: 'petrica_horlescu@yahoo.com',
+            host: 'smtp.mail.yahoo.com', // hostname
+            secureConnection: true, // use SSL
+            port: 465, // port for secure SMTP
+            transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+            auth: {
+                user: '',
+                pass: ''
+            }
+        });
     }
 
     // connect to mongodb

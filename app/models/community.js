@@ -7,7 +7,7 @@ var communitySchema = mongoose.Schema({
     desc: {type: String, required: true},
     photoURL: {type: String},
     logoURL: {type: String},
-    isDeleted: {type: Boolean},
+    active: {type: Boolean},
     founded: {type: Date},
     categories: [{type: String}],
     leaders: [{type: Schema.Types.ObjectId, ref : 'User'}],
