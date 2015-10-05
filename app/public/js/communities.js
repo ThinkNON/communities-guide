@@ -146,6 +146,12 @@ var initIsotope = function() {
             saveIdsToLocalStorage();
         }));
 
+        if ($container.data('isotope').filteredItems.length) {
+            $('.no-results').hide();
+        } else {
+            $('.no-results').show();
+        }
+
         // debounce so filtering doesn't happen every millisecond
         function debounce(fn, threshold) {
             var timeout;
