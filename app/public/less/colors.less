@@ -20,12 +20,6 @@
 @black: #000000;
 @drop-area-bg: #e5e6e7;
 
-.active {
-  color: @white;
-  background-color: @dark-grey;
-  border: 1px solid @dark-grey;
-}
-
 .indigo {
   color: @indigo !important;
 }
@@ -35,6 +29,12 @@
 .technology {
   color: @indigo;
   border: 1px solid @indigo;
+
+  &.active, &:active, &:hover {
+    color: @white !important;
+    border: 1px solid @indigo;
+    background-color: @indigo;
+  }
 }
 
 .bg-management {
@@ -43,6 +43,12 @@
 .management {
   color: @pink;
   border: 1px solid @pink;
+
+  &.active, &:active, &:hover {
+    color: @white !important;
+    border: 1px solid @pink;
+    background-color: @pink;
+  }
 }
 
 .bg-educational {
@@ -51,6 +57,12 @@
 .educational {
   color: @green;
   border: 1px solid @green;
+
+  &.active, &:active, &:hover {
+    color: @white !important;
+    border: 1px solid @green;
+    background-color: @green;
+  }
 }
 
 .bg-fun {
@@ -59,6 +71,12 @@
 .fun {
   color: @orange;
   border: 1px solid @orange;
+
+  &.active, &:active, &:hover {
+    color: @white !important;
+    border: 1px solid @orange;
+    background-color: @orange;
+  }
 }
 
 .bg-creative {
@@ -67,11 +85,22 @@
 .creative {
   color: @blue;
   border: 1px solid @blue;
+
+  &.active, &:active, &:hover {
+    color: @white !important;
+    border: 1px solid @blue;
+    background-color: @blue;
+  }
 }
 
 .grey {
   color: @dark-grey;
   border: 1px solid @dark-grey;
+
+  &.active, &:active, &:hover {
+    background-color: @dark-grey;
+    color: @white;
+  }
 }
 
 .bg-fb-blue {

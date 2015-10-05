@@ -209,8 +209,8 @@ var initIsotope = function() {
         $('.sorts').each(function(i, buttonGroup) {
             var $buttonGroup = $(buttonGroup);
             $buttonGroup.on('click', 'a', function() {
-                $buttonGroup.find('.active').removeClass('active').addClass('grey');
-                $(this).removeClass('grey').addClass('active');
+                $buttonGroup.find('.active').removeClass('active');
+                $(this).addClass('active');
             });
         });
     });
