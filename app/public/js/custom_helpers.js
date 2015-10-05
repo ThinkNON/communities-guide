@@ -1,4 +1,5 @@
 var hbs = require('hbs');
+var _ = require('lodash');
 
 module.exports = {
     'init': function() {
@@ -72,6 +73,10 @@ module.exports = {
                 }
             });
             return (isInArray ? 'selected' : '');
+        });
+
+        hbs.registerHelper('shuffle', function(list) {
+            return _.shuffle(list);
         });
     }
 };

@@ -133,7 +133,7 @@
                                 <li><a href="{{this.profileUrl}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
                         {{/each}}
-                        {{#each community.members}}
+                        {{#each (shuffle community.members)}}
                             {{#compare (math ../community.leaders.length "+" @index) 8 operator="<"}}
                                 <li><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
