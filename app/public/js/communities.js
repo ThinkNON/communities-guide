@@ -137,6 +137,12 @@ var initIsotope = function() {
         var $quicksearch = $('#quicksearch').keyup(debounce(function() {
             qsRegex = new RegExp($quicksearch.val(), 'gi');
             $container.isotope();
+            var visibleItemsCount = $('.isotope > .row').data('isotope').filteredItems.length;
+            if (visibleItemsCount) {
+                $('.no-results').hide();
+            } else {
+                $('.no-results').show();
+            }
             saveIdsToLocalStorage();
         }));
 

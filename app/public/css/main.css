@@ -152,6 +152,11 @@ a:active {
   float: left;
   padding: 14px 0 !important;
 }
+.no-results {
+  background-color: #fff;
+  margin-bottom: 6px;
+  padding: 40px;
+}
 h1 {
   margin: 0;
   font-size: 3.6rem;
