@@ -157,6 +157,9 @@ a:active {
   margin-bottom: 6px;
   padding: 40px;
 }
+.community-name {
+  cursor: pointer;
+}
 h1 {
   margin: 0;
   font-size: 3.6rem;
