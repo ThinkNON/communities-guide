@@ -7,7 +7,7 @@ module.exports = {
     },
     'isLeader': function() {
         return function (req, res, next) {
-            var communityId = req.params.id || req.body.id,
+            var communityId = req.params.id || req.body.id || req.body.communityId,
                 isLeader = false;
             if (req.isAuthenticated()) {
                 communitiesService.findById(communityId, function(result) {

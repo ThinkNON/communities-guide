@@ -163,6 +163,9 @@ a:active {
 .expand {
   cursor: pointer;
 }
+.comments .icon-cancel {
+  cursor: pointer;
+}
 h1 {
   margin: 0;
   font-size: 3.6rem;
@@ -850,3 +853,4 @@ a.report {
 a.report:disabled {
   margin: 18px 0 12px;
 }
+/*# sourceMappingURL=/css/main.css.map */

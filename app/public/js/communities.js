@@ -22,6 +22,24 @@ var leave = function(communityId) {
     });
 };
 
+var deleteMessage = function(messageId) {
+    var communityId = $('#communityId').val();
+
+    $.ajax({
+        method: 'POST',
+        url: '/api/communities/delete-message',
+        data: {
+            communityId: communityId,
+            messageId: messageId
+        },
+        success: function(response) {
+            if (response.success) {
+                window.location.reload();
+            }
+        }
+    });
+};
+
 var serializeJSON = function(form) {
     var a = $(form).serializeArray();
     var o = {};

@@ -100,6 +100,14 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/api/communities/delete-message', authService.isLeader(), function(req, res) {
+        var communityId = req.body.communityId;
+        var messageId = req.body.messageId;
+        communitiesService.deleteMessage(communityId, messageId, function(result) {
+            res.json(result);
+        });
+    });
+
     app.post('/api/communities/add-file', authService.isLoggedIn, function(req, res) {
         AWS.config.update({
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,

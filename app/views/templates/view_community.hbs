@@ -187,6 +187,11 @@
                                     </div>
                                 </div>
                                 <span class="col-xs-2 time-elapsed">{{this.date}}</span>
+                                {{#if ../user}}
+                                    {{#inArray ../../user._id ../../community.leaders '_id'}}
+                                        <span class="icon-cancel bg-light-grey" onclick="deleteMessage('{{this._id}}')"></span>
+                                    {{/inArray}}
+                                {{/if}}
                             </div>
                         {{/each}}
                     </div>

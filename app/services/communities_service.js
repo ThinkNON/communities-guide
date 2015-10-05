@@ -83,5 +83,17 @@ module.exports = {
                 callback({success: true});
             }
         });
+    },
+    'deleteMessage': function(communityId, messageId, callback) {
+        Community.findByIdAndUpdate(
+            communityId,
+            {$pull: {'messages': {_id: messageId} } }, function(err) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback({success: true});
+                }
+            }
+        );
     }
 };
