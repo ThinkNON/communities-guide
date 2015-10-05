@@ -136,22 +136,24 @@
                         {{#each (shuffle community.members)}}
                             {{#compare (math ../community.leaders.length "+" @index) 8 operator="<"}}
                                 <li><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                            {{else}}
+                                <li style="display: none"><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
                         {{/each}}
                         {{#if community.leaders.length}}
                             {{#if community.members.length}}
                                 {{#compare (math community.members.length "+" community.leaders.length) 8 operator=">"}}
-                                    <li><a class="community-counter">+{{math (math community.members.length "+" community.leaders.length) "-" 8}}</a></li>
+                                    <li><a class="community-counter expand">+{{math (math community.members.length "+" community.leaders.length) "-" 8}}</a></li>
                                 {{/compare}}
                             {{else}}
                                 {{#compare community.leaders.length 8 operator=">"}}
-                                    <li><a class="community-counter">+{{math community.leaders.length "-" 8}}</a></li>
+                                    <li><a class="community-counter expand">+{{math community.leaders.length "-" 8}}</a></li>
                                 {{/compare}}
                             {{/if}}
                         {{else}}
                             {{#if community.members.length}}
                                 {{#compare community.members.length 8 operator=">"}}
-                                    <li><a class="community-counter">+{{math community.members.length "-" 8}}</a></li>
+                                    <li><a class="community-counter expand">+{{math community.members.length "-" 8}}</a></li>
                                 {{/compare}}
                             {{/if}}
                         {{/if}}

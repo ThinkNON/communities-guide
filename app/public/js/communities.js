@@ -320,4 +320,13 @@ $(document).ready(function() {
         var index = communitiesOrder.indexOf(id) < communitiesOrder.length - 1 ?  communitiesOrder.indexOf(id) + 1 : 0;
         window.location.href = '/communities/' + communitiesOrder[index];
     });
+
+    $('.community-counter.expand').on('click', function(e) {
+        e.preventDefault();
+        var lis = $(e.target).parents('ul').find('li');
+        $(lis).each(function(i, li) {
+            $(li).show();
+        });
+        $(e.target).parent().hide();
+    });
 });
