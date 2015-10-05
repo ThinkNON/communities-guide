@@ -103,28 +103,28 @@
 @font-face {
   font-family: 'Soleil';
   src: url('../fonts/soleil-bold-webfont.eot');
-  src: url('../fonts/soleil-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-bold-webfont.woff2') format('woff2'), url('../fonts/soleil-bold-webfont.woff') format('woff'), url('../fonts/soleil-bold-webfont.ttf') format('truetype'), url('../fonts/soleil-bold-webfont.svg#soleilbold') format('svg');
+  src: url('../fonts/soleil-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-bold-webfont.woff2') format('woff2'), url('../fonts/soleil-bold-webfont.woff') format('woff'), url('../fonts/soleil-bold-webfont.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'Soleil';
   src: url('../fonts/soleil-light-webfont.eot');
-  src: url('../fonts/soleil-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-light-webfont.woff2') format('woff2'), url('../fonts/soleil-light-webfont.woff') format('woff'), url('../fonts/soleil-light-webfont.ttf') format('truetype'), url('../fonts/soleil-light-webfont.svg#soleillight') format('svg');
+  src: url('../fonts/soleil-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-light-webfont.woff2') format('woff2'), url('../fonts/soleil-light-webfont.woff') format('woff'), url('../fonts/soleil-light-webfont.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
 }
 @font-face {
   font-family: 'Soleil';
   src: url('../fonts/soleil-regular-webfont.eot');
-  src: url('../fonts/soleil-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-regular-webfont.woff2') format('woff2'), url('../fonts/soleil-regular-webfont.woff') format('woff'), url('../fonts/soleil-regular-webfont.ttf') format('truetype'), url('../fonts/soleil-regular-webfont.svg#soleilregular') format('svg');
+  src: url('../fonts/soleil-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-regular-webfont.woff2') format('woff2'), url('../fonts/soleil-regular-webfont.woff') format('woff'), url('../fonts/soleil-regular-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Soleil';
   src: url('../fonts/soleil-semibold-webfont.eot');
-  src: url('../fonts/soleil-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-semibold-webfont.woff2') format('woff2'), url('../fonts/soleil-semibold-webfont.woff') format('woff'), url('../fonts/soleil-semibold-webfont.ttf') format('truetype'), url('../fonts/soleil-semibold-webfont.svg#soleilsemibold') format('svg');
+  src: url('../fonts/soleil-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/soleil-semibold-webfont.woff2') format('woff2'), url('../fonts/soleil-semibold-webfont.woff') format('woff'), url('../fonts/soleil-semibold-webfont.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
@@ -180,13 +180,12 @@ a:hover {
   padding: 0;
 }
 .logged-in {
-  display: block;
-  font-size: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  display: inline-block;
+  font-size: 1.4rem;
   letter-spacing: 1px !important;
-}
-.not-logged {
-  float: left;
-  padding: 14px 0 !important;
 }
 .no-results {
   background-color: #fff;
@@ -201,6 +200,9 @@ a:hover {
 }
 .comments .icon-cancel {
   cursor: pointer;
+}
+.start-container {
+  position: relative;
 }
 h1 {
   margin: 0;
@@ -232,11 +234,8 @@ header {
   color: #ffffff;
   font-size: 1.8rem;
 }
-header > div {
-  padding-top: 18px;
-}
 header > div:nth-child(2) {
-  padding: 18px 0 15px 30px;
+  padding: 18px 0 0 30px;
 }
 header a {
   color: #ffffff;
@@ -352,7 +351,7 @@ button.default {
 }
 button.default.no-border {
   width: 233px;
-  margin: 0 10px 25px 0;
+  margin: 0 10px 37px 30px;
   border: none;
 }
 button.default.no-border:hover {
@@ -380,6 +379,9 @@ button.default:hover {
   color: #ffffff;
   border: 1px solid #333c41;
 }
+button.default:disabled {
+  opacity: 0.6;
+}
 button.round {
   margin: 0 10px;
   padding: 17px 21px;
@@ -401,6 +403,9 @@ button.search {
   font-size: 2.2rem;
   font-weight: 600;
   font-family: 'Soleil';
+}
+nav {
+  padding-top: 12px;
 }
 nav a.round {
   padding: 17px 29px;
@@ -569,7 +574,6 @@ span.sort {
   color: #ffffff;
 }
 div.search-input {
-  position: relative;
   display: inline-block;
   padding-left: 5px;
 }
@@ -578,7 +582,7 @@ div.search-input input[type="search"] {
   border-radius: 30px;
   border: none;
   color: #ffffff;
-  padding: 18px 51px 18px 22px;
+  padding: 20px 0 20px 20px;
 }
 div.search-input input[type="search"][placeholder] {
   color: #ffffff;
@@ -709,7 +713,7 @@ img.round.small {
 img.logo {
   display: block;
   width: auto;
-  padding: 0 0 40px 20px;
+  padding: 12px 0 40px 30px;
   outline: 0;
   border: 0;
 }
@@ -899,4 +903,3 @@ a.report {
 a.report:disabled {
   margin: 18px 0 12px;
 }
-/*# sourceMappingURL=/css/main.css.map */

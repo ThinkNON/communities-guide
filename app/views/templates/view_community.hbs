@@ -20,20 +20,20 @@
                     {{#if user}}
                         <li><span class="username">Welcome, <strong>{{user.name}}</strong></span></li>
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
-                        <li><a href="/logout" class="round">Logout</a></li>
+                        <li><a href="/logout" class="round">Log out</a></li>
                     {{else}}
-                        <li><a href="/auth/facebook" class="round small icon-user"></a></li>
+                        <li><a href="/auth/facebook" class="round icon-user"> Intră în cont</a></li>
                     {{/if}}
-                    <li><a href="#" class="round">About</a></li>
-                    <li><a href="#" class="round">Share</a></li>
+                    <li><a href="#" class="round">Despre</a></li>
+                    <li><a href="#" class="round">Distribuie</a></li>
                 </ul>
             </nav>
-            <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo.png" alt="Iasi Communities Guide Logo"></a>
+            <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
         </div>
     </header>
     <div class="back col-xs-12">
         <a href="#" id="prev" class="col-xs-1 icon-left"></a>
-        <a href="/" class="col-xs-10">Back to list</a>
+        <a href="/" class="col-xs-10">Înapoi la listă</a>
         <a href="#" id ="next" class="col-xs-1 icon-right"></a>
     </div>
     <main class="row">
@@ -65,7 +65,7 @@
                     </ul>
                 </div>
                 <div>
-                    <span>Follow:</span>
+                    <span>Ne găsești pe:</span>
                     <ul class="unstyled-list inline social-links">
                         {{#if community.webLink}}
                             <li><a href="{{community.webLink}}" class="round small icon-globe bg-lighter-grey" target="_blank"></a></li>
@@ -93,9 +93,9 @@
                             {{/inArray}}
                         {{/inArray}}
                     {{else}}
-                        <button class="default report" disabled>Support community<br/>(You need to be logged in)</button>
+                        <button class="default report" disabled>Susține comunitatea</button>
                     {{/if}}
-                    <a href="mailto:office@communities.guide?subject=Reporting {{community.title}}" class="default report">Report</a>
+                    <a href="mailto:office@communities.guide?subject=Reporting {{community.title}}" class="default report">Semnalează o problemă</a>
                 </div>
             </div>
         </div>
@@ -107,11 +107,11 @@
             {{/if}}
             <div class="about">
                 <div>
-                    <h1>About us</h1>
+                    <h1>Despre noi</h1>
                     <p>{{community.desc}}</p>
                 </div>
                 <div class="members">
-                    <span>Members:</span>
+                    <span>Susținători:</span>
                     <span class="members-counter">
                         {{#if community.leaders.length}}
                             {{#if community.members.length}}
@@ -167,7 +167,7 @@
                     {{#inArray user._id community.leaders '_id'}}
                         <div class="add-note row">
                             <div class="col-xs-12">
-                                <textarea placeholder="Add a note..." id="message"></textarea>
+                                <textarea placeholder="Adaugă un comentariu..." id="message"></textarea>
                             </div>
                             <button class="default green small pull-right" id="submitComment">Submit comment</button>
                         </div>
@@ -175,9 +175,10 @@
                 {{/if}}
                 {{#if messages.length}}
                     <div class="comments">
-                        <span>Comments:</span>
+                        <span>Comentarii:</span>
                         <span class="comments-counter">{{messages.length}}</span>
                         {{#each messages}}
+
                             <div class="row">
                                 <img class="col-xs-1 round small" src="{{this.user.avatar}}">
                                 <div class="col-xs-8">
@@ -206,7 +207,7 @@
             <h2>Iași<br/>Communities<br/>Guide</h2>
         </div>
         <div class="col-sm-2 col-sm-offset-6">
-            <a class="back-top pull-right" href="#">Back to top</a>
+            <a class="back-top pull-right" href="#">Sus</a>
         </div>
     </footer>
 </div>
