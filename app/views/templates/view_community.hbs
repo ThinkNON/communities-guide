@@ -39,7 +39,9 @@
     <main class="row">
         <div class="col-sm-4 community-sidebar">
             {{#if community.logoURL}}
+            <div class="community-logo-container">
                 <img class="community-logo" src="{{community.logoURL}}">
+            </div>
             {{/if}}
             <div class="community-highlights">
                 <div>
@@ -66,16 +68,16 @@
                     <span>Follow:</span>
                     <ul class="unstyled-list inline social-links">
                         {{#if community.webLink}}
-                            <li><a href="{{community.webLink}}" class="round small icon-globe bg-lighter-grey"></a></li>
+                            <li><a href="{{community.webLink}}" class="round small icon-globe bg-lighter-grey" target="_blank"></a></li>
                         {{/if}}
                         {{#if community.fbLink}}
-                            <li><a href="{{community.fbLink}}" class="round small icon-facebook bg-fb-blue"></a></li>
+                            <li><a href="{{community.fbLink}}" class="round small icon-facebook bg-fb-blue" target="_blank"></a></li>
                         {{/if}}
                         {{#if community.meetupLink}}
-                            <li><a href="{{community.meetupLink}}" class="round small icon-meetup bg-m-red"></a></li>
+                            <li><a href="{{community.meetupLink}}" class="round small icon-meetup bg-m-red" target="_blank"></a></li>
                         {{/if}}
                         {{#if community.linkedinLink}}
-                            <li><a href="{{community.linkedinLink}}" class="round small icon-linkedin bg-in-blue"></a></li>
+                            <li><a href="{{community.linkedinLink}}" class="round small icon-linkedin bg-in-blue" target="_blank"></a></li>
                         {{/if}}
                     </ul>
                 </div>
@@ -93,13 +95,15 @@
                     {{else}}
                         <button class="default report" disabled>Support community<br/>(You need to be logged in)</button>
                     {{/if}}
-                    <button class="default report">Report</button>
+                    <a href="mailto:office@communities.guide?subject=Reporting {{community.title}}" class="default report">Report</a>
                 </div>
             </div>
         </div>
         <article class="col-sm-8">
             {{#if community.photoURL}}
-                <img class="cover-image" src="{{community.photoURL}}">
+                <div class="community-image-container">
+                    <img class="cover-image" src="{{community.photoURL}}">
+                </div>
             {{/if}}
             <div class="about">
                 <div>
