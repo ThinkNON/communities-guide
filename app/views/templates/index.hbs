@@ -33,9 +33,9 @@
                     {{#if user}}
                         <li><span class="username">Welcome, <strong>{{user.name}}</strong></span></li>
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
-                        <li><a href="/logout" class="round">Logout</a></li>
+                        <li><a href="/logout" class="round">Log out</a></li>
                     {{else}}
-                        <li><a href="/auth/facebook" class="round small icon-user"></a></li>
+                        <li><a href="/auth/facebook" class="round icon-user"> Log in</a></li>
                     {{/if}}
                     <li><a href="#" class="round">About</a></li>
                     <li><a href="#" class="round">Share</a></li>
@@ -61,7 +61,6 @@
                 <span>Or</span>
                 <div class="search-input">
                     <input type="search" placeholder="Search for one..." id="quicksearch">
-                    <button class="search icon-search" type="submit"></button>
                 </div>
             </div>
         </div>
@@ -100,7 +99,7 @@
             <div class="col-sm-6 col-md-4 community {{#each this.categories}}filter-{{this}} {{/each}}" data-interest="{{#each this.categories}}{{this}},{{/each}}" data-members="{{math this.leaders.length '+' this.members.length}}">
                 <input class="communityId" type="hidden" value="{{this._id}}">
                     {{#if this.logoURL}}
-                    <div class="community-visual" style="background: url('{{this.logoURL}}'), no-repeat;background-size: cover; background-position: center center;">
+                    <div class="community-visual" style="background: url('{{this.logoURL}}'), no-repeat;background-size: cover; background-position: center center; background-color: white;">
                     {{else}}
                     <div class="community-visual">
                     {{/if}}

@@ -185,7 +185,7 @@ h3 {
 header {
   margin: 6px 0;
   padding: 0 3px;
-  background-image: url('../images/header-background.png');
+  background-image: url('../images/header-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -730,6 +730,10 @@ img.edit + span {
 article {
   overflow: hidden;
 }
+div.community-image-container,
+div.community-logo-container {
+  background-color: #ffffff;
+}
 .about {
   margin: 6px 0;
   background-color: #ffffff;
@@ -829,4 +833,20 @@ footer a.back-top {
     margin-top: -40px;
   }
 }
-/*# sourceMappingURL=/css/main.css.map */
+a.report {
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px 0;
+  border: 1px solid #cccecf;
+  font-size: 1.4rem;
+  font-family: 'Soleil';
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #999da0;
+}
+a.report:disabled {
+  margin: 18px 0 12px;
+}
