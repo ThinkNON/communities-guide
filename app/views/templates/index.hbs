@@ -35,45 +35,51 @@
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
                         <li><a href="/logout" class="round">Log out</a></li>
                     {{else}}
-                        <li><a href="/auth/facebook" class="round icon-user"> Log in</a></li>
+                        <li><a href="/auth/facebook" class="round icon-user"> Intră în cont</a></li>
                     {{/if}}
-                    <li><a href="#" class="round">About</a></li>
-                    <li><a href="#" class="round">Share</a></li>
+                    <li><a href="#" class="round">Despre</a></li>
+                    <li><a href="#" class="round">Distribuie</a></li>
                 </ul>
             </nav>
             <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <p>Brings together people with the same interests.<br/>A tool to grow communities.</p>
+            <p>Aduce mai aproape oameni	cu	aceleași interese și pasiuni.<br/>Sprijină dezvoltarea comunităților	locale.</p>
             <p>
-                Have a crazy passion? Love collecting things? Simply keen on some activity?
-                Find and join a community. No matter the subject. If it’s not here, start one.
-                You’ll be amazed how many people shareyour interest.
+                Te interesează	un	domeniu anume?	Colecționezi	diverse	lucruri?
+                Sau pur și simplu ai	o	pasiune	aparte?	Atunci trebuie doar să
+                <strong>găsești</strong> comunitatea	care	ți	se	potrivește și să <strong>te alături</strong>.
+                Indiferent	de	domeniu.	Iar dacă	nu	există deja,	<strong>creează</strong> tu una.
+                Vei avea surpriza să găsești	o	mulțime	de	alți pasionați ca	tine.
             </p>
-            <div>
-                {{#if user}}
-                    <button class="default no-border" onclick="window.location.href='communities/new'">Start a community</button>
-                {{else}}
-                    <button class="default no-border not-logged" disabled>Start a community</button>
-                {{/if}}
-                <span>Or</span>
-                <div class="search-input">
-                    <input type="search" placeholder="Search for one..." id="quicksearch">
-                </div>
+        </div>
+        <div class="col-xs-12 col-sm-12">
+            {{#if user}}
+                <button class="default no-border" onclick="window.location.href='communities/new'">Crează o comunitate</button>
+            {{else}}
+            <div class="start-container clearfix">
+                <button class="default no-border" disabled>Crează o comunitate</button>
+                <span class="logged-in">Trebuie să fii conectat</span>
+
+            {{/if}}
+            <span>sau</span>
+            <div class="search-input">
+                <input type="search" placeholder="Caută o comunitate..." id="quicksearch">
             </div>
+        </div>
         </div>
     </header>
     <div class="row">
         <div class="col-sm-12">
             <div class="filters">
-                <span class="filter">Filter by topic:</span>
+                <span class="filter">Caută în funcție de domeniu:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round grey active" data-filter="*">Show All</a></li>
-                    <li><a class="round technology" data-filter=".filter-technology">Technology</a></li>
+                    <li><a class="round grey active" data-filter="*">Toate domeniile</a></li>
+                    <li><a class="round technology" data-filter=".filter-technology">Tehnologie</a></li>
                     <li><a class="round management" data-filter=".filter-management">Management</a></li>
-                    <li><a class="round creative" data-filter=".filter-creative">Creative</a></li>
-                    <li><a class="round fun" data-filter=".filter-fun">Fun</a></li>
-                    <li><a class="round educational" data-filter=".filter-educational">Educational</a></li>
+                    <li><a class="round creative" data-filter=".filter-creative">Creație</a></li>
+                    <li><a class="round fun" data-filter=".filter-fun">Distracție</a></li>
+                    <li><a class="round educational" data-filter=".filter-educational">Educație</a></li>
                 </ul>
             </div>
         </div>
@@ -81,12 +87,12 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="sorts">
-                <span class="sort">Sort list by:</span>
+                <span class="sort">Afișează în funcție de:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round grey active" data-sort="original-order">Original order</a></li>
-                    <li><a class="round grey" data-sort="interest">Topic</a></li>
-                    <li><a class="round grey" data-sort="alphabetical">Alphabetical</a></li>
-                    <li><a class="round grey" data-sort="members">Members</a></li>
+                    <li><a class="round grey active" data-sort="original-order">Ordinea originală</a></li>
+                    <li><a class="round grey" data-sort="interest">Domeniu</a></li>
+                    <li><a class="round grey" data-sort="alphabetical">A-Z</a></li>
+                    <li><a class="round grey" data-sort="members">Număr de Susținători</a></li>
                 </ul>
             </div>
         </div>
@@ -134,7 +140,7 @@
                             <h3 class="community-name">{{this.title}}</h3>
                             <p class="community-desc">{{this.desc}}</p>
                         </div>
-                        <button class="default" onclick="window.location.href = '/communities/{{this._id}}'">Find out more</button>
+                        <button class="default" onclick="window.location.href = '/communities/{{this._id}}'">Află mai multe</button>
                     </div>
                 </div>
             {{/each}}
@@ -146,7 +152,7 @@
                 <h2>Iași<br/>Communities<br/>Guide</h2>
             </div>
             <div class="col-sm-2 col-sm-offset-6">
-                <a class="back-top pull-right" href="#">Back to top</a>
+                <a class="back-top pull-right" href="#">Sus</a>
             </div>
         </div>
     </footer>

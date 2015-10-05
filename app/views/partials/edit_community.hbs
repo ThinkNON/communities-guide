@@ -15,21 +15,21 @@
             {{/if}}
         </div>
         <div class="form-group">
-            <label class="mandatory">Category List</label>
+            <label class="mandatory">Lista de categorii</label>
             <select id="select-category" name="categories" multiple="multiple">
                 {{#each categories}}
                     <option value="{{this.id}}" {{#inSelected this.id ../community.categories}}{{/inSelected}}>{{this.text}}</option>
                 {{/each}}
             </select>
-            <label class="mandatory">Community name</label>
+            <label class="mandatory">Numele comunității</label>
             <input name="title" value="{{community.title}}">
             <label>Website</label>
             <input name="webLink" value="{{community.webLink}}">
-            <label>Facebook page</label>
+            <label>Pagina de Facebook</label>
             <input name="fbLink" value="{{community.fbLink}}">
-            <label>Meetup page</label>
+            <label>Pagina de Meetup</label>
             <input name="meetupLink" value="{{community.meetupLink}}">
-            <label>Linkedin page</label>
+            <label>Pagina de Linkedin</label>
             <input name="linkedinLink" value="{{community.linkedinLink}}">
         </div>
     </div>
@@ -49,16 +49,16 @@
         <div class="edit-about">
             <div class="add-note row">
                 <div class="col-xs-12">
-                    <label class="mandatory">About community</label>
+                    <label class="mandatory">Despre comunitate</label>
                     <textarea name="desc">{{community.desc}}</textarea>
                 </div>
                 {{#if community._id}}
                     <input id="communityId" type="hidden" name="_id" value="{{community._id}}">
-                    <button id="updateCommunity" class="default green small pull-right">Save changes</button>
+                    <button id="updateCommunity" class="default green small pull-right">Salvează</button>
                 {{else}}
                     <div class="col-xs-12">
-                        <span class="terms pull-left">By continuing you agree with <a href="#">Terms and Conditions</a></span>
-                        <button id="saveCommunity" class="default green small pull-right">Submit community</button>
+                        <span class="terms pull-left">Continuând, ești de accord cu <a href="#">Termenii și Condițiile</a></span>
+                        <button id="saveCommunity" class="default green small pull-right">Înscrie comunitatea</button>
                     </div>
                 {{/if}}
             </div>
