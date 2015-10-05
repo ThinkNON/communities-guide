@@ -17,6 +17,9 @@ button {
       width: 233px;
       margin: 0 10px 25px 0;
       border: none;
+      &:hover {
+        border: none;
+      }
     }
 
     &.green {
@@ -38,6 +41,12 @@ button {
       &:disabled {
         margin: 18px 0 12px;
       }
+    }
+
+    &:hover {
+      background-color: @grey;
+      color: @white;
+      border: 1px solid @grey;
     }
   }
   &.round {

@@ -41,7 +41,7 @@
                     <li><a href="#" class="round">Share</a></li>
                 </ul>
             </nav>
-            <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo.png" alt="Iasi Communities Guide Logo"></a>
+            <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
         </div>
         <div class="col-xs-12 col-sm-6">
             <p>Brings together people with the same interests.<br/>A tool to grow communities.</p>
@@ -54,9 +54,7 @@
                 {{#if user}}
                     <button class="default no-border" onclick="window.location.href='communities/new'">Start a community</button>
                 {{else}}
-                    <button class="default no-border not-logged" disabled>Start a community
-                        <span class="logged-in">(You need to be logged in)</span>
-                    </button>
+                    <button class="default no-border not-logged" disabled>Start a community</button>
                 {{/if}}
                 <span>Or</span>
                 <div class="search-input">
@@ -70,7 +68,7 @@
             <div class="filters">
                 <span class="filter">Filter by topic:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round active" data-filter="*">Show All</a></li>
+                    <li><a class="round grey active" data-filter="*">Show All</a></li>
                     <li><a class="round technology" data-filter=".filter-technology">Technology</a></li>
                     <li><a class="round management" data-filter=".filter-management">Management</a></li>
                     <li><a class="round creative" data-filter=".filter-creative">Creative</a></li>
@@ -85,7 +83,7 @@
             <div class="sorts">
                 <span class="sort">Sort list by:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round active" data-sort="original-order">Original order</a></li>
+                    <li><a class="round grey active" data-sort="original-order">Original order</a></li>
                     <li><a class="round grey" data-sort="interest">Topic</a></li>
                     <li><a class="round grey" data-sort="alphabetical">Alphabetical</a></li>
                     <li><a class="round grey" data-sort="members">Members</a></li>
