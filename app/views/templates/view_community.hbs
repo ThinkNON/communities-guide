@@ -173,11 +173,11 @@
                         </div>
                     {{/inArray}}
                 {{/if}}
-                {{#if community.messages.length}}
+                {{#if messages.length}}
                     <div class="comments">
                         <span>Comments:</span>
-                        <span class="comments-counter">{{community.messages.length}}</span>
-                        {{#each community.messages}}
+                        <span class="comments-counter">{{messages.length}}</span>
+                        {{#each messages}}
                             <div class="row">
                                 <img class="col-xs-1 round small" src="{{this.user.avatar}}">
                                 <div class="col-xs-8">

@@ -1,6 +1,7 @@
 var communitiesService = require('../services/communities_service');
 var authService = require('../services/auth_service');
 var config = require('../../resources/config');
+var moment = require('moment');
 var AWS = require('aws-sdk');
 var fs = require('fs');
 var categories = [
@@ -14,6 +15,7 @@ var categories = [
     {id: 'testing', text: 'Testing'},
     {id: 'mobile', text: 'Mobile'}
 ];
+moment.lang('ro');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
@@ -42,8 +44,19 @@ module.exports = function(app) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
+                var community = result.community;
+                var messages = [];
+                community.messages.forEach(function(elem) {
+                    messages.unshift({
+                        _id: elem._id,
+                        user: elem.user,
+                        message: elem.message,
+                        date: moment(elem.date).fromNow()
+                    });
+                });
                 res.render('view_community', {
-                    community: result.community,
+                    community: community,
+                    messages: messages,
                     user: req.user || null
                 });
             }
