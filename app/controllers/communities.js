@@ -76,6 +76,13 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/api/communities/findById', authService.isLoggedIn, function(req, res) {
+        var communityId = req.query.id;
+        communitiesService.findById(communityId, function(result) {
+            res.json(result);
+        });
+    });
+
     app.post('/api/communities/save', authService.isLoggedIn, function(req, res) {
         var communityJSON = req.body.communityJSON;
         communityJSON.leaders = [req.user];
@@ -185,7 +192,8 @@ module.exports = function(app) {
 
     app.post('/send-email', function(req, res) {
         var emailJSON = req.body.emailJSON;
-        app.mailer.send('start_community_email', emailJSON, function (err) {
+        var template = req.body.template;
+        app.mailer.send(template, emailJSON, function (err) {
             if (err) {
                 // handle error
                 console.log(err);

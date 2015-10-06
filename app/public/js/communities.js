@@ -114,14 +114,33 @@ var deleteFile = function(URL, field) {
     });
 };
 
-var sendEmail = function(emailJSON, callback) {
+var sendEmail = function(emailJSON, template, callback) {
     $.ajax({
         method: 'POST',
         url: '/send-email',
         dataType : 'json',
-        data: {emailJSON: emailJSON},
+        data: {
+            emailJSON: emailJSON,
+            template: template
+        },
         success: function(response) {
             if (callback) callback();
+        },
+        error: function(err) {
+        }
+    });
+};
+
+var getCommunity = function(id, callback) {
+    $.ajax({
+        method: 'GET',
+        url: '/api/communities/findById',
+        dataType : 'json',
+        data: {
+            id: id
+        },
+        success: function(response) {
+            if (callback) callback(response);
         },
         error: function(err) {
         }
@@ -254,9 +273,9 @@ $(document).ready(function() {
                             subject: 'New community',
                             content: 'Title: ' + community.title + ', Id: ' + community._id
                         };
-                        sendEmail(emailJSON, function() {
+                        sendEmail(emailJSON, 'start_community_email', function() {
                             $('.modal').modal('show');
-                            $('.modal').on('hidden.bs.modal', function (e) {
+                            $('.modal').on('hidden.bs.modal', function(e) {
                                 window.location.href = '/';
                             });
                         });
@@ -348,7 +367,25 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    window.location.reload();
+                    getCommunity(communityId, function(result) {
+                        if (!result.success) return;
+                        var community = result.community,
+                            to = [];
+                        community.leaders.forEach(function(leader) {
+                            if (leader.email) to.push(leader.email);
+                        });
+                        community.members.forEach(function(member) {
+                            if (member.email) to.push(member.email);
+                        });
+                        var emailJSON = {
+                            to: to,
+                            subject: 'Mesaj nou | Comunitatea: ' + community.title,
+                            title: community.title,
+                            message: messageJSON.message
+                        };
+                        sendEmail(emailJSON, 'post_message_email');
+                        window.location.reload();
+                    });
                 }
             }
         });
