@@ -54,19 +54,18 @@
             </p>
         </div>
         <div class="col-xs-12 col-sm-12">
-            {{#if user}}
-                <button class="default no-border" onclick="window.location.href='communities/new'">Crează o comunitate</button>
-            {{else}}
             <div class="start-container clearfix">
-                <button class="default no-border" disabled>Crează o comunitate</button>
-                <span class="logged-in">Trebuie să fii conectat</span>
-
-            {{/if}}
-            <span>sau</span>
-            <div class="search-input">
-                <input type="search" placeholder="Caută o comunitate..." id="quicksearch">
+                {{#if user}}
+                    <button class="default no-border" onclick="window.location.href='communities/new'">Crează o comunitate</button>
+                {{else}}
+                    <button class="default no-border" disabled>Crează o comunitate</button>
+                    <span class="logged-in">Trebuie să fii conectat</span>
+                {{/if}}
+                <span>sau</span>
+                <div class="search-input">
+                    <input type="search" placeholder="Caută o comunitate..." id="quicksearch">
+                </div>
             </div>
-        </div>
         </div>
     </header>
     <div class="row">
@@ -145,7 +144,7 @@
                 </div>
             {{/each}}
         </div>
-        <div class="no-results">Sorry, no results found.</div>
+        <div class="no-results" style="display: none;">Sorry, no results found.</div>
     </main>
     <footer>
         <div class="row">
