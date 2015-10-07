@@ -32,11 +32,11 @@
                     {{#if user}}
                         <li><span class="username">Bună, <strong>{{user.name}}</strong></span></li>
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
-                        <li><a href="/logout" class="round">Log out</a></li>
+                        <li><a href="/logout" class="round">Deconectează-te</a></li>
                     {{else}}
                         <li><a href="/auth/facebook" class="round icon-user"> Intră în cont</a></li>
                     {{/if}}
-                    <li><a href="#" class="round">Despre</a></li>
+                    <li><a href="/about" class="round">Despre</a></li>
                     <li><a href="#" class="round">Distribuie</a></li>
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
     <div class="row">
         <nav class="secondary col-xs-12">
             <ul class="unstyled-list">
-                <li><a href="/">Home /</a></li>
+                <li><a href="/">Acasă /</a></li>
                 <li><a href="#">Crează un cont</a></li>
             </ul>
         </nav>
