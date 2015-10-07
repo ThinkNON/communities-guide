@@ -205,6 +205,24 @@ a:hover {
 .start-container {
   position: relative;
 }
+.messages-container {
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  padding: 15px 33px;
+  color: #999da0;
+}
+.messages-container .messages {
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 5px;
+}
+.messages-container .messages div {
+  display: inline-block;
+  padding-left: 5px;
+}
+.messages-container .messages span {
+  font-weight: bold;
+}
 h1 {
   margin: 0;
   font-size: 3.6rem;
@@ -906,3 +924,4 @@ a.report {
 a.report:disabled {
   margin: 18px 0 12px;
 }
+/*# sourceMappingURL=/css/main.css.map */

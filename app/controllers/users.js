@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
                 } else {
                     var community = result.community;
                     var isInCommunity = req.user.communities.some(function(community) {
-                        return community.equals(req.params.id);
+                        return (community._id.equals(req.params.id));
                     });
                     if (!isInCommunity) {
                         req.user.communities.push(req.params.id);
@@ -54,7 +54,7 @@ module.exports = function(app, passport) {
                 } else {
                     var community = result.community;
                     var isInCommunity = req.user.communities.some(function(community) {
-                        return community.equals(req.params.id);
+                        return (community._id.equals(req.params.id));
                     });
                     if (isInCommunity) {
                         req.user.communities.remove(community._id);
@@ -103,5 +103,28 @@ module.exports = function(app, passport) {
         req.cookies = '';
         req.logout();
         res.redirect('/');
+    });
+
+    app.get('/api/user/latestMessages', authService.isLoggedIn, function(req, res) {
+        var latestMessages = [],
+            limit = req.query.limit || 5;
+        if (req.user) {
+            req.user.communities.forEach(function(community) {
+                community.messages.forEach(function(message) {
+                    latestMessages.push({
+                        communityTitle: community.title,
+                        communityId: community._id,
+                        message: message.message,
+                        date: message.date
+                    });
+                });
+            });
+            latestMessages.sort(function(a, b) {
+                return a.date.getTime() - b.date.getTime();
+            });
+            latestMessages.reverse();
+            latestMessages = latestMessages.slice(0, limit);
+        }
+        res.json(latestMessages);
     });
 };

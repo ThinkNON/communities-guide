@@ -40,6 +40,54 @@ var deleteMessage = function(messageId) {
     });
 };
 
+var getLatestMessages = function() {
+    $.ajax({
+        method: 'GET',
+        url: '/api/user/latestMessages',
+        dataType : 'json',
+        success: function(messages) {
+            var index = 0,
+                timeFadeIn = 1000,
+                timeFadeOut = 1000,
+                timeToNextMessage = 5000;
+            var nextMessage = function() {
+                if (index === messages.length) index = 0;
+                var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 80) + '...' : messages[index].message);
+                var html = '<div class="messages"><span>' + messages[index].communityTitle + '</span>' +
+                    '<div class="inline" onclick="window.location.href=\'/communities/' +
+                    messages[index].communityId + '\'">' + msg + '</div>' +
+                    '</div>';
+
+                $('.messages-container > .messages').fadeOut(timeFadeOut, function() {
+                    this.remove();
+                    $(html).hide().appendTo('.messages-container').fadeIn(timeFadeIn, function() {
+                        index++;
+                        setTimeout(function () {
+                            nextMessage();
+                        }, timeToNextMessage);
+                    });
+                });
+            };
+
+            var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 80) + '...' : messages[index].message);
+            var html = '<div class="messages-container">Ultimele mesaje:' +
+                '<div class="messages"><span>' + messages[index].communityTitle + '</span>' +
+                '<div class="inline" onclick="window.location.href=\'/communities/' +
+                messages[index].communityId + '\'">' + msg + '</div>' +
+                '</div>' +
+                '</div>';
+            $(html).hide().appendTo('#latest-messages').fadeIn(timeFadeIn, function() {
+                index++;
+                setTimeout(function () {
+                    nextMessage();
+                }, timeToNextMessage);
+            });
+        },
+        error: function(err) {
+        }
+    });
+};
+
 var serializeJSON = function(form) {
     var a = $(form).serializeArray();
     var o = {};
@@ -252,6 +300,8 @@ var initIsotope = function() {
 $(document).ready(function() {
     initIsotope();
     $('#select-category').multiselect();
+
+    if ($('#latest-messages').length) getLatestMessages();
 
     $('#saveCommunity').on('click', function(e) {
         e.preventDefault();

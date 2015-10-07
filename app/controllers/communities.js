@@ -88,6 +88,10 @@ module.exports = function(app) {
         communityJSON.leaders = [req.user];
         communityJSON.active = false;
         communitiesService.save(communityJSON, function(result) {
+            if (result.success) {
+                req.user.communities.push(result.community.id);
+                req.user.save();
+            }
             res.json(result);
         });
     });

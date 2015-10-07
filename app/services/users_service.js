@@ -2,7 +2,7 @@ var User = require('../models/user');
 
 module.exports = {
     'findById': function(id, callback) {
-        User.findOne({_id: id}, function(err, user) {
+        User.findOne({_id: id}).populate('communities').exec(function(err, user) {
             if (err) {
                 callback(err);
             } else {
