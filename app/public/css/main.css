@@ -740,6 +740,7 @@ img.edit + span {
 .about-sidebar {
   background-color: #ffffff;
   padding: 30px;
+  margin-bottom: 6px;
 }
 .about-sidebar a {
   display: block;
