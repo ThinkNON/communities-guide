@@ -224,6 +224,14 @@ h3 {
   font-weight: 700;
   font-family: 'Soleil';
 }
+h4 {
+  margin: 0;
+  padding-bottom: 12px;
+  font-size: 1.8rem;
+  color: #cccecf;
+  font-weight: 700;
+  font-family: 'Soleil';
+}
 header {
   margin: 6px 0;
   padding: 0 3px;
@@ -485,7 +493,7 @@ a.round.small:before {
 }
 .community .community-visual {
   position: relative;
-  min-height: 243px;
+  height: 243px;
   max-width: 100%;
   background-color: #999da0;
 }
@@ -519,14 +527,18 @@ a.round.small:before {
 .community-tags {
   padding: 30px 0 0 25px;
 }
+.community-members {
+  position: relative;
+  bottom: -150px;
+  left: 20px;
+}
 .community-members img {
-  position: absolute;
-  margin: 0 0 -27.5px 20px;
+  margin: 0 0 -27.5px 0;
   bottom: 0;
 }
 .community-members .community-counter {
   position: absolute;
-  margin: 0 0 -27.5px 75px;
+  margin: 0 0 -27.5px 0;
   bottom: 0;
 }
 .community-counter {
@@ -905,4 +917,8 @@ a.report {
 }
 a.report:disabled {
   margin: 18px 0 12px;
+}
+.terms-conditions {
+  background-color: #ffffff;
+  padding: 18px 30px;
 }

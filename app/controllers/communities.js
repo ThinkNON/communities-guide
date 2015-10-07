@@ -33,6 +33,10 @@ module.exports = function(app) {
         res.render('about', {user: req.user || null});
     });
 
+    app.get('/terms-and-conditions', function(req, res) {
+        res.render('terms_conditions', {user: req.user || null});
+    });
+
     app.get('/communities/new', authService.isLoggedIn, function(req, res) {
         res.render('start_community', {
             user: req.user || null,
