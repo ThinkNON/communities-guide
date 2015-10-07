@@ -200,6 +200,7 @@ a:hover {
 }
 .comments .icon-cancel {
   cursor: pointer;
+  padding-top: 0;
 }
 .start-container {
   position: relative;
@@ -442,6 +443,7 @@ nav ul.inline li span.username {
 }
 nav.secondary {
   margin-bottom: 6px;
+  padding-top: 0;
   font-size: 2rem;
 }
 nav.secondary > ul {
@@ -706,7 +708,7 @@ img.round {
   border-radius: 100%;
 }
 img.round.small {
-  width: 30px;
+  width: 36px;
   height: 30px;
   margin-right: 25px;
 }
@@ -738,6 +740,7 @@ img.edit + span {
 .about-sidebar {
   background-color: #ffffff;
   padding: 30px;
+  margin-bottom: 6px;
 }
 .about-sidebar a {
   display: block;

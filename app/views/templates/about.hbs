@@ -30,13 +30,13 @@
             <nav class="col-sm-9 col-sm-push-3">
                 <ul class="nav inline">
                     {{#if user}}
-                        <li><span class="username">Welcome, <strong>{{user.name}}</strong></span></li>
+                        <li><span class="username">Bună, <strong>{{user.name}}</strong></span></li>
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
-                        <li><a href="/logout" class="round">Log out</a></li>
+                        <li><a href="/logout" class="round">Deconectează-te</a></li>
                     {{else}}
                         <li><a href="/auth/facebook" class="round icon-user"> Intră în cont</a></li>
                     {{/if}}
-                    <li><a href="#" class="round">Despre</a></li>
+                    <li><a href="/about" class="round">Despre</a></li>
                     <li><a href="#" class="round">Distribuie</a></li>
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
     <div class="row">
         <nav class="secondary col-xs-12">
             <ul class="unstyled-list">
-                <li><a href="/">Home /</a></li>
+                <li><a href="/">Acasă /</a></li>
                 <li><a href="#">Despre</a></li>
             </ul>
         </nav>
@@ -54,12 +54,14 @@
     <main class="row">
         <div class="col-sm-4 ">
             <div class="about-sidebar">
-                <label>Talk to us</label>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum ex sed neque malesuada lobortis. Nunc aliquet sed nulla ut blandit.</p>
+                <label>Hai să vorbim</label>
+                <p>communities.guide este o platformă care se dezvoltă împreună cu voi. Sunați-ne, scrieți-ne, punteți întrbări,
+                spuneți-vă părerea, veniți cu idei. Vom răspunde în cel mai scurt timp posibil, bucuroși să vă cunoaștem și să
+                stăm de vorbă.</p>
                 <a href="tel:+40756321321"><span class="indigo">T: </span>0756321321</a>
                 <a href="mail:hello@iasi.communities.guide"><span class="indigo">E: </span>hello@iasi.communities.guide</a>
-                <label>Let's get social</label>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <label>Socializăm</label>
+                <p>Urmăriți-ne în rețelele sociale, fiți la curent cu noutățile și intrați în vorbă cu noi.</p>
                 <ul class="unstyled-list block">
                     <li><a href="#" class="indigo">Linkedin</a></li>
                     <li><a href="#" class="indigo">Facebook</a></li>
