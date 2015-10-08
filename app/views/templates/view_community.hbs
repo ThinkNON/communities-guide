@@ -4,9 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <title>Communities Guide</title>
-    <meta name="description" content="Communities Guide Iasi">
+    <meta property="og:site_name" content="Communities Guide Iasi"/>
     <meta name="author" content="NON">
     <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Iași Communities Guide" />
+    <meta property="og:title" content="{{community.title}}" />
+    <meta property="og:url" content="{{community.webLink}}" />
+    <meta property="og:description" content="{{community.desc}}" />
+    <meta property="og:image" content="{{community.photoURL}}" />
+    <meta property="og:type" content="website" />
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
@@ -25,7 +31,7 @@
                         <li><a href="/auth/facebook" class="round icon-user"> Intră în cont</a></li>
                     {{/if}}
                     <li><a href="/about" class="round">Despre</a></li>
-                    <li><a href="#" class="round">Distribuie</a></li>
+                    <li><a href="#" class="round share hideshare-btn">Distribuie</a></li>
                 </ul>
             </nav>
             <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
@@ -66,7 +72,7 @@
                 </div>
                 <div>
                     <span>Ne găsești pe:</span>
-                    <ul class="unstyled-list inline social-links">
+                    <ul class="unstyled-list social-links">
                         {{#if community.webLink}}
                             <li><a href="{{community.webLink}}" class="round small icon-globe bg-lighter-grey" target="_blank"></a></li>
                         {{/if}}
@@ -215,5 +221,6 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-multiselect.js"></script>
 <script src="/js/communities.js"></script>
+<script src="/js/hideshare.min.js"></script>
 </body>
 </html>

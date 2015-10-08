@@ -465,4 +465,18 @@ $(document).ready(function() {
         });
         $(e.target).parent().hide();
     });
+
+    var link = $("meta[property='og:url']").attr('content');
+    var title = $("meta[property='og:title']").attr('content');
+    var media =  $("meta[property='og:image']").attr('content');
+
+    $(".share").hideshare({
+        link: link,
+        title: title,
+        media: media,
+        twitter: true,
+        linkedin: false ,
+        pinterest: false,
+        googleplus: false
+    });
 });

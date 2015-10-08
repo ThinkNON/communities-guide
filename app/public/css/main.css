@@ -165,6 +165,9 @@ a:hover {
   display: inline-block;
   margin-left: 10px;
 }
+.unstyled-list li:first-child {
+  margin-left: 0;
+}
 .unstyled-list.inline {
   display: inline-block;
 }
@@ -242,6 +245,14 @@ h3 {
   font-weight: 700;
   font-family: 'Soleil';
 }
+h4 {
+  margin: 0;
+  padding-bottom: 12px;
+  font-size: 1.8rem;
+  color: #cccecf;
+  font-weight: 700;
+  font-family: 'Soleil';
+}
 header {
   margin: 6px 0;
   padding: 0 3px;
@@ -265,8 +276,8 @@ header p {
 }
 @font-face {
   font-family: 'communities-guide';
-  src: url('../fonts/communities-guide.eot?75866876');
-  src: url('../fonts/communities-guide.eot?75866876#iefix') format('embedded-opentype'), url('../fonts/communities-guide.woff?75866876') format('woff'), url('../fonts/communities-guide.ttf?75866876') format('truetype'), url('../fonts/communities-guide.svg?75866876#communities-guide') format('svg');
+  src: url('../fonts/communities-guide.eot?99487496');
+  src: url('../fonts/communities-guide.eot?99487496#iefix') format('embedded-opentype'), url('../fonts/communities-guide.woff?99487496') format('woff'), url('../fonts/communities-guide.ttf?99487496') format('truetype'), url('../fonts/communities-guide.svg?99487496#communities-guide') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -276,7 +287,7 @@ header p {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'communities-guide';
-    src: url('../font/communities-guide.svg?75866876#communities-guide') format('svg');
+    src: url('../font/communities-guide.svg?99487496#communities-guide') format('svg');
   }
 }
 */
@@ -352,6 +363,10 @@ header p {
   content: '\e80a';
 }
 /* '' */
+.icon-twitter:before {
+  content: '\e80b';
+}
+/* '' */
 button {
   background-color: #ffffff;
   text-align: center;
@@ -386,6 +401,9 @@ button.default.green.small {
   margin-bottom: 0;
   padding: 18px 33px;
   width: auto;
+}
+button.default.green:hover {
+  border: none;
 }
 button.default.report {
   color: #999da0;
@@ -456,6 +474,9 @@ nav ul.inline li {
 nav ul.inline li a:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
+nav ul.inline li:nth-child(3) a {
+  display: inline;
+}
 nav ul.inline li span.username {
   font-size: 1.4rem;
 }
@@ -503,7 +524,7 @@ a.round.small:before {
 }
 .community .community-visual {
   position: relative;
-  min-height: 243px;
+  height: 243px;
   max-width: 100%;
   background-color: #999da0;
 }
@@ -537,14 +558,18 @@ a.round.small:before {
 .community-tags {
   padding: 30px 0 0 25px;
 }
+.community-members {
+  position: relative;
+  bottom: -150px;
+  left: 20px;
+}
 .community-members img {
-  position: absolute;
-  margin: 0 0 -27.5px 20px;
+  margin: 0 0 -27.5px 0;
   bottom: 0;
 }
 .community-members .community-counter {
   position: absolute;
-  margin: 0 0 -27.5px 75px;
+  margin: 0 0 -27.5px 0;
   bottom: 0;
 }
 .community-counter {
@@ -924,4 +949,25 @@ a.report {
 a.report:disabled {
   margin: 18px 0 12px;
 }
-/*# sourceMappingURL=/css/main.css.map */
+.hideshare-wrap {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: inline-block;
+}
+.hideshare-wrap li {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  margin: 2em 1em;
+}
+.hideshare-wrap li a:visited {
+  color: #ffffff;
+}
+.hideshare-wrap span {
+  display: none;
+}
+.terms-conditions {
+  background-color: #ffffff;
+  padding: 18px 30px;
+}
