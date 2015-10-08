@@ -7,8 +7,8 @@ module.exports = {
             lvalue = parseFloat(lvalue);
             rvalue = parseFloat(rvalue);
 
-            if (lvalue && isNaN(rvalue)) return lvalue;
-            if (isNaN(lvalue) && rvalue) return rvalue;
+            if (!isNaN(lvalue) && isNaN(rvalue)) return lvalue;
+            if (isNaN(lvalue) && !isNaN(rvalue)) return rvalue;
 
             return {
                 '+': lvalue + rvalue,
