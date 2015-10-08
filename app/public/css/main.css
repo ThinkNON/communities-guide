@@ -186,11 +186,16 @@ a:hover {
 .unstyled-list.block li a {
   padding: 0;
 }
+.notConnected {
+  width: 233px;
+  float: left;
+  margin: 0 10px 7px 0;
+}
+.or {
+  line-height: 62px;
+}
 .logged-in {
-  position: absolute;
-  bottom: 10px;
-  left: 30px;
-  display: inline-block;
+  display: block;
   font-size: 1.4rem;
   letter-spacing: 1px !important;
 }
@@ -210,7 +215,7 @@ a:hover {
   padding-top: 0;
 }
 .start-container {
-  position: relative;
+  margin: 0 0 10px 30px;
 }
 .messages-container {
   background-color: #ffffff;
@@ -280,8 +285,8 @@ header p {
 }
 @font-face {
   font-family: 'communities-guide';
-  src: url('../fonts/communities-guide.eot?99487496');
-  src: url('../fonts/communities-guide.eot?99487496#iefix') format('embedded-opentype'), url('../fonts/communities-guide.woff?99487496') format('woff'), url('../fonts/communities-guide.ttf?99487496') format('truetype'), url('../fonts/communities-guide.svg?99487496#communities-guide') format('svg');
+  src: url('../fonts/communities-guide.eot?56905368');
+  src: url('../fonts/communities-guide.eot?56905368#iefix') format('embedded-opentype'), url('../fonts/communities-guide.woff?56905368') format('woff'), url('../fonts/communities-guide.ttf?56905368') format('truetype'), url('../fonts/communities-guide.svg?56905368#communities-guide') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -291,7 +296,7 @@ header p {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'communities-guide';
-    src: url('../font/communities-guide.svg?99487496#communities-guide') format('svg');
+    src: url('../font/communities-guide.svg?56905368#communities-guide') format('svg');
   }
 }
 */
@@ -371,6 +376,18 @@ header p {
   content: '\e80b';
 }
 /* '' */
+.icon-logout:before {
+  content: '\e80c';
+}
+/* '' */
+.icon-share:before {
+  content: '\e80d';
+}
+/* '' */
+.icon-info:before {
+  content: '\e80f';
+}
+/* '' */
 button {
   background-color: #ffffff;
   text-align: center;
@@ -389,7 +406,6 @@ button.default {
 }
 button.default.no-border {
   width: 233px;
-  margin: 0 10px 37px 30px;
   border: none;
 }
 button.default.no-border:hover {
@@ -483,6 +499,74 @@ nav ul.inline li:last-child a {
 }
 nav ul.inline li span.username {
   font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  nav ul.inline li.login a {
+    padding: 20px;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.login span {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.logout a {
+    padding: 20px;
+  }
+  nav ul.inline li.logout a:before {
+    content: '\e80c';
+    font-family: 'communities-guide';
+    text-align: center;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.logout {
+    width: 62px;
+    text-align: center;
+  }
+  nav ul.inline li.logout span {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.info a {
+    padding: 20px;
+  }
+  nav ul.inline li.info a:before {
+    content: '\e80f';
+    font-family: 'communities-guide';
+    text-align: center;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.info {
+    width: 62px;
+    text-align: center;
+  }
+  nav ul.inline li.info span {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.share a {
+    display: block;
+    padding: 20px;
+  }
+  nav ul.inline li.share a:before {
+    content: '\e80d';
+    font-family: 'communities-guide';
+    text-align: center;
+  }
+}
+@media (max-width: 767px) {
+  nav ul.inline li.share {
+    width: 62px;
+    text-align: center;
+  }
+  nav ul.inline li.share span {
+    display: none;
+  }
 }
 @media (max-width: 767px) {
   nav ul.inline li {
@@ -629,17 +713,23 @@ span.sort {
 }
 div.search-input {
   display: inline-block;
-  padding-left: 5px;
+  width: 243px;
 }
 div.search-input input[type="search"] {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 30px;
+  width: 223px;
   border: none;
   color: #ffffff;
   padding: 20px 0 20px 20px;
 }
 div.search-input input[type="search"][placeholder] {
   color: #ffffff;
+}
+@media only screen and (max-width: 640px) {
+  div.search-input {
+    margin: 10px 0;
+  }
 }
 .community-highlights {
   background-color: #ffffff;
@@ -770,11 +860,6 @@ img.logo {
   padding: 12px 0 40px 30px;
   outline: 0;
   border: 0;
-}
-@media (max-width: 767px) {
-  img.logo {
-    padding-top: 50px;
-  }
 }
 img.edit {
   position: relative;

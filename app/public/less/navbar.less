@@ -45,6 +45,81 @@ nav {
           }
         }
 
+        &.login {
+          a {
+            @media(max-width: 767px) {
+              padding: 20px;
+            }
+          }
+          @media(max-width: 767px){
+            span {
+              display: none;
+            }
+          }
+        }
+
+
+        &.logout {
+          a {
+            @media(max-width: 767px) {
+              padding: 20px;
+              &:before {
+                content: '\e80c';
+                font-family: 'communities-guide';
+                text-align: center;
+              }
+            }
+          }
+          @media(max-width: 767px){
+            width: 62px;
+            text-align: center;
+            span {
+              display: none;
+            }
+          }
+        }
+
+        &.info {
+          a {
+            @media(max-width: 767px) {
+              padding: 20px;
+              &:before {
+                content: '\e80f';
+                font-family: 'communities-guide';
+                text-align: center;
+              }
+            }
+          }
+          @media(max-width: 767px){
+            width: 62px;
+            text-align: center;
+            span {
+              display: none;
+            }
+          }
+        }
+
+        &.share {
+          a {
+            @media(max-width: 767px) {
+              display: block;
+              padding: 20px;
+              &:before {
+                content: '\e80d';
+                font-family: 'communities-guide';
+                text-align: center;
+              }
+            }
+          }
+          @media(max-width: 767px){
+            width: 62px;
+            text-align: center;
+            span {
+              display: none;
+            }
+          }
+        }
+
         @media(max-width: 767px){
           margin: 5px 10px;
         }

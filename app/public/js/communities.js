@@ -474,7 +474,7 @@ $(document).ready(function() {
     var title = $("meta[property='og:title']").attr('content');
     var media =  $("meta[property='og:image']").attr('content');
 
-    $(".share").hideshare({
+    $(".share-links").hideshare({
         link: link,
         title: title,
         media: media,
