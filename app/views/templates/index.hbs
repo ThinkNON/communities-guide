@@ -117,29 +117,29 @@
                         </ul>
                         <ul class="unstyled-list community-members">
                             {{#each this.leaders}}
-                                {{#compare @index 4 operator="<"}}
+                                {{#compare @index 3 operator="<"}}
                                     <li><a href="{{this.profileUrl}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                                 {{/compare}}
                             {{/each}}
                             {{#each (shuffle this.members)}}
-                                {{#compare (math ../this.leaders.length "+" @index) 4 operator="<"}}
+                                {{#compare (math ../this.leaders.length "+" @index) 3 operator="<"}}
                                     <li><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                                 {{/compare}}
                             {{/each}}
                             {{#if this.leaders.length}}
                                 {{#if this.members.length}}
-                                    {{#compare (math this.members.length "+" this.leaders.length) 4 operator=">"}}
-                                        <li><a class="community-counter">+{{math (math this.members.length "+" this.leaders.length) "-" 4}}</a></li>
+                                    {{#compare (math this.members.length "+" this.leaders.length) 3 operator=">"}}
+                                        <li><a class="community-counter">+{{math (math this.members.length "+" this.leaders.length) "-" 3}}</a></li>
                                     {{/compare}}
                                 {{else}}
-                                    {{#compare this.leaders.length 4 operator=">"}}
-                                        <li><a class="community-counter">+{{math this.leaders.length "-" 4}}</a></li>
+                                    {{#compare this.leaders.length 3 operator=">"}}
+                                        <li><a class="community-counter">+{{math this.leaders.length "-" 3}}</a></li>
                                     {{/compare}}
                                 {{/if}}
                             {{else}}
                                 {{#if this.members.length}}
-                                    {{#compare this.members.length 4 operator=">"}}
-                                        <li><a class="community-counter">+{{math this.members.length "-" 4}}</a></li>
+                                    {{#compare this.members.length 3 operator=">"}}
+                                        <li><a class="community-counter">+{{math this.members.length "-" 3}}</a></li>
                                     {{/compare}}
                                 {{/if}}
                             {{/if}}
