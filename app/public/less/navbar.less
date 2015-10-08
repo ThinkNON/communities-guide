@@ -33,7 +33,7 @@ nav {
           background-color: rgba(0, 0, 0, 0.2);
         }
 
-        &:nth-child(3) {
+        &:last-child {
           a {
             display: inline;
           }
@@ -43,6 +43,10 @@ nav {
           &.username {
             font-size: 1.4rem;
           }
+        }
+
+        @media(max-width: 767px){
+          margin: 5px 10px;
         }
       }
     }
