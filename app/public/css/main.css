@@ -145,6 +145,10 @@ body {
 a {
   text-decoration: none;
 }
+a :visited,
+a :active {
+  text-decoration: none;
+}
 a:hover {
   color: #ffffff;
   text-decoration: none;
@@ -474,11 +478,16 @@ nav ul.inline li {
 nav ul.inline li a:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
-nav ul.inline li:nth-child(3) a {
+nav ul.inline li:last-child a {
   display: inline;
 }
 nav ul.inline li span.username {
   font-size: 1.4rem;
+}
+@media (max-width: 767px) {
+  nav ul.inline li {
+    margin: 5px 10px;
+  }
 }
 nav.secondary {
   margin-bottom: 6px;
@@ -536,7 +545,7 @@ a.round.small:before {
 }
 .community .community-content .fixed-height {
   position: relative;
-  height: 190px;
+  height: 185px;
   overflow: hidden;
   text-align: left;
 }
@@ -948,6 +957,11 @@ a.report {
 }
 a.report:disabled {
   margin: 18px 0 12px;
+}
+a.report:hover {
+  background-color: #333c41;
+  color: #ffffff;
+  border: 1px solid #333c41;
 }
 .hideshare-wrap {
   margin: 0;

@@ -42,6 +42,33 @@
         <a href="/" class="col-xs-10">Înapoi la listă</a>
         <a href="#" id ="next" class="col-xs-1 icon-right"></a>
     </div>
+    <div class="modal fade bs-example-modal-lg support" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Mulțumim!</h4>
+                </div>
+                <div class="modal-body">
+                    Ai ales să susții această comunitate. De acum vei fi la curent cu noutățile lor. Îți dorim o experiență frumoasă alături de ei.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-lg resume" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cu bine!</h4>
+                </div>
+                <div class="modal-body">
+                    Ai ales să părăsești această comunitate. Mesajele lor nu vor mai fi afișate în contul tău.
+                    Ne-ar plăcea să știm motivul pentru care ai părăsit comunitatea. Poți să ne scrii la office@communities.guide
+                </div>
+            </div>
+        </div>
+    </div>
     <main class="row">
         <div class="col-sm-4 community-sidebar">
             {{#if community.logoURL}}
@@ -90,12 +117,12 @@
                 <div>
                     {{#if user}}
                         {{#inArray user._id community.members '_id'}}
-                            <button class="default green" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
+                            <button class="default green leave" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
                         {{else}}
                             {{#inArray user._id community.leaders '_id'}}
-                                <button class="default green" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
+                                <button class="default green leave" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
                             {{else}}
-                                <button class="default green" onclick="join('{{community._id}}')">Susține comunitatea</button>
+                                <button class="default green join" onclick="join('{{community._id}}')">Susține</button>
                             {{/inArray}}
                         {{/inArray}}
                     {{else}}

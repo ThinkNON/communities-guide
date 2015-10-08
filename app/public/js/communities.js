@@ -3,7 +3,9 @@ var join = function(communityId) {
         method : 'GET',
         url: '/community/join/' + communityId,
         success: function(response) {
-            window.location.reload();
+            setTimeout(function(){
+                window.location.reload();
+            }, 2000);
         },
         error: function(err) {
         }
@@ -15,7 +17,9 @@ var leave = function(communityId) {
         method : 'GET',
         url: '/community/leave/' + communityId,
         success: function(response) {
-            window.location.reload();
+            setTimeout(function(){
+                window.location.reload();
+            }, 2000);
         },
         error: function(err) {
         }
@@ -478,5 +482,18 @@ $(document).ready(function() {
         linkedin: false ,
         pinterest: false,
         googleplus: false
+    });
+
+    $("button.join").on('click', function() {
+        $('.support').modal('show');
+        $('.support').on('show.bs.modal', function(e) {
+
+        });
+    });
+
+    $("button.leave").on('click', function() {
+        $('.resume').modal('show');
+        $('.resume').on('hide.bs.modal', function(e) {
+        });
     });
 });
