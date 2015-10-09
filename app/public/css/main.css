@@ -210,8 +210,11 @@ a:hover {
 .expand {
   cursor: pointer;
 }
-.comments .icon-cancel {
+.icon-cancel {
   cursor: pointer;
+  padding-top: 0;
+}
+.comments .icon-cancel {
   padding-top: 0;
 }
 .start-container {
@@ -609,12 +612,6 @@ a.round.small {
 a.round.small:before {
   line-height: inherit;
 }
-@media (max-width: 767px) {
-  a.round.small {
-    padding: 5px;
-    font-size: 1.8rem;
-  }
-}
 .community .community-visual {
   position: relative;
   height: 243px;
@@ -791,6 +788,9 @@ div.search-input input[type="search"][placeholder] {
   display: inline-block;
   padding: 18px 0 0 6px;
 }
+.edit-about span.terms a:hover {
+  color: #333c41;
+}
 label {
   display: block;
   margin-bottom: 0;
@@ -876,15 +876,12 @@ img.edit + span {
 }
 .about-sidebar {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 30px 30px 19px 30px;
   margin-bottom: 6px;
 }
 .about-sidebar a {
   display: block;
   color: #333c41;
-}
-.about-sidebar a:last-of-type {
-  padding-bottom: 50px;
 }
 .drop-area {
   background-color: #e5e6e7;
@@ -894,6 +891,7 @@ img.edit + span {
 }
 .drop-area input[type="file"] {
   margin: 0 auto;
+  width: 200px;
 }
 .drop-area > span {
   display: block;
@@ -995,6 +993,7 @@ div.community-logo-container {
 }
 .cover-image {
   max-height: 475px;
+  background-repeat: no-repeat;
 }
 .multiselect-container li a label {
   padding-left: 28px;

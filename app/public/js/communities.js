@@ -26,6 +26,10 @@ var leave = function(communityId) {
     });
 };
 
+var edit = function(communityId) {
+    window.location.href = '/communities/edit/' + communityId;
+};
+
 var deleteMessage = function(messageId) {
     var communityId = $('#communityId').val();
 

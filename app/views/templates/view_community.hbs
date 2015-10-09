@@ -28,7 +28,7 @@
                         <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
                         <li class="logout"><a href="/logout" class="round"><span>Deconectează-te</span></a></li>
                     {{else}}
-                        <li class="login"><a href="/auth/facebook" class="round icon-user"><span>Intră în cont</span></a></li>
+                        <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
                     {{/if}}
                     <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
                     <li class="share"><a href="#" class="round share-links hideshare-btn"><span>Distribuie</span></a></li>
@@ -116,17 +116,17 @@
                 </div>
                 <div>
                     {{#if user}}
-                        {{#inArray user._id community.members '_id'}}
-                            <button class="default green leave" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
+                        {{#inArray user._id community.leaders '_id'}}
+                                <button class="default green" onclick="edit('{{community._id}}')">Editează comunitatea</button>
                         {{else}}
-                            {{#inArray user._id community.leaders '_id'}}
+                            {{#inArray user._id community.members '_id'}}
                                 <button class="default green leave" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
                             {{else}}
                                 <button class="default green join" onclick="join('{{community._id}}')">Susține</button>
                             {{/inArray}}
                         {{/inArray}}
                     {{else}}
-                        <button class="default report" disabled>Susține comunitatea</button>
+                        <button class="default report" disabled>Susține</button>
                     {{/if}}
                     <a href="mailto:office@communities.guide?subject=Reporting {{community.title}}" class="default report">Semnalează o problemă</a>
                 </div>
@@ -214,7 +214,7 @@
 
                             <div class="row">
                                 <img class="col-xs-1 round small" src="{{this.user.avatar}}">
-                                <div class="col-xs-8">
+                                <div class="col-xs-6 col-sm-7">
                                     <div class="row">
                                         <span class="col-xs-12 admin">{{this.user.name}}</span>
                                         <p class="col-xs-12">{{this.message}}</p>
@@ -223,7 +223,7 @@
                                 <span class="col-xs-2 time-elapsed">{{this.date}}</span>
                                 {{#if ../user}}
                                     {{#inArray ../../user._id ../../community.leaders '_id'}}
-                                        <span class="icon-cancel bg-light-grey" onclick="deleteMessage('{{this._id}}')"></span>
+                                        <span class="col-xs-1 icon-cancel bg-light-grey" onclick="deleteMessage('{{this._id}}')"></span>
                                     {{/inArray}}
                                 {{/if}}
                             </div>
