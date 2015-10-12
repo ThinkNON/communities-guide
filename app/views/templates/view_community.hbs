@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta property="og:site_name" content="Iași Communities Guide" />
     <meta property="og:title" content="{{community.title}}" />
-    <meta property="og:url" content="http://iasi.communities.guide/{{community._id}}"/>
+    <meta property="og:url" content="http://iasi.communities.guide/communities/{{community._id}}"/>
     <meta property="og:description" content="{{community.desc}}" />
     <meta property="og:image" content="{{community.photoURL}}" />
     <meta property="og:type" content="website" />
@@ -23,7 +23,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1452879161672569";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="container wrapper">
@@ -203,7 +203,6 @@
                         {{/if}}
                     </ul>
                 </div>
-                <div class="fb-share-button pull-right" data-href="http://iasi.communities.guide/{{community._id}}" data-layout="button"></div>
                 {{#if user}}
                     {{#inArray user._id community.leaders '_id'}}
                         <div class="add-note row">
@@ -242,13 +241,19 @@
             </div>
         </article>
     </main>
-
-    <footer class="clearfix">
-        <div class="col-sm-4">
-            <h2>Iași<br/>Communities<br/>Guide</h2>
-        </div>
-        <div class="col-sm-2 col-sm-offset-6">
-            <a class="back-top pull-right" href="#">Sus</a>
+    <footer>
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>Iași<br/>Communities<br/>Guide</h2>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="fb-like col-sm-9 col-sm-offset-3" data-href="http://iasi.communities.guide/communities/{{community._id}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                </div>
+                <div class="row">
+                    <a class="back-top col-sm-1 col-sm-offset-11" href="#">Sus</a>
+                </div>
+            </div>
         </div>
     </footer>
 </div>

@@ -33,5 +33,25 @@
       }
     }
   }
+
+  a {
+    &.leader {
+      position: relative;
+      text-align: center;
+      &:after {
+        position: absolute;
+        right: 0;
+        bottom: -28px;
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        background-color:@yellow;
+        color: @white;
+        font-family: 'communities-guide';
+        content: '\e808';
+      }
+    }
+  }
 }
 

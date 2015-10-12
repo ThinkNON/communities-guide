@@ -238,6 +238,12 @@ a:hover {
 .messages-container .messages span {
   font-weight: bold;
 }
+.fb-like {
+  padding-top: 50px;
+}
+#u_0_0 {
+  width: 250px !important;
+}
 h1 {
   margin: 0;
   font-size: 3.6rem;
@@ -288,8 +294,8 @@ header p {
 }
 @font-face {
   font-family: 'communities-guide';
-  src: url('../fonts/communities-guide.eot?56905368');
-  src: url('../fonts/communities-guide.eot?56905368#iefix') format('embedded-opentype'), url('../fonts/communities-guide.woff?56905368') format('woff'), url('../fonts/communities-guide.ttf?56905368') format('truetype'), url('../fonts/communities-guide.svg?56905368#communities-guide') format('svg');
+  src: url('../fonts/communities-guide.eot?99537792');
+  src: url('../fonts/communities-guide.eot?99537792#iefix') format('embedded-opentype'), url('../fonts/communities-guide.woff?99537792') format('woff'), url('../fonts/communities-guide.ttf?99537792') format('truetype'), url('../fonts/communities-guide.svg?99537792#communities-guide') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -299,7 +305,7 @@ header p {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'communities-guide';
-    src: url('../font/communities-guide.svg?56905368#communities-guide') format('svg');
+    src: url('../font/communities-guide.svg?99537792#communities-guide') format('svg');
   }
 }
 */
@@ -335,7 +341,7 @@ header p {
   content: '\e800';
 }
 /* '' */
-.icon-meetup:before {
+.icon-meetup-1:before {
   content: '\e801';
 }
 /* '' */
@@ -391,6 +397,10 @@ header p {
   content: '\e80f';
 }
 /* '' */
+.icon-meetup:before {
+  content: '\e810';
+}
+/* '' */
 button {
   background-color: #ffffff;
   text-align: center;
@@ -630,6 +640,23 @@ a.round.small:before {
   bottom: 0px;
   left: 0px;
   background: #ffffff;
+}
+.community a.leader {
+  position: relative;
+  text-align: center;
+}
+.community a.leader:after {
+  position: absolute;
+  right: 0;
+  bottom: -28px;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  background-color: #f9ce3d;
+  color: #ffffff;
+  font-family: 'communities-guide';
+  content: '\e808';
 }
 .community-tags {
   padding: 30px 0 0 25px;
@@ -1008,9 +1035,10 @@ footer {
   margin-bottom: 50px;
 }
 footer a.back-top {
-  margin-top: 110px;
+  margin-top: 20px;
   display: inline-block;
   color: #333c41;
+  text-align: right;
 }
 @media (max-width: 767px) {
   footer a.back-top {
