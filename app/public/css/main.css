@@ -187,7 +187,7 @@ a:hover {
   padding: 0;
 }
 .notConnected {
-  width: 233px;
+  width: 260px;
   float: left;
   margin: 0 10px 7px 0;
 }
@@ -195,7 +195,6 @@ a:hover {
   line-height: 62px;
 }
 .logged-in {
-  display: block;
   font-size: 1.4rem;
   letter-spacing: 1px !important;
 }
@@ -408,7 +407,8 @@ button.default {
   letter-spacing: 2px;
 }
 button.default.no-border {
-  width: 233px;
+  width: 260px;
+  padding: 20px 15px;
   border: none;
 }
 button.default.no-border:hover {
@@ -426,7 +426,7 @@ button.default.green.small {
   width: auto;
 }
 button.default.green:hover {
-  border: none;
+  border: none !important;
 }
 button.default.report {
   color: #999da0;
@@ -434,7 +434,7 @@ button.default.report {
 button.default.report:disabled {
   margin: 18px 0 12px;
 }
-button.default:hover {
+button.default:hover:enabled {
   background-color: #333c41;
   color: #ffffff;
   border: 1px solid #333c41;
@@ -481,9 +481,6 @@ nav a.round:visited {
     padding: 7px 12px;
   }
 }
-nav a.avatar {
-  padding: 17px 0;
-}
 nav a:hover {
   color: inherit;
 }
@@ -496,9 +493,6 @@ nav ul.inline li {
 }
 nav ul.inline li a:hover {
   background-color: rgba(0, 0, 0, 0.2);
-}
-nav ul.inline li:last-child a {
-  display: inline;
 }
 nav ul.inline li span.username {
   font-size: 1.4rem;
@@ -551,25 +545,13 @@ nav ul.inline li span.username {
     display: none;
   }
 }
-@media (max-width: 767px) {
-  nav ul.inline li.share a {
-    display: block;
-    padding: 20px;
-  }
-  nav ul.inline li.share a:before {
-    content: '\e80d';
-    font-family: 'communities-guide';
-    text-align: center;
-  }
+nav ul.inline li.avatar-wrapper a.avatar {
+  padding: 0;
+  cursor: default;
 }
-@media (max-width: 767px) {
-  nav ul.inline li.share {
-    width: 62px;
-    text-align: center;
-  }
-  nav ul.inline li.share span {
-    display: none;
-  }
+nav ul.inline li.avatar-wrapper a.avatar:hover,
+nav ul.inline li.avatar-wrapper a.avatar:focus {
+  background-color: transparent;
 }
 @media (max-width: 767px) {
   nav ul.inline li {
@@ -1049,24 +1031,6 @@ a.report:hover {
   background-color: #333c41;
   color: #ffffff;
   border: 1px solid #333c41;
-}
-.hideshare-wrap {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  display: inline-block;
-}
-.hideshare-wrap li {
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  margin: 2em 1em;
-}
-.hideshare-wrap li a:visited {
-  color: #ffffff;
-}
-.hideshare-wrap span {
-  display: none;
 }
 .terms-conditions {
   background-color: #ffffff;

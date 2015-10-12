@@ -31,7 +31,6 @@
                         <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
                     {{/if}}
                     <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
-                    <li class="share"><a href="#" class="round share-links hideshare-btn"><span>Distribuie</span></a></li>
                 </ul>
             </nav>
             <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
@@ -89,7 +88,7 @@
                     {{/if}}
                 </div>
                 <div>
-                    <span>Admin:</span>
+                    <span>Leader:</span>
                     <span class="admin-counter">{{community.leaders.length}}</span>
                     <ul class="unstyled-list">
                         {{#each community.leaders}}
@@ -159,10 +158,10 @@
                         {{/if}}
                     </span>
                     {{#compare community.leaders.length 1 operator="==="}}
-                        <span name="admin-counter">(1 admin)</span>
+                        <span name="admin-counter">(1 leader)</span>
                     {{/compare}}
                     {{#compare community.leaders.length 1 operator=">"}}
-                        <span name="admin-counter">({{community.leaders.length}} admins)</span>
+                        <span name="admin-counter">({{community.leaders.length}} leaders)</span>
                     {{/compare}}
                     <ul class="unstyled-list inline">
                         {{#each community.leaders}}
@@ -248,6 +247,5 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bootstrap-multiselect.js"></script>
 <script src="/js/communities.js"></script>
-<script src="/js/hideshare.min.js"></script>
 </body>
 </html>

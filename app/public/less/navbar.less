@@ -15,9 +15,6 @@ nav {
         padding: 7px 12px;
       }
     }
-    &.avatar {
-      padding: 17px 0;
-    }
     &:hover {
       color: inherit;
     }
@@ -29,13 +26,9 @@ nav {
         display: inline-block;
         margin: 0 10px;
 
-        a:hover {
-          background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        &:last-child {
-          a {
-            display: inline;
+        a {
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.2);
           }
         }
 
@@ -99,26 +92,38 @@ nav {
           }
         }
 
-        &.share {
+        &.avatar-wrapper {
           a {
-            @media(max-width: 767px) {
-              display: block;
-              padding: 20px;
-              &:before {
-                content: '\e80d';
-                font-family: 'communities-guide';
-                text-align: center;
+            &.avatar {
+              padding: 0;
+              cursor: default;
+              &:hover, &:focus {
+                background-color: transparent;
               }
             }
           }
-          @media(max-width: 767px){
-            width: 62px;
-            text-align: center;
-            span {
-              display: none;
-            }
-          }
         }
+
+        //&.share {
+        //  a {
+        //    @media(max-width: 767px) {
+        //      display: block;
+        //      padding: 20px;
+        //      &:before {
+        //        content: '\e80d';
+        //        font-family: 'communities-guide';
+        //        text-align: center;
+        //      }
+        //    }
+        //  }
+        //  @media(max-width: 767px){
+        //    width: 62px;
+        //    text-align: center;
+        //    span {
+        //      display: none;
+        //    }
+        //  }
+        //}
 
         @media(max-width: 767px){
           margin: 5px 10px;
