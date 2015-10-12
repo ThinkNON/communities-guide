@@ -35,7 +35,7 @@
     <meta name="msapplication-TileImage" content="/images/ms-icon-150x150.png">
     <meta name="msapplication-TileImage" content="/images/ms-icon-310x310.png">
     <meta name="theme-color" content="#ffffff">
-    <meta property="og:title" content="Aduce mai aproape oameni	cu	aceleași interese și pasiuni. Sprijină dezvoltarea comunităților	locale." />
+    <meta property="og:title" content="Aduce mai aproape oameni	cu	aceleași interese și pasiuni. Sprijină dezvoltarea comunităților locale." />
     <meta property="og:site_name" content="Iași Communities Guide" />
     <meta property="og:url" content="http://iasi.communities.guide" />
     <meta property="og:description" content="Te interesează	un	domeniu anume?	Colecționezi	diverse	lucruri?
@@ -58,7 +58,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1452879161672569";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="container">
@@ -74,7 +74,6 @@
                         <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
                     {{/if}}
                     <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
-                    <li><div class="fb-share-button" data-href="http://iasi.communities.guide" data-layout="button"></div></li>
                 </ul>
             </nav>
             <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
@@ -200,8 +199,13 @@
             <div class="col-sm-4">
                 <h2>Iași<br/>Communities<br/>Guide</h2>
             </div>
-            <div class="col-sm-2 col-sm-offset-6">
-                <a class="back-top pull-right" href="#">Sus</a>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="fb-like col-sm-9 col-sm-offset-3" data-href="http://iasi.communities.guide" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                </div>
+                <div class="row">
+                    <a class="back-top col-sm-1 col-sm-offset-11" href="#">Sus</a>
+                </div>
             </div>
         </div>
     </footer>
