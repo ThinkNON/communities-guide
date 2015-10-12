@@ -14,7 +14,8 @@ button {
     letter-spacing: 2px;
 
     &.no-border {
-      width: 233px;
+      width: 260px;
+      padding: 20px 15px;
       border: none;
       &:hover {
         border: none;
@@ -34,7 +35,7 @@ button {
       }
 
       &:hover {
-        border: none;
+        border: none !important;
       }
     }
 
@@ -47,9 +48,11 @@ button {
     }
 
     &:hover {
-      background-color: @grey;
-      color: @white;
-      border: 1px solid @grey;
+      &:enabled {
+        background-color: @grey;
+        color: @white;
+        border: 1px solid @grey;
+      }
     }
 
     &:disabled {
