@@ -60,12 +60,13 @@
                 <ul class="nav inline">
                     {{#if user}}
                         <li><span class="username">Bună, <strong>{{user.name}}</strong></span></li>
-                        <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
+                        <li class="avatar-wrapper" ><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
                         <li class="logout"><a href="/logout" class="round"><span>Deconectează-te</span></a></li>
                     {{else}}
-                        <li class="login"><a href="/auth/facebook" class="round icon-user"><span>Intră în cont</span></a></li>
+                        <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
                     {{/if}}
                     <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
+                </ul>
             </nav>
             <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
         </div>
@@ -85,7 +86,7 @@
                 <p>Communities Guide este o platformă care se dezvoltă împreună cu voi. Sunați-ne, scrieți-ne, punteți întrbări,
                 spuneți-vă părerea, veniți cu idei. Vom răspunde în cel mai scurt timp posibil, bucuroși să vă cunoaștem și să
                 stăm de vorbă.</p>
-                <a href="mailto:office@communities.guide"><span class="indigo">E: </span>office@communities.guide</a>
+                <a href="mailto:&#111;&#102;&#102;&#105;&#099;&#101;&#064;&#099;&#111;&#109;&#109;&#117;&#110;&#105;&#116;&#105;&#101;&#115;&#046;&#103;&#117;&#105;&#100;&#101;"><span class="indigo">E: </span>office@communities.guide</a>
                 <label>Socializăm</label>
                 <p>Urmăriți-ne în rețelele sociale, fiți la curent cu noutățile și intrați în vorbă cu noi.</p>
                 <ul class="unstyled-list inline">
