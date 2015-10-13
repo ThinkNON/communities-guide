@@ -1,6 +1,17 @@
 var hbs = require('hbs');
 var _ = require('lodash');
 
+categories = [
+    {id: 'technology', text: 'tehnologie'},
+    {id: 'management', text: 'management'},
+    {id: 'fun', text: 'distracție'},
+    {id: 'creative', text: 'creație'},
+    {id: 'business analysis', text: 'analiză de business'},
+    {id: 'educational', text: 'educație'},
+    {id: 'testing', text: 'testare'},
+    {id: 'mobile', text: 'mobil'}
+];
+
 module.exports = {
     'init': function() {
         hbs.registerHelper('math', function(lvalue, operator, rvalue, options) {
@@ -77,6 +88,18 @@ module.exports = {
 
         hbs.registerHelper('shuffle', function(list) {
             return _.shuffle(list);
+        });
+
+        hbs.registerHelper('getTag', function(tag) {
+            for(var i=0; i <= categories.length; i++) {
+                if(categories[i].id == tag) {
+                    return categories[i].text;
+                }
+            };
+        });
+
+        hbs.registerHelper('capitalize', function(tag) {
+            return tag.charAt(0).toUpperCase() + tag.slice(1);
         });
     }
 };

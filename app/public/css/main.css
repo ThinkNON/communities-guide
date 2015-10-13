@@ -1,7 +1,7 @@
 .indigo {
   color: #5a25a2 !important;
 }
-.bg-tehnologie {
+.bg-technology {
   background-color: #5a25a2 !important;
 }
 .technology {
@@ -29,7 +29,7 @@
   border: 1px solid #f34b7d;
   background-color: #f34b7d;
 }
-.bg-educație {
+.bg-educational {
   background-color: #00e6b5 !important;
 }
 .educational {
@@ -43,7 +43,7 @@
   border: 1px solid #00e6b5;
   background-color: #00e6b5;
 }
-.bg-distracție {
+.bg-fun {
   background-color: #f15501 !important;
 }
 .fun {
@@ -57,7 +57,7 @@
   border: 1px solid #f15501;
   background-color: #f15501;
 }
-.bg-creație {
+.bg-creative {
   background-color: #438eff !important;
 }
 .creative {
@@ -83,7 +83,11 @@
 }
 .bg-fb-blue {
   background-color: #465799;
-  color: #ffffff;
+  color: #ffffff !important;
+}
+.bg-twitter-blue {
+  background-color: #4099ff;
+  color: #ffffff !important;
 }
 .bg-in-blue {
   background-color: #017bb7;
@@ -504,6 +508,7 @@ nav ul.inline li a:hover {
 }
 nav ul.inline li span.username {
   font-size: 1.4rem;
+  text-shadow: 1px 1px #666d71;
 }
 nav ul.inline li.login a:before {
   margin-right: 10px;
@@ -515,25 +520,6 @@ nav ul.inline li.login a:before {
 }
 @media (max-width: 767px) {
   nav ul.inline li.login span {
-    display: none;
-  }
-}
-@media (max-width: 767px) {
-  nav ul.inline li.logout a {
-    padding: 20px;
-  }
-  nav ul.inline li.logout a:before {
-    content: '\e80c';
-    font-family: 'communities-guide';
-    text-align: center;
-  }
-}
-@media (max-width: 767px) {
-  nav ul.inline li.logout {
-    width: 62px;
-    text-align: center;
-  }
-  nav ul.inline li.logout span {
     display: none;
   }
 }
@@ -555,6 +541,9 @@ nav ul.inline li.login a:before {
   nav ul.inline li.info span {
     display: none;
   }
+}
+nav ul.inline li.avatar-wrapper {
+  position: relative;
 }
 nav ul.inline li.avatar-wrapper a.avatar {
   padding: 0;
@@ -604,6 +593,19 @@ a.round.small {
 }
 a.round.small:before {
   line-height: inherit;
+}
+.messages-wrapper {
+  position: relative;
+  text-align: right;
+}
+.messages-wrapper a.logout {
+  font-size: 1.2rem;
+  position: absolute;
+  padding: 0 0 0 35px;
+}
+.messages-wrapper a.logout:hover,
+.messages-wrapper a.logout:focus {
+  background-color: transparent;
 }
 .community .community-visual {
   position: relative;

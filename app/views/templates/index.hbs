@@ -67,13 +67,15 @@
             <nav class="col-sm-9 col-sm-push-3 clearfix">
                 <ul class="nav inline">
                     {{#if user}}
-                        <input id="userId" type="hidden" value="{{user._id}}">
-                        <li><span class="username">Bună, <strong>{{user.name}}</strong></span></li>
-                        <li class="avatar-wrapper" ><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
-                        <li class="logout"><a href="/logout" class="round"><span>Deconectează-te</span></a></li>
+                        <li class="messages-wrapper">
+                            <span class="username">Bună, <strong>{{user.name}}</strong></span>
+                            <a href="/logout" class="logout"><span>Deconectează-te</span></a>
+                        </li>
+                        <li class="avatar-wrapper" >
+                            <a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a>
+                        </li>
                     {{else}}
-                        <input id="userId" type="hidden">
-                        <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
+                        <li class="login"><a href="/auth/facebook" class="round icon-user"><span>Intră în cont</span></a></li>
                     {{/if}}
                     <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
                 </ul>
@@ -112,12 +114,12 @@
             <div class="filters">
                 <span class="filter">Caută în funcție de domeniu:</span>
                 <ul class="unstyled-list inline">
-                    <li><a class="round grey active" data-filter="*">Toate domeniile</a></li>
-                    <li><a class="round technology" data-filter=".filter-tehnologie">Tehnologie</a></li>
-                    <li><a class="round management" data-filter=".filter-management">Management</a></li>
-                    <li><a class="round creative" data-filter=".filter-creație">Creație</a></li>
-                    <li><a class="round fun" data-filter=".filter-distracție">Distracție</a></li>
-                    <li><a class="round educational" data-filter=".filter-educație">Educație</a></li>
+                    <li><a class="round grey active" data-filter="*" data-slug="all">Toate domeniile</a></li>
+                    <li><a class="round technology" data-filter=".filter-technology" data-slug="technology">Tehnologie</a></li>
+                    <li><a class="round management" data-filter=".filter-management" data-slug="management">Management</a></li>
+                    <li><a class="round creative" data-filter=".filter-creative" data-slug="creative">Creație</a></li>
+                    <li><a class="round fun" data-filter=".filter-fun" data-slug="fun">Distracție</a></li>
+                    <li><a class="round educational" data-filter=".filter-educational" data-slug="educational">Educație</a></li>
                 </ul>
             </div>
         </div>
@@ -151,7 +153,7 @@
                     {{/if}}
                         <ul class="unstyled-list inline community-tags">
                             {{#each this.categories}}
-                                <li><span class="tag bg-{{this}}" data-filter=".filter-{{this}}">{{this}}</span></li>
+                                <li><span class="tag bg-{{this}}" data-slug={{this}} data-filter=".filter-{{this}}">{{getTag this}}</span></li>
                             {{/each}}
                         </ul>
                         <ul class="unstyled-list community-members">
