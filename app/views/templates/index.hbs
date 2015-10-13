@@ -111,11 +111,11 @@
                 <span class="filter">Caută în funcție de domeniu:</span>
                 <ul class="unstyled-list inline">
                     <li><a class="round grey active" data-filter="*">Toate domeniile</a></li>
-                    <li><a class="round technology" data-filter=".filter-technology">Tehnologie</a></li>
+                    <li><a class="round technology" data-filter=".filter-tehnologie">Tehnologie</a></li>
                     <li><a class="round management" data-filter=".filter-management">Management</a></li>
-                    <li><a class="round creative" data-filter=".filter-creative">Creație</a></li>
-                    <li><a class="round fun" data-filter=".filter-fun">Distracție</a></li>
-                    <li><a class="round educational" data-filter=".filter-educational">Educație</a></li>
+                    <li><a class="round creative" data-filter=".filter-creație">Creație</a></li>
+                    <li><a class="round fun" data-filter=".filter-distracție">Distracție</a></li>
+                    <li><a class="round educational" data-filter=".filter-educație">Educație</a></li>
                 </ul>
             </div>
         </div>
@@ -149,7 +149,7 @@
                     {{/if}}
                         <ul class="unstyled-list inline community-tags">
                             {{#each this.categories}}
-                                <li><span class="tag bg-{{this}}">{{this}}</span></li>
+                                <li><span class="tag bg-{{this}}" data-filter=".filter-{{this}}">{{this}}</span></li>
                             {{/each}}
                         </ul>
                         <ul class="unstyled-list community-members">

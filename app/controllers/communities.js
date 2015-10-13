@@ -5,15 +5,14 @@ var moment = require('moment');
 var AWS = require('aws-sdk');
 var fs = require('fs');
 var categories = [
-    {id: 'technology', text: 'Technology'},
+    {id: 'tehnologie', text: 'Tehnologie'},
     {id: 'management', text: 'Management'},
-    {id: 'fun', text: 'Fun'},
-    {id: 'creative', text: 'Creative'},
+    {id: 'distracție', text: 'Distracție'},
+    {id: 'creație', text: 'Creație'},
     {id: 'business analysis', text: 'Business Analysis'},
-    {id: 'technologies', text: 'Technologies'},
-    {id: 'educational', text: 'Educational'},
-    {id: 'testing', text: 'Testing'},
-    {id: 'mobile', text: 'Mobile'}
+    {id: 'educație', text: 'Educație'},
+    {id: 'testare', text: 'Testare'},
+    {id: 'mobil', text: 'Mobil'}
 ];
 moment.lang('ro');
 

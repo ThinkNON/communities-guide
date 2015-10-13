@@ -280,6 +280,14 @@ var initIsotope = function() {
             saveIdsToLocalStorage();
         });
 
+
+        $('.community-tags').on('click', 'span', function() {
+            buttonFilter = $(this).attr('data-filter');
+            $container.isotope();
+            saveIdsToLocalStorage();
+        });
+
+
         $('.sorts').on('click', 'a', function() {
             var sortValue = $(this).attr('data-sort');
             sortValue = sortValue.split(',');

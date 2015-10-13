@@ -52,6 +52,14 @@
     <![endif]-->
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="container wrapper">
     <header class="row">
         <div class="col-xs-12 ">
@@ -59,10 +67,10 @@
                 <ul class="nav inline">
                     {{#if user}}
                         <li><span class="username">Bună, <strong>{{user.name}}</strong></span></li>
-                        <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
+                        <li class="avatar-wrapper" ><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
                         <li class="logout"><a href="/logout" class="round"><span>Deconectează-te</span></a></li>
                     {{else}}
-                        <li class="login"><a href="/auth/facebook"  target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
+                        <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
                     {{/if}}
                     <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
                 </ul>
@@ -227,13 +235,19 @@
           </div>
       </div>
     </main>
-
     <footer class="clearfix">
-        <div class="col-sm-4">
-            <h2>Iași<br/>Communities<br/>Guide</h2>
-        </div>
-        <div class="col-sm-2 col-sm-offset-6">
-            <a class="back-top pull-right" href="#">Sus</a>
+        <div class="row">
+            <div class="col-sm-4">
+                <h2>Iași<br/>Communities<br/>Guide</h2>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="fb-like col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7" data-href="http://iasi.communities.guide/communities/{{community._id}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="250px"></div>
+                </div>
+                <div class="row">
+                    <a class="back-top col-sm-1 col-sm-offset-11" href="#">Sus</a>
+                </div>
+            </div>
         </div>
     </footer>
 </div>
