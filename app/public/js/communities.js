@@ -49,9 +49,10 @@ var deleteMessage = function(messageId) {
 };
 
 var getLatestMessages = function() {
+    var url = ($('#userId').val() ? '/api/user/latestMessages' : '/api/communities/latestMessages');
     $.ajax({
         method: 'GET',
-        url: '/api/user/latestMessages',
+        url: url,
         dataType : 'json',
         success: function(messages) {
             var index = 0,

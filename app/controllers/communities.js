@@ -29,6 +29,32 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/api/communities/latestMessages', function(req, res) {
+        var latestMessages = [],
+            limit = req.query.limit || 10;
+        communitiesService.findAll(function(result) {
+            if (result.success) {
+                result.communities.forEach(function (community) {
+                    community.messages.forEach(function (message) {
+                        latestMessages.push({
+                            communityTitle: community.title,
+                            communityId: community._id,
+                            message: message.message,
+                            date: message.date
+                        });
+                    });
+                });
+            }
+
+            latestMessages.sort(function(a, b) {
+                return a.date.getTime() - b.date.getTime();
+            });
+            latestMessages.reverse();
+            latestMessages = latestMessages.slice(0, limit);
+            res.json(latestMessages);
+        });
+    });
+
     app.get('/about', function(req, res) {
         res.render('about', {user: req.user || null});
     });
