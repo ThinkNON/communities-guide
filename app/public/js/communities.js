@@ -275,15 +275,21 @@ var initIsotope = function() {
         }
 
         $('.filters').on('click', 'a', function() {
+            var slug =  $(this).attr('data-slug');
             buttonFilter = $(this).attr('data-filter');
+            window.location.hash ="#" + slug;
             $container.isotope();
             saveIdsToLocalStorage();
         });
 
 
         $('.community-tags').on('click', 'span', function() {
+            var slug =  $(this).attr('data-slug');
             buttonFilter = $(this).attr('data-filter');
             $container.isotope();
+            $('.filters').find('.active').removeClass('active');
+            $('a[data-filter="'+ buttonFilter + '" ]').addClass('active');
+            window.location.hash ="#" + slug;
             saveIdsToLocalStorage();
         });
 
@@ -310,6 +316,15 @@ var initIsotope = function() {
                 $(this).addClass('active');
             });
         });
+
+        var url = window.location.hash;
+        if (url.indexOf("#") > -1) {
+            var slug = url.slice(1);
+            console.log($('a.'+ slug)[0]);
+
+                $('a.'+ slug)[0].click();
+         
+        }
     });
 };
 

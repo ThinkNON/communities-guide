@@ -35,6 +35,7 @@ nav {
         span {
           &.username {
             font-size: 1.4rem;
+            text-shadow: 1px 1px @dark-grey;
           }
         }
 
@@ -48,27 +49,6 @@ nav {
             }
           }
           @media(max-width: 767px){
-            span {
-              display: none;
-            }
-          }
-        }
-
-
-        &.logout {
-          a {
-            @media(max-width: 767px) {
-              padding: 20px;
-              &:before {
-                content: '\e80c';
-                font-family: 'communities-guide';
-                text-align: center;
-              }
-            }
-          }
-          @media(max-width: 767px){
-            width: 62px;
-            text-align: center;
             span {
               display: none;
             }
@@ -96,6 +76,7 @@ nav {
         }
 
         &.avatar-wrapper {
+          position: relative;
           a {
             &.avatar {
               padding: 0;
@@ -106,27 +87,6 @@ nav {
             }
           }
         }
-
-        //&.share {
-        //  a {
-        //    @media(max-width: 767px) {
-        //      display: block;
-        //      padding: 20px;
-        //      &:before {
-        //        content: '\e80d';
-        //        font-family: 'communities-guide';
-        //        text-align: center;
-        //      }
-        //    }
-        //  }
-        //  @media(max-width: 767px){
-        //    width: 62px;
-        //    text-align: center;
-        //    span {
-        //      display: none;
-        //    }
-        //  }
-        //}
 
         @media(max-width: 767px){
           margin: 5px 10px;
@@ -177,6 +137,22 @@ a.round {
 
     &:before {
       line-height:inherit;
+    }
+  }
+}
+
+.messages-wrapper {
+  position: relative;
+  text-align: right;
+  a {
+    &.logout {
+      font-size:1.2rem;
+      position: absolute;
+      padding: 0 0 0 35px;
+
+      &:hover , &:focus {
+        background-color: transparent;
+      }
     }
   }
 }

@@ -30,7 +30,7 @@
             <label class="mandatory">Lista de categorii</label>
             <select id="select-category" name="categories" multiple="multiple">
                 {{#each categories}}
-                    <option value="{{this.id}}" {{#inSelected this.id ../community.categories}}{{/inSelected}}>{{this.text}}</option>
+                    <option value="{{this.id}}" {{#inSelected this.id ../community.categories}}{{/inSelected}}>{{capitalize this.text}}</option>
                 {{/each}}
             </select>
             <label class="mandatory">Numele comunității</label>
