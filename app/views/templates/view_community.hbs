@@ -33,7 +33,7 @@
                 <ul class="nav inline">
                     {{#if user}}
                         <li><span class="username">Bună, <strong>{{user.name}}</strong></span></li>
-                        <li><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
+                        <li class="avatar-wrapper" ><a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a></li>
                         <li class="logout"><a href="/logout" class="round"><span>Deconectează-te</span></a></li>
                     {{else}}
                         <li class="login"><a href="/auth/facebook" target="_blank" class="round icon-user"><span>Intră în cont</span></a></li>
