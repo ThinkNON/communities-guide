@@ -66,14 +66,14 @@ Application.prototype.boot = function (cb) {
         require('./controllers/communities.js')(app);
 
         mailer.extend(app, {
-            from: 'petrica_horlescu@yahoo.com',
-            host: 'smtp.mail.yahoo.com', // hostname
+            from: 'noreply@communities.guide',
+            host: 'smtp.gmail.com', // hostname
             secureConnection: true, // use SSL
             port: 465, // port for secure SMTP
             transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
             auth: {
-                user: '',
-                pass: ''
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
             }
         });
     }

@@ -328,7 +328,8 @@ $(document).ready(function() {
                     if (response.success) {
                         var community = response.community;
                         var emailJSON = {
-                            to: 'petrica_horlescu@yahoo.com',
+                            from: 'noreply@communities.guide',
+                            to: 'office@communities.guide',
                             subject: 'New community',
                             content: 'Title: ' + community.title + ', Id: ' + community._id
                         };
@@ -437,7 +438,9 @@ $(document).ready(function() {
                             if (member.email) to.push(member.email);
                         });
                         var emailJSON = {
-                            to: to,
+                            from: 'noreply@communities.guide',
+                            to: 'office@communities.guide',
+                            bcc: to,
                             subject: 'Mesaj nou | Comunitatea: ' + community.title,
                             title: community.title,
                             message: messageJSON.message
