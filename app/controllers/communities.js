@@ -121,6 +121,7 @@ module.exports = function(app) {
                 req.user.communities.push(result.community.id);
                 req.user.save();
             }
+            result.user = req.user;
             res.json(result);
         });
     });
