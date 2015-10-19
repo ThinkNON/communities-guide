@@ -151,7 +151,7 @@ module.exports = function(app) {
 
     app.post('/api/communities/add-file', authService.isLoggedIn, function(req, res) {
 
-        if (req.files.file.size > config.application.uploadLimit) {
+        if (req.files.file.size > config.assets.s3.uploadLimit) {
             res.send(403).json({message: 'Upload limit exceeded!'});
             next();
         }

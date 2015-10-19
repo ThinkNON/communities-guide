@@ -16,7 +16,7 @@ serverURL: 'http://iasi.communities.guide'
 application:
     port: 8085
     debug: true
-    uploadLimit: 2097152
+    uploadLimit: 1000000
     timezone: 'Europe/Bucharest'
 
 auth:
