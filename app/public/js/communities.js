@@ -128,6 +128,7 @@ var fileUpload = function(file, callback) {
             callback(response);
         },
         error: function(err) {
+            $('.modal-error').modal('show');
         }
     });
 };

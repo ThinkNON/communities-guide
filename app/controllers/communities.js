@@ -150,6 +150,11 @@ module.exports = function(app) {
     });
 
     app.post('/api/communities/add-file', authService.isLoggedIn, function(req, res) {
+
+        if (req.files.file.size > config.application.uploadLimit) {
+            res.send(403).json({message: 'Upload limit exceeded!'});
+            next();
+        }
         AWS.config.update({
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
             secretAccessKey: process.env.AWS_SECRET_KEY,

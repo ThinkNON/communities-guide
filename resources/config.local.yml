@@ -16,7 +16,7 @@ serverURL: 'http://localhost:8085'
 application:
     port: 8085
     debug: true
-    uploadLimit: '2mb'
+    uploadLimit: 2097152
     timezone: 'Europe/Bucharest'
 
 auth:
