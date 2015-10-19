@@ -358,8 +358,8 @@ $(document).ready(function() {
                             content: 'Title: ' + community.title + ', Id: ' + community._id
                         };
                         sendEmail(emailJSON, 'start_community_email', function() {
-                            $('.modal').modal('show');
-                            $('.modal').on('hidden.bs.modal', function(e) {
+                            $('.modal-success').modal('show');
+                            $('.modal-success').on('hidden.bs.modal', function(e) {
                                 window.location.href = '/';
                             });
                         });
