@@ -176,6 +176,7 @@ module.exports = function(app) {
                     res.send(err);
                 } else {
                     var url = config.assets.s3.publicUrl + file.originalFilename;
+                    url = url.replace(/^https:\/\//i, 'http://');
                     res.json(url);
                 }
             });
