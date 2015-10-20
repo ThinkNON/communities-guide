@@ -233,6 +233,7 @@ module.exports = function(app) {
     app.post('/send-email', function(req, res) {
         var emailJSON = req.body.emailJSON;
         var template = req.body.template;
+        if (emailJSON.url) emailJSON.url = config.serverURL + emailJSON.url;
         app.mailer.send(template, emailJSON, function (err) {
             if (err) {
                 // handle error

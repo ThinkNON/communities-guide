@@ -478,6 +478,7 @@ $(document).ready(function() {
                             bcc: to,
                             subject: 'Mesaj nou | Comunitatea: ' + community.title,
                             title: community.title,
+                            url: '/communities/' + community._id,
                             message: messageJSON.message
                         };
                         sendEmail(emailJSON, 'post_message_email');
