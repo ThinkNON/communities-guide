@@ -1,6 +1,12 @@
 .indigo {
   color: #5a25a2 !important;
 }
+.dark-grey {
+  color: #666d71 !important;
+}
+.dark-grey:hover {
+  color: #333c41;
+}
 .bg-technology {
   background-color: #5a25a2 !important;
 }
@@ -226,24 +232,25 @@ a:hover {
 }
 .messages-container {
   background-color: #ffffff;
-  margin-bottom: 5px;
-  padding: 15px 33px;
+  margin-bottom: 6px;
+  padding: 23px 33px;
+  height: 69px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: #999da0;
 }
 .messages-container .messages {
   cursor: pointer;
   display: inline-block;
-  padding-left: 5px;
 }
 .messages-container .messages div {
-  display: inline-block;
-  padding-left: 5px;
+  display: inline;
 }
 .messages-container .messages span {
   font-weight: bold;
 }
 .fb-like {
-  padding: 50px;
+  padding: 38px 0;
 }
 @media (max-width: 767px) {
   .fb-like {
@@ -604,12 +611,14 @@ a.round.small:before {
 }
 .messages-wrapper {
   position: relative;
+  top: -8px;
   text-align: right;
 }
 .messages-wrapper a.logout {
   font-size: 1.2rem;
   position: absolute;
   padding: 0 0 0 35px;
+  text-shadow: 1px 1px #666d71;
 }
 .messages-wrapper a.logout:hover,
 .messages-wrapper a.logout:focus {
@@ -713,7 +722,7 @@ span.sort {
 .criteria {
   background-color: #ffffff;
   margin-bottom: 5px;
-  padding: 15px 33px;
+  padding: 10px 33px;
 }
 ::-webkit-input-placeholder {
   color: #ffffff;
@@ -1046,6 +1055,9 @@ footer {
   color: #333c41;
   margin-bottom: 50px;
 }
+footer p {
+  padding-top: 32px;
+}
 footer a.back-top {
   display: inline-block;
   color: #333c41;
@@ -1053,6 +1065,7 @@ footer a.back-top {
 }
 @media (max-width: 767px) {
   footer a.back-top {
+    float: none !important;
     margin-top: -40px;
   }
 }

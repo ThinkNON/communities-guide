@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <title>Communities Guide</title>
+    <meta name="description" content="Prin Communities Guide oricine se poate alătura unui grup cu care împărtășește un interes anume. Poți găsi rapid o comunitate și este simplu să o contactezi.
+    Folosește filtrele și frunzărește. Poți să te înscrii într-un grup existent sau să pornești tu unul nou nouț.">
     <meta property="og:site_name" content="Communities Guide Iasi"/>
-    <meta name="author" content="NON">
+    <meta name="author" content="ThinkNON">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta property="og:site_name" content="Iași Communities Guide" />
     <meta property="og:title" content="{{community.title}}" />
     <meta property="og:url" content="http://iasi.communities.guide/communities/{{community._id}}"/>
     <meta property="og:description" content="{{community.desc}}" />
-    <meta property="og:image" content="{{community.photoURL}}" />
+    <meta property="og:image" content="{{community.logoURL}}" />
     <meta property="og:type" content="website" />
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
@@ -139,7 +141,7 @@
                     {{else}}
                         <button class="default report" disabled>Susține</button>
                     {{/if}}
-                    <a href="mailto:&#111;&#102;&#102;&#105;&#099;&#101;&#064;&#099;&#111;&#109;&#109;&#117;&#110;&#105;&#116;&#105;&#101;&#115;&#046;&#103;&#117;&#105;&#100;&#101;?subject=Reporting {{community.title}}" class="default report">Semnalează o problemă</a>
+                    <a href="m&#97;ilto&#58;&#111;%&#54;6f%&#54;9ce%40c%6Fm&#109;&#117;&#110;it%6&#57;es&#46;%67uid&#101;?subject=Reporting {{community.title}}" class="default report">Semnalează o problemă</a>
                 </div>
             </div>
         </div>
@@ -249,15 +251,20 @@
     </main>
     <footer>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 col-md-3">
                 <h2>Iași<br/>Communities<br/>Guide</h2>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-5 col-md-5">
+                <p> Vrem să creștem împreună, așa că ne bucurăm să primim idei și sugestii despre cum putem face mai mult și mai bine pe adresa
+                    <a class="dark-grey" href='m&#97;ilto&#58;&#111;%&#54;6f%&#54;9ce%40c%6Fm&#109;&#117;&#110;it%6&#57;es&#46;%67uid&#101;'>offi&#99;e&#64;comm&#117;niti&#101;&#115;&#46;&#103;ui&#100;e</a>.
+                </p>
+            </div>
+            <div class="col-sm-3 col-md-3 col-md-offset-1">
                 <div class="row">
-                    <div class="fb-like col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7" data-href="http://iasi.communities.guide/communities/{{community._id}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="250px"></div>
+                    <div class="fb-like" data-href="http://iasi.communities.guide" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="250px"></div>
                 </div>
                 <div class="row">
-                    <a class="back-top col-sm-1 col-sm-offset-11" href="#">Sus</a>
+                    <a class="back-top pull-right" href="#">Sus</a>
                 </div>
             </div>
         </div>

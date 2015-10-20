@@ -115,18 +115,20 @@ a:hover {
 
 .messages-container {
   background-color: @white;
-  margin-bottom: 5px;
-  padding: 15px 33px;
+  margin-bottom: 6px;
+  padding: 23px 33px;
+  height: 69px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: #999da0;
 
   .messages {
     cursor: pointer;
     display: inline-block;
-    padding-left: 5px;
+
 
     div {
-      display: inline-block;
-      padding-left: 5px;
+      display: inline;
     }
 
     span {
@@ -136,7 +138,7 @@ a:hover {
 }
 
 .fb-like {
-  padding: 50px;
+  padding: 38px 0;
   @media(max-width: 767px){
     padding:20px 0;
   }

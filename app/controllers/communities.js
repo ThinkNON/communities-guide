@@ -12,8 +12,15 @@ var categories = [
     {id: 'business analysis', text: 'analiză de business'},
     {id: 'educational', text: 'educație'},
     {id: 'testing', text: 'testare'},
-    {id: 'mobile', text: 'mobil'}
+    {id: 'mobile', text: 'mobil'},
+    {id: 'social', text: 'social'},
+    {id: 'environment', text: 'mediu'},
+    {id: 'philanthropy', text: 'filantropie'}
 ];
+var nl2br = function(str, isXhtml) {
+    var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>';
+    callback((str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2'));
+};
 moment.lang('ro');
 
 module.exports = function(app) {
@@ -72,9 +79,11 @@ module.exports = function(app) {
     app.get('/communities/:id', function(req, res) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
+            console.log("community", result);
             if (result.success) {
                 var community = result.community;
                 var messages = [];
+               // community.desc =  nl2br(result.desc);
                 community.messages.forEach(function(elem) {
                     messages.unshift({
                         _id: elem._id,
@@ -96,8 +105,10 @@ module.exports = function(app) {
         var communityId = req.params.id;
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
+                var community = result.community;
+                //community.desc =  nl2br(result.desc);
                 res.render('edit_community', {
-                    community: result.community,
+                    community: community,
                     user: req.user || null,
                     categories: categories
                 });

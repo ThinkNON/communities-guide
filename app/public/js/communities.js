@@ -48,6 +48,8 @@ var deleteMessage = function(messageId) {
     });
 };
 
+
+
 var getLatestMessages = function() {
     var url = ($('#userId').val() ? '/api/user/latestMessages' : '/api/communities/latestMessages');
     $.ajax({
@@ -61,8 +63,8 @@ var getLatestMessages = function() {
                 timeToNextMessage = 5000;
             var nextMessage = function() {
                 if (index === messages.length) index = 0;
-                var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 80) + '...' : messages[index].message);
-                var html = '<div class="messages"><span>' + messages[index].communityTitle + '</span>' +
+                var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 100) + '...' : messages[index].message);
+                var html = '<div class="messages"><span>' + messages[index].communityTitle + ' ' + '</span>' +
                     '<div class="inline" onclick="window.location.href=\'/communities/' +
                     messages[index].communityId + '\'">' + msg + '</div>' +
                     '</div>';
@@ -78,9 +80,9 @@ var getLatestMessages = function() {
                 });
             };
 
-            var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 80) + '...' : messages[index].message);
-            var html = '<div class="messages-container">Ultimele mesaje:' +
-                '<div class="messages"><span>' + messages[index].communityTitle + '</span>' +
+            var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 100) + '...' : messages[index].message);
+            var html = '<div class="messages-container"><span class="hidden-xs hidden-sm">Ultimele mesaje: </span>' +
+                '<div class="messages"><span>' + messages[index].communityTitle + ' ' +'</span>' +
                 '<div class="inline" onclick="window.location.href=\'/communities/' +
                 messages[index].communityId + '\'">' + msg + '</div>' +
                 '</div>' +
