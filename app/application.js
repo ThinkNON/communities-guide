@@ -66,7 +66,7 @@ Application.prototype.boot = function (cb) {
         require('./controllers/communities.js')(app);
 
         mailer.extend(app, {
-            from: 'noreply@communities.guide',
+            from: 'Communities Guide <noreply@communities.guide>',
             host: 'smtp.gmail.com', // hostname
             secureConnection: true, // use SSL
             port: 465, // port for secure SMTP

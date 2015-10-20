@@ -353,7 +353,7 @@ $(document).ready(function() {
                         var community = response.community,
                             user = response.user;
                         var emailJSON = {
-                            from: 'noreply@communities.guide',
+                            from: 'Communities Guide <noreply@communities.guide>',
                             to: 'office@communities.guide',
                             subject: 'New community',
                             title: community.title,
@@ -473,7 +473,7 @@ $(document).ready(function() {
                             if (member.email) to.push(member.email);
                         });
                         var emailJSON = {
-                            from: 'noreply@communities.guide',
+                            from: 'Communities Guide <noreply@communities.guide>',
                             to: 'office@communities.guide',
                             bcc: to,
                             subject: 'Mesaj nou | Comunitatea: ' + community.title,
