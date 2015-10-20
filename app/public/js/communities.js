@@ -352,13 +352,24 @@ $(document).ready(function() {
                 },
                 success: function (response) {
                     if (response.success) {
-                        var community = response.community;
+                        var community = response.community,
+                            user = response.user;
                         var emailJSON = {
-                            from: 'noreply@communities.guide',
+                            from: 'Communities Guide <noreply@communities.guide>',
                             to: 'office@communities.guide',
                             subject: 'New community',
-                            content: 'Title: ' + community.title + ', Id: ' + community._id
+                            title: community.title,
+                            description: community.desc,
+                            id: community._id,
+                            userName: user.name,
+                            userProfileUrl: user.profileUrl
                         };
+                        if (community.photoURL) {
+                            emailJSON.photo = 'Cover: ' + community.photoURL + '\n' +
+                                (community.logoURL ? 'Logo: ' + community.logoURL : '');
+                        } else if (community.logoURL) {
+                            emailJSON.photo = 'Logo: ' + community.logoURL;
+                        }
                         sendEmail(emailJSON, 'start_community_email', function() {
                             $('.modal-success').modal('show');
                             $('.modal-success').on('hidden.bs.modal', function(e) {
@@ -464,11 +475,12 @@ $(document).ready(function() {
                             if (member.email) to.push(member.email);
                         });
                         var emailJSON = {
-                            from: 'noreply@communities.guide',
+                            from: 'Communities Guide <noreply@communities.guide>',
                             to: 'office@communities.guide',
                             bcc: to,
                             subject: 'Mesaj nou | Comunitatea: ' + community.title,
                             title: community.title,
+                            url: '/communities/' + community._id,
                             message: messageJSON.message
                         };
                         sendEmail(emailJSON, 'post_message_email');
