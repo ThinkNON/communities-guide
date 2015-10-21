@@ -19,7 +19,7 @@ var categories = [
 ];
 var nl2br = function(str, isXhtml) {
     var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>';
-    callback((str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2'));
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 };
 moment.lang('ro');
 
@@ -83,7 +83,8 @@ module.exports = function(app) {
             if (result.success) {
                 var community = result.community;
                 var messages = [];
-               // community.desc =  nl2br(result.desc);
+
+                community.desc = nl2br(result.community.desc);
                 community.messages.forEach(function(elem) {
                     messages.unshift({
                         _id: elem._id,
@@ -106,7 +107,7 @@ module.exports = function(app) {
         communitiesService.findById(communityId, function(result) {
             if (result.success) {
                 var community = result.community;
-                //community.desc =  nl2br(result.desc);
+                community.desc = nl2br(result.community.desc);
                 res.render('edit_community', {
                     community: community,
                     user: req.user || null,
