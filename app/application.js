@@ -38,7 +38,7 @@ Application.prototype.boot = function (cb) {
 
         // set the configuration to the app
         app.set('config', config);
-        require('../config/passport')(passport);
+        require('../config/passport')(app, passport);
 
         // init general middleware
         //app.use(clientErrorHandler());
