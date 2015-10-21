@@ -10,7 +10,7 @@ dotenv.load();
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
 var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
 
-module.exports = function (passport) {
+module.exports = function (app, passport) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -77,8 +77,21 @@ module.exports = function (passport) {
                             };
 
                             usersService.save(userJSON, function(result) {
-                                if (!result.success) throw result;
-                                return done(null, result.user);
+                                if (!result.success) {
+                                    throw result;
+                                } else {
+                                    var template = 'new_user_email',
+                                        emailJSON = {
+                                            from: 'Communities Guide <noreply@communities.guide>',
+                                            to: 'office@communities.guide',
+                                            subject: 'Utilizator nou',
+                                            name: result.user.name,
+                                            profileUrl: result.user.profileUrl
+                                        };
+                                    app.mailer.send(template, emailJSON, function(err) {
+                                        return done(null, result.user);
+                                    });
+                                }
                             });
                         }
                     });
