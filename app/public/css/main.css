@@ -255,6 +255,9 @@ a:hover {
     padding: 20px 0;
   }
 }
+.fb_edge_comment_widget {
+  margin-left: -370px !important;
+}
 .community {
   right: 0px;
 }
@@ -646,17 +649,17 @@ a.round.small:before {
 .community .community-content .fixed-height .community-desc {
   padding: 28px 0;
   margin: 0;
-  overflow: hidden;
-}
-.community .community-content .fixed-height .community-desc:after {
-  content: ' ';
-  position: absolute;
   display: block;
-  width: 100%;
-  height: 1em;
-  bottom: 0px;
-  left: 0px;
-  background: #ffffff;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 120px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.47;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .community a.leader {
   position: relative;
@@ -679,9 +682,9 @@ a.round.small:before {
   padding: 30px 0 0 25px;
 }
 .community-members {
-  position: relative;
-  bottom: -150px;
-  left: 20px;
+  position: absolute;
+  bottom: 0;
+  padding-left: 20px;
 }
 .community-members img {
   margin: 0 0 -27.5px 0;
