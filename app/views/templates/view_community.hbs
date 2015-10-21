@@ -123,7 +123,7 @@
                     </ul>
                     <h2>{{community.title}}</h2>
                     {{#if community.founded}}
-                        <span class="created-at">Fondat pe {{dateFormat community.founded}}</span>
+                        <span class="created-at">Adăugat pe {{dateFormat community.founded}}</span>
                     {{/if}}
                 </div>
                 <div>
@@ -131,7 +131,7 @@
                     <span class="admin-counter">{{community.leaders.length}}</span>
                     <ul class="unstyled-list">
                         {{#each community.leaders}}
-                            <li><img class="round" src="{{this.avatar}}"></li>
+                            <li><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                         {{/each}}
                     </ul>
                 </div>
@@ -205,14 +205,14 @@
                     <ul class="unstyled-list inline">
                         {{#each community.leaders}}
                             {{#compare @index 8 operator="<"}}
-                                <li><a href="{{this.profileUrl}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                                <li><a href="{{this.profileUrl}}" title="{{this.name}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
                         {{/each}}
                         {{#each (shuffle community.members)}}
                             {{#compare (math ../community.leaders.length "+" @index) 8 operator="<"}}
-                                <li><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                                <li><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{else}}
-                                <li style="display: none"><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                                <li style="display: none"><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                             {{/compare}}
                         {{/each}}
                         {{#if community.leaders.length}}

@@ -167,12 +167,12 @@
                         <ul class="unstyled-list community-members">
                             {{#each this.leaders}}
                                 {{#compare @index 3 operator="<"}}
-                                    <li><a href="{{this.profileUrl}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                                    <li><a href="{{this.profileUrl}}" title="{{this.name}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                                 {{/compare}}
                             {{/each}}
                             {{#each (shuffle this.members)}}
                                 {{#compare (math ../this.leaders.length "+" @index) 3 operator="<"}}
-                                    <li><a href="{{this.profileUrl}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                                    <li><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
                                 {{/compare}}
                             {{/each}}
                             {{#if this.leaders.length}}
