@@ -135,18 +135,24 @@
                     <li><a class="round grey" data-sort="interest">Domeniu</a></li>
                     <li><a class="round grey" data-sort="alphabetical">A-Z</a></li>
                     <li><a class="round grey" data-sort="members">Număr de Susținători</a></li>
+                    <li><a class="round grey" data-sort="chronological">Cronologic</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12" id="latest-messages">
+            <div class="messages-container">
+            </div>
         </div>
     </div>
     <main class="isotope">
         <div class="row">
             {{#each communities}}
-            <div class="col-sm-6 col-md-4 community {{#each this.categories}}filter-{{this}} {{/each}}" data-interest="{{#each this.categories}}{{this}},{{/each}}" data-members="{{math this.leaders.length '+' this.members.length}}">
+            <div class="col-sm-6 col-md-4 community {{#each this.categories}}filter-{{this}} {{/each}}"
+                 data-interest="{{#each this.categories}}{{this}},{{/each}}"
+                 data-postdate="{{unixFormat this.founded}}"
+                 data-members="{{math this.leaders.length '+' this.members.length}}">
                 <input class="communityId" type="hidden" value="{{this._id}}">
                     {{#if this.photoURL}}
                     <div class="community-visual" style="background: url('{{this.photoURL}}'), no-repeat;background-size: cover; background-position: center center; background-color: white;">

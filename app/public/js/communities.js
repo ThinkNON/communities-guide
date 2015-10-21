@@ -48,10 +48,8 @@ var deleteMessage = function(messageId) {
     });
 };
 
-
-
 var getLatestMessages = function() {
-    var url = ($('#userId').val() ? '/api/user/latestMessages' : '/api/communities/latestMessages');
+    var url = $('#userId').val() ? '/api/user/latestMessages' : '/api/communities/latestMessages';
     $.ajax({
         method: 'GET',
         url: url,
@@ -61,40 +59,37 @@ var getLatestMessages = function() {
                 timeFadeIn = 1000,
                 timeFadeOut = 1000,
                 timeToNextMessage = 5000;
-            var nextMessage = function() {
-                if (index === messages.length) index = 0;
-                var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 100) + '...' : messages[index].message);
-                var html = '<div class="messages"><span>' + messages[index].communityTitle + ' ' + '</span>' +
-                    '<div class="inline" onclick="window.location.href=\'/communities/' +
-                    messages[index].communityId + '\'">' + msg + '</div>' +
-                    '</div>';
 
-                $('.messages-container > .messages').fadeOut(timeFadeOut, function() {
-                    this.remove();
-                    $(html).hide().appendTo('.messages-container').fadeIn(timeFadeIn, function() {
-                        index++;
-                        setTimeout(function () {
-                            nextMessage();
-                        }, timeToNextMessage);
-                    });
+            var displayHTMLMessage = function (message) {
+                var messageHTML = '<div class="messages">' +
+                        '<span class="hidden-xs hidden-sm">Ultimele mesaje: </span>' +
+                        '<span class="message-title">' + message.communityTitle + ' ' + '</span>' +
+                        '<span onclick="window.location.href=\'/communities/' +
+                            message.communityId + '\'">' + message.message + '</span>' +
+                    '</div>';
+                $(messageHTML).hide().appendTo('#latest-messages .messages-container').fadeIn(timeFadeIn, function() {
+                    index++;
+                    setTimeout(function () {
+                        nextMessage();
+                    }, timeToNextMessage);
                 });
             };
 
-            var msg = (messages[index].message.length > 80 ? messages[index].message.substring(0, 100) + '...' : messages[index].message);
-            var html = '<div class="messages-container"><span class="hidden-xs hidden-sm">Ultimele mesaje: </span>' +
-                '<div class="messages"><span>' + messages[index].communityTitle + ' ' +'</span>' +
-                '<div class="inline" onclick="window.location.href=\'/communities/' +
-                messages[index].communityId + '\'">' + msg + '</div>' +
-                '</div>' +
-                '</div>';
-            $(html).hide().appendTo('#latest-messages').fadeIn(timeFadeIn, function() {
-                index++;
-                setTimeout(function () {
-                    nextMessage();
-                }, timeToNextMessage);
-            });
+            var nextMessage = function() {
+                if (index === messages.length) {
+                    index = 0;
+                }
+
+                $('.messages-container > .messages').fadeOut(timeFadeOut, function() {
+                    this.remove();
+                    displayHTMLMessage(messages[index]);
+                });
+            };
+
+            displayHTMLMessage(messages[index]);
         },
-        error: function(err) {
+        error: function () {
+            $('#latest-messages').hide();
         }
     });
 };
@@ -183,10 +178,10 @@ var sendEmail = function(emailJSON, template, callback) {
             emailJSON: emailJSON,
             template: template
         },
-        success: function(response) {
-            if (callback) callback();
-        },
-        error: function(err) {
+        success: function () {
+            if (callback) {
+                callback();
+            }
         }
     });
 };
@@ -214,7 +209,7 @@ var saveIdsToLocalStorage = function() {
         iso.filteredItems.forEach(function (item) {
             ids.push($(item.element).find('input.communityId').val());
         });
-        localStorage['communities-order'] = JSON.stringify(ids);
+        localStorage.setItem('communities-order', JSON.stringify(ids));
     }
 };
 
@@ -228,12 +223,18 @@ var initIsotope = function() {
         $container.isotope({
             itemSelector: '.community',
             layoutMode: 'masonry',
+            sortBy: 'original-order',
+            sortAscending: false,
             getSortData: {
+                'original-order': function (item){return $(item).data('postdate') ? $(item).data('postdate') : new Date().getTime();},
                 interest: '[data-interest]',
                 members: function(item) {
                     return parseInt($(item).data('members'));
                 },
-                alphabetical: 'h3'
+                alphabetical: 'h3',
+                chronological:  function (item) {
+                    return $(item).data('postdate') ? $(item).data('postdate') : new Date().getTime();
+                }
             },
             filter: function() {
                 var $this = $(this);
@@ -278,7 +279,10 @@ var initIsotope = function() {
             };
         }
 
-        $('.filters').on('click', 'a', function() {
+        var $filters = $('.filters');
+        var $sorts = $('.sorts');
+
+        $filters.on('click', 'a', function() {
             var slug =  $(this).attr('data-slug');
             buttonFilter = $(this).attr('data-filter');
             window.location.hash ="#" + slug;
@@ -288,24 +292,35 @@ var initIsotope = function() {
 
 
         $('.community-tags').on('click', 'span', function() {
-            var slug =  $(this).attr('data-slug');
-            buttonFilter = $(this).attr('data-filter');
+            var $this = $(this);
+            var slug =  $this.attr('data-slug');
+            buttonFilter = $this.attr('data-filter');
             $container.isotope();
-            $('.filters').find('.active').removeClass('active');
+            $filters.find('.active').removeClass('active');
             $('a[data-filter="'+ buttonFilter + '" ]').addClass('active');
-            window.location.hash ="#" + slug;
+            window.location.hash = "#" + slug;
             saveIdsToLocalStorage();
         });
 
-
-        $('.sorts').on('click', 'a', function() {
+        $sorts.on('click', 'a', function() {
             var sortValue = $(this).attr('data-sort');
             sortValue = sortValue.split(',');
-            $container.isotope({sortBy: sortValue, sortAscending: sortValue != 'members' });
+            $container.isotope(
+                {
+                    sortBy: sortValue,
+                    sortAscending: {
+                        'original-order': false,
+                        alphabetical: true,
+                        interest: true,
+                        chronological: true,
+                        members: false
+                    }
+                }
+            );
             saveIdsToLocalStorage();
         });
 
-        $('.filters').each(function(i, buttonGroup) {
+        $filters.each(function(i, buttonGroup) {
             var $buttonGroup = $(buttonGroup);
             $buttonGroup.on('click', 'a', function () {
                 $buttonGroup.find('.active').removeClass('active');
@@ -313,7 +328,7 @@ var initIsotope = function() {
             });
         });
 
-        $('.sorts').each(function(i, buttonGroup) {
+        $sorts.each(function(i, buttonGroup) {
             var $buttonGroup = $(buttonGroup);
             $buttonGroup.on('click', 'a', function() {
                 $buttonGroup.find('.active').removeClass('active');
@@ -323,11 +338,7 @@ var initIsotope = function() {
 
         var url = window.location.hash;
         if (url.indexOf("#") > -1) {
-            var slug = url.slice(1);
-            console.log($('a.'+ slug)[0]);
-
-                $('a.'+ slug)[0].click();
-         
+            $('a.'+ url.slice(1))[0].click();
         }
     });
 };
@@ -336,7 +347,16 @@ $(document).ready(function() {
     initIsotope();
     $('#select-category').multiselect();
 
-    if ($('#latest-messages').length) getLatestMessages();
+    if ($('#latest-messages').length) {
+        getLatestMessages();
+    }
+
+    $('.community-highlights').on('click', 'span', function() {
+        var slug =  $(this).attr('data-slug');
+        window.location = window.location.origin + '/#' + slug;
+        saveIdsToLocalStorage();
+    });
+
 
     $('#saveCommunity').on('click', function(e) {
         e.preventDefault();
@@ -370,9 +390,10 @@ $(document).ready(function() {
                         } else if (community.logoURL) {
                             emailJSON.photo = 'Logo: ' + community.logoURL;
                         }
-                        sendEmail(emailJSON, 'start_community_email', function() {
-                            $('.modal-success').modal('show');
-                            $('.modal-success').on('hidden.bs.modal', function(e) {
+                        sendEmail(emailJSON, 'start_community_email', function () {
+                            var modalEl = $('.modal-success');
+                            modalEl.modal('show');
+                            modalEl.on('hidden.bs.modal', function () {
                                 window.location.href = '/';
                             });
                         });

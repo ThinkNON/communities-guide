@@ -2,7 +2,7 @@ var Community = require('../models/community');
 
 module.exports = {
     'findAll': function(callback) {
-        Community.find({active: true}).populate('leaders members').exec(function(err, communities) {
+        Community.find({active: true}).populate('leaders members').sort('-founded').exec(function(err, communities) {
             if (err) {
                 callback(err);
             } else {

@@ -118,20 +118,16 @@ a:hover {
   margin-bottom: 6px;
   padding: 23px 33px;
   height: 69px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   color: #999da0;
 
   .messages {
     cursor: pointer;
-    display: inline-block;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
-
-    div {
-      display: inline;
-    }
-
-    span {
+    span.message-title {
       font-weight: bold;
     }
   }
@@ -144,3 +140,6 @@ a:hover {
   }
 }
 
+.community{
+  right: 0px;
+}

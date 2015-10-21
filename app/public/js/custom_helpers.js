@@ -1,5 +1,6 @@
 var hbs = require('hbs');
 var _ = require('lodash');
+var moment = require('moment');
 
 categories = [
     {id: 'technology', text: 'tehnologie'},
@@ -9,7 +10,10 @@ categories = [
     {id: 'business analysis', text: 'analiză de business'},
     {id: 'educational', text: 'educație'},
     {id: 'testing', text: 'testare'},
-    {id: 'mobile', text: 'mobil'}
+    {id: 'mobile', text: 'mobil'},
+    {id: 'social', text: 'social'},
+    {id: 'environment', text: 'mediu'},
+    {id: 'philanthropy', text: 'filantropie'}
 ];
 
 module.exports = {
@@ -100,6 +104,23 @@ module.exports = {
 
         hbs.registerHelper('capitalize', function(tag) {
             return tag.charAt(0).toUpperCase() + tag.slice(1);
+        });
+
+        hbs.registerHelper('dateFormat', function (context, block) {
+            var f = block.hash.format || "MMM DD, YYYY";
+            if (context) {
+                return moment(context).format(f);
+            } else {
+                return context;
+            }
+        });
+
+        hbs.registerHelper('unixFormat', function (context, block) {
+            if (context) {
+                return moment(context).valueOf();
+            } else {
+                return context;
+            }
         });
     }
 };

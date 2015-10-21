@@ -235,18 +235,16 @@ a:hover {
   margin-bottom: 6px;
   padding: 23px 33px;
   height: 69px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   color: #999da0;
 }
 .messages-container .messages {
   cursor: pointer;
-  display: inline-block;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.messages-container .messages div {
-  display: inline;
-}
-.messages-container .messages span {
+.messages-container .messages span.message-title {
   font-weight: bold;
 }
 .fb-like {
@@ -256,6 +254,9 @@ a:hover {
   .fb-like {
     padding: 20px 0;
   }
+}
+.community {
+  right: 0px;
 }
 h1 {
   margin: 0;
