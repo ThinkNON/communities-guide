@@ -390,6 +390,7 @@ $(document).ready(function() {
                         } else if (community.logoURL) {
                             emailJSON.photo = 'Logo: ' + community.logoURL;
                         }
+
                         sendEmail(emailJSON, 'start_community_email', function () {
                             var modalEl = $('.modal-success');
                             modalEl.modal('show');

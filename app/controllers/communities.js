@@ -126,6 +126,11 @@ module.exports = function(app) {
 
     app.post('/api/communities/save', authService.isLoggedIn, function(req, res) {
         var communityJSON = req.body.communityJSON;
+        if (communityJSON.webLink) {
+            if (!(communityJSON.webLink.substring(0,7)=="http://") && !((communityJSON.webLink.substring(0,8)=="https://"))) {
+                communityJSON.webLink = "http://" + communityJSON.webLink;
+            }
+        }
         communityJSON.leaders = [req.user];
         communityJSON.active = false;
         communitiesService.save(communityJSON, function(result) {
