@@ -1,0 +1,149 @@
+html {
+  font-size: 62.5%;
+}
+//html.touch *:hover {
+//  pointer-events: none !important;
+//}
+body {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-weight: 200;
+  font-family: 'Soleil';
+  background :url('../images/background-image.png'), no-repeat;
+  background-size: cover;
+  font-size: 1.6rem;
+  color:  @grey;
+  -webkit-overflow-scrolling: touch;
+}
+
+a {
+  text-decoration: none;
+  :visited, :active, :focus {
+    text-decoration: none;
+  }
+}
+
+a:hover {
+  color: @white;
+  text-decoration: none;
+}
+
+*:focus {
+  outline: 0;
+}
+
+*::-moz-focus-inner {
+  border: 0;
+  outline: 0;
+}
+
+.unstyled-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: inline-block;
+    margin-left: 10px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &.inline {
+    display: inline-block;
+    li {
+      display: inline-block;
+      margin: 5px;
+    }
+  }
+
+  &.block {
+    li {
+      display: block;
+      margin: 0;
+      a {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.notConnected {
+  width: 260px;
+  float: left;
+  margin: 0 10px 7px 0;
+}
+
+.or {
+  line-height: 62px;
+}
+
+.logged-in {
+  font-size: 1.4rem;
+  letter-spacing: 1px !important;
+}
+
+.no-results {
+  background-color: #fff;
+  margin-bottom: 6px;
+  padding: 40px;
+}
+
+.community-name {
+  cursor: pointer;
+}
+
+.expand {
+  cursor: pointer;
+}
+
+.icon-cancel {
+  cursor: pointer;
+  padding-top: 0;
+}
+
+.comments {
+  .icon-cancel {
+    padding-top: 0;
+  }
+}
+
+
+.start-container {
+  margin: 0 0 10px 30px;
+}
+
+.messages-container {
+  background-color: @white;
+  margin-bottom: 6px;
+  padding: 23px 33px;
+  height: 69px;
+  color: #999da0;
+
+  .messages {
+    cursor: pointer;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    span.message-title {
+      font-weight: bold;
+    }
+  }
+}
+
+.fb-like {
+  padding: 38px 0;
+  @media(max-width: 767px){
+    padding:20px 0;
+  }
+}
+
+.fb_edge_comment_widget {
+  margin-left: -370px !important; //use any figure appropriate to you
+}
+.community{
+  right: 0px;
+}

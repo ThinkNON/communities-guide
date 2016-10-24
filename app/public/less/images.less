@@ -1,0 +1,42 @@
+img {
+  max-width: 100%;
+  width: 100%;
+  &.round {
+    width: @avatar-height;
+    height: @avatar-height;
+    border-radius: 100%;
+
+    &.small {
+      width: @avatar-height - 19px;
+      height: @avatar-height - 25px;
+      margin-right: 25px;
+    }
+  }
+
+  &.logo {
+    display: block;
+    width: auto;
+    padding: 12px 0 40px 30px;
+    outline: 0;
+    border: 0;
+
+    @media(max-width: 767px){
+    }
+  }
+
+  &.edit {
+    position: relative;
+  }
+}
+
+img.edit + span {
+    position: absolute;
+    padding: 2px;
+    top: 20px;
+    right: 10px;
+    border-radius: 3px;
+    background-color: @red;
+    font-size: 15px;
+    color: @grey;
+}
+

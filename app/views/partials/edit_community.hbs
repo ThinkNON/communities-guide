@@ -1,0 +1,91 @@
+<div class="modal modal-success fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Succes</h4>
+            </div>
+            <div class="modal-body">
+                Comunitatea a fost adaugată și este în curs de validare.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-error fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="errorLabel">Eroare</h4>
+            </div>
+            <div class="modal-body">
+               Dimensiunea fotografiei pe care doriți să o salvați este prea mare! (Maxim 1MB)
+            </div>
+        </div>
+    </div>
+</div>
+<form id="editCommunity">
+    <div class="col-sm-4 community-sidebar">
+        <div>
+            {{#if community.logoURL}}
+                <div>
+                    <img class="edit" src="{{community.logoURL}}">
+                    <span class="icon-cancel" onclick="deleteFile('{{community.logoURL}}', 'logoURL')"></span>
+                </div>
+            {{else}}
+                <div class="drop-area small">
+                    <input type="file" id="logoURL" accept="image/*">
+                    <span>(380px x 240px Jpeg file)</span>
+                </div>
+            {{/if}}
+        </div>
+        <div class="form-group">
+            <label class="mandatory">Lista de categorii</label>
+            <select id="select-category" name="categories" multiple="multiple">
+                {{#each categories}}
+                    <option value="{{this.id}}" {{#inSelected this.id ../community.categories}}{{/inSelected}}>{{capitalize this.text}}</option>
+                {{/each}}
+            </select>
+            <label class="mandatory">Numele comunității</label>
+            <input name="title" value="{{community.title}}">
+            <label>Website</label>
+            <input name="webLink" value="{{community.webLink}}">
+            <label>Pagina de Facebook</label>
+            <input name="fbLink" value="{{community.fbLink}}">
+            <label>Pagina de Meetup</label>
+            <input name="meetupLink" value="{{community.meetupLink}}">
+            <label>Pagina de Linkedin</label>
+            <input name="linkedinLink" value="{{community.linkedinLink}}">
+        </div>
+    </div>
+    <article class="col-sm-8">
+        <div>
+            {{#if community.photoURL}}
+                <img class="cover-image edit" src="{{community.photoURL}}">
+                <span class="icon-cancel" onclick="deleteFile('{{community.photoURL}}', 'photoURL')"></span>
+            {{else}}
+                <div class="drop-area">
+                    <input type="file" id="photoURL" accept="image/*">
+                    <span>(754px x 475px Jpeg file)</span>
+                </div>
+            {{/if}}
+        </div>
+        <div class="edit-about">
+            <div class="add-note row">
+                <div class="col-xs-12">
+                    <label class="mandatory">Despre comunitate</label>
+                    <textarea name="desc">{{community.desc}}</textarea>
+                </div>
+                {{#if community._id}}
+                    <input id="communityId" type="hidden" name="_id" value="{{community._id}}">
+                    <button id="updateCommunity" class="default green small pull-right">Salvează</button>
+                {{else}}
+                    <div class="col-xs-12">
+                        <span class="terms pull-left">Continuând, ești de acord cu <a href="/terms-and-conditions">Termenii și condițiile</a></span>
+                        <button id="saveCommunity" class="default green small pull-right">Înscrie comunitatea</button>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </article>
+</form>

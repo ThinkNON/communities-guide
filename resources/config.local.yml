@@ -1,0 +1,38 @@
+assets:
+    s3:
+        region: 'eu-central-1'
+        userBucket: 'maria.roman'
+        bucketName: 'communitiesguide-local'
+        acl: 'public-read'
+        publicUrl: 'https://communitiesguide-local.s3.eu-central-1.amazonaws.com/images/'
+        uploadLimit: 1000000
+
+mongodb:
+    schema:
+        autoindex: true
+
+serverURL: 'http://localhost:8085'
+
+application:
+    port: 8085
+    debug: true
+    uploadLimit: 1000000
+    timezone: 'Europe/Bucharest'
+
+auth:
+    jwt:
+        secret:
+        exp: 0
+    bcrypt:
+        iterations: 10
+
+log:
+    morgan:
+        format: ':remote-addr - - [:date] ":method :url" :status :res[content-length] - ":user-agent" - :response-time ms'
+
+
+facebookAuth:
+    callbackURL: 'http://localhost:8085/auth/facebook/callback'
+
+session:
+    secret: 'super secret session token'

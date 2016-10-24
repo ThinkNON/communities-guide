@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Communities Guide</title>
+    <meta name="description" content="Prin Communities Guide oricine se poate alătura unui grup cu care împărtășește un interes anume. Poți găsi rapid o comunitate și este simplu să o contactezi.
+    Folosește filtrele și frunzărește. Poți să te înscrii într-un grup existent sau să pornești tu unul nou nouț.">
+    <meta property="og:site_name" content="Communities Guide Iasi"/>
+    <meta name="author" content="ThinkNON">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta property="og:site_name" content="Iași Communities Guide" />
+    <meta property="og:title" content="{{community.title}}" />
+    <meta property="og:url" content="http://iasi.communities.guide/communities/{{community._id}}"/>
+    <meta property="og:description" content="{{community.desc}}" />
+    <meta property="og:image" content="{{community.logoURL}}" />
+    <meta property="og:type" content="website" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="36x36" href="/images/android-icon-36x36.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/images/android-icon-48x48.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="/images/android-icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/android-icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/images/android-icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/images/ms-icon-70x70.png">
+    <meta name="msapplication-TileImage" content="/images/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/images/ms-icon-150x150.png">
+    <meta name="msapplication-TileImage" content="/images/ms-icon-310x310.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="container wrapper">
+    <header class="row">
+        <div class="col-xs-12 ">
+            <nav class="col-sm-9 col-sm-push-3 clearfix">
+                <ul class="nav inline">
+                    {{#if user}}
+                        <li class="messages-wrapper">
+                            <span class="username">Bună, <strong>{{user.name}}</strong></span>
+                            <a href="/logout" class="logout"><span>Deconectează-te</span></a>
+                        </li>
+                        <li class="avatar-wrapper" >
+                            <a href="#" class="avatar"><img src="{{user.avatar}}" class="round"></a>
+                        </li>
+                    {{else}}
+                        <li class="login"><a href="/auth/facebook" class="round icon-user"><span>Intră în cont</span></a></li>
+                    {{/if}}
+                    <li class="info"><a href="/about" class="round"><span>Despre</span></a></li>
+                </ul>
+            </nav>
+            <a class="col-sm-3 col-sm-pull-9" href="/"><img class="logo" src="/images/logo-colored.png" alt="Iasi Communities Guide Logo"></a>
+        </div>
+    </header>
+    <div class="back col-xs-12">
+        <a href="#" id="prev" class="col-xs-1 icon-left"></a>
+        <a href="/" class="col-xs-10">Înapoi la listă</a>
+        <a href="#" id ="next" class="col-xs-1 icon-right"></a>
+    </div>
+    <div class="modal fade bs-example-modal-lg support" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Mulțumim!</h4>
+                </div>
+                <div class="modal-body">
+                    Ai ales să susții această comunitate. De acum vei fi la curent cu noutățile lor. Îți dorim o experiență frumoasă alături de ei.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-lg resume" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cu bine!</h4>
+                </div>
+                <div class="modal-body">
+                    Ai ales să părăsești această comunitate. Mesajele lor nu vor mai fi afișate în contul tău.
+                    Ne-ar plăcea să știm motivul pentru care ai părăsit comunitatea. Poți să ne scrii la <a class="dark-grey" href='m&#97;ilto&#58;&#111;%&#54;6f%&#54;9ce%40c%6Fm&#109;&#117;&#110;it%6&#57;es&#46;%67uid&#101;'>offi&#99;e&#64;comm&#117;niti&#101;&#115;&#46;&#103;ui&#100;e</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="row">
+        <div class="col-sm-4 community-sidebar">
+            {{#if community.logoURL}}
+            <div class="community-logo-container">
+                <img class="community-logo" src="{{community.logoURL}}">
+            </div>
+            {{/if}}
+            <div class="community-highlights">
+                <div>
+                    <ul class="unstyled-list inline">
+                        {{#each community.categories}}
+                            <li><span class="tag bg-{{this}}" data-slug={{this}} data-filter=".filter-{{this}}">{{getTag this}}</span></li>
+                        {{/each}}
+                    </ul>
+                    <h2>{{community.title}}</h2>
+                    {{#if community.founded}}
+                        <span class="created-at">Adăugat pe {{dateFormat community.founded}}</span>
+                    {{/if}}
+                </div>
+                <div>
+                    <span>Lideri:</span>
+                    <span class="admin-counter">{{community.leaders.length}}</span>
+                    <ul class="unstyled-list">
+                        {{#each community.leaders}}
+                            <li><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div>
+                    <span>Ne găsești pe:</span>
+                    <ul class="unstyled-list social-links">
+                        {{#if community.webLink}}
+                            <li><a href="{{community.webLink}}" class="round small icon-globe bg-lighter-grey" target="_blank"></a></li>
+                        {{/if}}
+                        {{#if community.fbLink}}
+                            <li><a href="{{community.fbLink}}" class="round small icon-facebook bg-fb-blue" target="_blank"></a></li>
+                        {{/if}}
+                        {{#if community.meetupLink}}
+                            <li><a href="{{community.meetupLink}}" class="round small icon-meetup bg-m-red" target="_blank"></a></li>
+                        {{/if}}
+                        {{#if community.linkedinLink}}
+                            <li><a href="{{community.linkedinLink}}" class="round small icon-linkedin bg-in-blue" target="_blank"></a></li>
+                        {{/if}}
+                    </ul>
+                </div>
+                <div>
+                    {{#if user}}
+                        {{#inArray user._id community.leaders '_id'}}
+                                <button class="default green" onclick="edit('{{community._id}}')">Editează comunitatea</button>
+                        {{else}}
+                            {{#inArray user._id community.members '_id'}}
+                                <button class="default green leave" onclick="leave('{{community._id}}')">Părăsește comunitatea</button>
+                            {{else}}
+                                <button class="default green join" onclick="join('{{community._id}}')">Susține</button>
+                            {{/inArray}}
+                        {{/inArray}}
+                    {{else}}
+                        <button class="default report" disabled>Susține</button>
+                    {{/if}}
+                    <a href="m&#97;ilto&#58;&#111;%&#54;6f%&#54;9ce%40c%6Fm&#109;&#117;&#110;it%6&#57;es&#46;%67uid&#101;?subject=Reporting {{community.title}}" class="default report">Semnalează o problemă</a>
+                </div>
+            </div>
+        </div>
+        <article class="col-sm-8">
+            {{#if community.photoURL}}
+                <div class="community-image-container">
+                    <img class="cover-image" src="{{community.photoURL}}">
+                </div>
+            {{/if}}
+            <div class="about">
+                <div>
+                    <h1>Despre noi</h1>
+                    <p>{{{community.desc}}}</p>
+                </div>
+                <div class="members">
+                    <span>Susținători:</span>
+                    <span class="members-counter">
+                        {{#if community.leaders.length}}
+                            {{#if community.members.length}}
+                                {{math community.members.length "+" community.leaders.length}}
+                            {{else}}
+                                {{community.leaders.length}}
+                            {{/if}}
+                        {{else}}
+                            {{#if community.members.length}}
+                                {{community.members.length}}
+                            {{/if}}
+                        {{/if}}
+                    </span>
+                    {{#compare community.leaders.length 1 operator="==="}}
+                        <span name="admin-counter">(1 lider)</span>
+                    {{/compare}}
+                    {{#compare community.leaders.length 1 operator=">"}}
+                        <span name="admin-counter">({{community.leaders.length}} lideri)</span>
+                    {{/compare}}
+                    <ul class="unstyled-list inline">
+                        {{#each community.leaders}}
+                            {{#compare @index 8 operator="<"}}
+                                <li><a href="{{this.profileUrl}}" title="{{this.name}}" class="leader" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                            {{/compare}}
+                        {{/each}}
+                        {{#each (shuffle community.members)}}
+                            {{#compare (math ../community.leaders.length "+" @index) 8 operator="<"}}
+                                <li><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                            {{else}}
+                                <li style="display: none"><a href="{{this.profileUrl}}" title="{{this.name}}" target="_blank"><img src="{{this.avatar}}" class="round"></a></li>
+                            {{/compare}}
+                        {{/each}}
+                        {{#if community.leaders.length}}
+                            {{#if community.members.length}}
+                                {{#compare (math community.members.length "+" community.leaders.length) 8 operator=">"}}
+                                    <li><a class="community-counter expand">+{{math (math community.members.length "+" community.leaders.length) "-" 8}}</a></li>
+                                {{/compare}}
+                            {{else}}
+                                {{#compare community.leaders.length 8 operator=">"}}
+                                    <li><a class="community-counter expand">+{{math community.leaders.length "-" 8}}</a></li>
+                                {{/compare}}
+                            {{/if}}
+                        {{else}}
+                            {{#if community.members.length}}
+                                {{#compare community.members.length 8 operator=">"}}
+                                    <li><a class="community-counter expand">+{{math community.members.length "-" 8}}</a></li>
+                                {{/compare}}
+                            {{/if}}
+                        {{/if}}
+                    </ul>
+                </div>
+                {{#if user}}
+                    {{#inArray user._id community.leaders '_id'}}
+                        <div class="add-note row">
+                            <div class="col-xs-12">
+                                <p>Ține-i la curent pe susținători cu noutăți despre comunitatea ta, întâlniri și evenimente.
+                                    Adaugă mesaj și ei îl vor primi pe e-mail și în secțiunea Noutăți de pe situl communities.guide</p>
+                                <textarea id="message"></textarea>
+                            </div>
+                            <button class="default green small pull-right" id="submitComment">Adaugă mesaj</button>
+                        </div>
+                    {{/inArray}}
+                {{/if}}
+                {{#if messages.length}}
+                    <div class="comments">
+                        <span>Comentarii:</span>
+                        <span class="comments-counter">{{messages.length}}</span>
+                        {{#each messages}}
+
+                            <div class="row">
+                                <img class="col-xs-1 round small" src="{{this.user.avatar}}">
+                                <div class="col-xs-6 col-sm-7">
+                                    <div class="row">
+                                        <span class="col-xs-12 admin">{{this.user.name}}</span>
+                                        <p class="col-xs-12">{{this.message}}</p>
+                                    </div>
+                                </div>
+                                <span class="col-xs-2 time-elapsed">{{this.date}}</span>
+                                {{#if ../user}}
+                                    {{#inArray ../../user._id ../../community.leaders '_id'}}
+                                        <span class="col-xs-1 icon-cancel bg-light-grey" onclick="deleteMessage('{{this._id}}')"></span>
+                                    {{/inArray}}
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/if}}
+                <input id="communityId" type="hidden" value="{{community._id}}">
+            </div>
+        </article>
+    </main>
+    <footer>
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+                <h2>Iași<br/>Communities<br/>Guide</h2>
+            </div>
+            <div class="col-sm-5 col-md-5">
+                <p> Vrem să creștem împreună, așa că ne bucurăm să primim idei și sugestii despre cum putem face mai mult și mai bine pe adresa
+                    <a class="dark-grey" href='m&#97;ilto&#58;&#111;%&#54;6f%&#54;9ce%40c%6Fm&#109;&#117;&#110;it%6&#57;es&#46;%67uid&#101;'>offi&#99;e&#64;comm&#117;niti&#101;&#115;&#46;&#103;ui&#100;e</a>.
+                </p>
+            </div>
+            <div class="col-sm-3 col-md-3 col-md-offset-1">
+                <div class="row">
+                    <div class="fb-like" data-href="http://iasi.communities.guide/communities/{{community._id}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="250px"></div>
+                </div>
+                <div class="row">
+                    <a class="back-top pull-right" href="#">Sus</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-multiselect.js"></script>
+<script src="/js/communities.js"></script>
+</body>
+</html>

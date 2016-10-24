@@ -1,0 +1,36 @@
+assets:
+    s3:
+        region: 'eu-central-1'
+        userBucket: 'maria.roman'
+        bucketName: 'communities-guide-dev'
+        acl: 'public-read'
+        publicUrl: 'https://assets.dev.communities.guide/'
+        uploadLimit: 1000000
+
+mongodb:
+    schema:
+        autoindex: true
+
+serverURL: 'http://iasi.communities.guide'
+
+application:
+    port: 8082
+    debug: true
+    uploadLimit: 1000000
+    timezone: 'Europe/Bucharest'
+
+auth:
+    jwt:
+        secret:
+        exp: 0
+    bcrypt:
+        iterations: 10
+log:
+    morgan:
+        format: ':remote-addr - - [:date] ":method :url" :status :res[content-length] - ":user-agent" - :response-time ms'
+
+facebookAuth:
+    callbackURL: 'http://iasi.communities.guide/auth/facebook/callback'
+
+session:
+    secret: 'super secret session token'

@@ -1,0 +1,35 @@
+::-webkit-input-placeholder {
+  color: @white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: @white;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: @white;
+}
+
+:-ms-input-placeholder {
+  color: @white;
+}
+div.search-input {
+  display: inline-block;
+  width: 243px;
+
+  input[type="search"] {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    width: 223px;
+    border: none;
+    color: @white;
+    padding: 20px 0 20px 20px;
+    &[placeholder] {
+      color: @white;
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    margin: 10px 0;
+  }
+}

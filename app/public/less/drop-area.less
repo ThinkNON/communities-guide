@@ -1,0 +1,39 @@
+.drop-area {
+  background-color: @drop-area-bg;
+  text-align: center;
+  padding-top: 190px;
+  padding-bottom: 190px;
+
+  input[type="file"] {
+    margin: 0 auto;
+    width: 210px;
+  }
+
+
+  > span {
+    display: block;
+    &:first-child {
+      color: @dark-grey;
+      padding-bottom: 10px;
+    }
+    &:last-child {
+      color: @lighter-grey;
+    }
+  }
+  &.small {
+    padding-top: 92px;
+    padding-bottom: 92px;
+    font-size: 1.6rem;
+  }
+}
+
+.drop-area + span {
+  position: absolute;
+  padding: 2px;
+  top: 20px;
+  right: 10px;
+  border-radius: 3px;
+  background-color:  @lighter-grey;
+  font-size: 15px;
+  color: @drop-area-bg;
+}
